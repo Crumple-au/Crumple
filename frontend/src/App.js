@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { ThemeProvider, Typography } from '@material-ui/core'
+import { theme } from './utils/theme'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <Typography style={{ fontWeight: 500 }}>made for makers</Typography>
+      <Typography component='span' color='primary'>
+        crumple
+      </Typography>{' '}
+      <Typography component='span'>makes it easy</Typography>
+      <br />
+      <Typography component='span'>for </Typography>
+      <Typography component='span' color='secondary'>
+        artists
+      </Typography>{' '}
+      and{' '}
+      <Typography component='span' color='secondary'>
+        creatives
+      </Typography>
+      <Typography>to get paid for their work.</Typography>
+    </ThemeProvider>
+  )
 }
 
-export default App;
+export default App
