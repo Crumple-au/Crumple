@@ -7,7 +7,7 @@ const HomePage = () => {
     <Box
       display='flex'
       flexDirection='column'
-      height='100vh'
+      height='65vh'
       width='auto'
       alignItems='center'
       justifyContent='center'

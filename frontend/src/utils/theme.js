@@ -8,6 +8,9 @@ export const theme = createTheme({
     secondary: {
       main: '#F62D01',
     },
+    info: {
+      main: '#323232',
+    },
   },
   typography: {
     fontFamily: 'Prompt',
@@ -19,3 +22,4 @@ export const theme = createTheme({
 
 export const primary = '#6184C4'
 export const secondary = '#F62D01'
+export const black = '#323232'
