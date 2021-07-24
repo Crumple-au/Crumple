@@ -2,9 +2,6 @@ import { createTheme } from '@material-ui/core'
 
 export const theme = createTheme({
   palette: {
-    common: {
-      black: '#323232',
-    },
     primary: {
       main: '#6184C4',
     },
@@ -14,5 +11,11 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: 'Prompt',
+    h1: {
+      fontWeight: 500,
+    },
   },
 })
+
+export const primary = '#6184C4'
+export const secondary = '#F62D01'
