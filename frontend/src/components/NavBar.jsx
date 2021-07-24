@@ -19,7 +19,7 @@ const NavBar = () => {
         <Box p='1.5rem'>
           <Typography>ABOUT</Typography>
         </Box>
-        <Grid container justify='flex-end'>
+        <Grid container justifyContent='flex-end'>
           <Box p='1.5rem'>
             <Typography>CART</Typography>
           </Box>
