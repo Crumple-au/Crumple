@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Typography, Box, Button } from '@material-ui/core'
 
 import { primary, secondary } from '../utils/theme'
@@ -30,7 +30,7 @@ const HomePage = () => {
         </Typography>
         <Box m='2rem'>
           <Button
-            component={RouterLink}
+            component={Link}
             to='/discover'
             variant='contained'
             color='primary'
