@@ -1,15 +1,25 @@
 import React from 'react'
-import HomePage from './screens/HomePage'
 import NavBar from './components/NavBar'
 import { ThemeProvider } from '@material-ui/core'
 import { theme } from './utils/theme'
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+
+//PAGES
+import HomePage from './screens/HomePage'
+import SigninPage from './screens/SigninPage'
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <NavBar />
-      <HomePage />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <NavBar />
+        {/* <HomePage /> */}
+        <main className="main">
+          <Route path="/signin" component={SigninPage} />
+          <Route path="/" exact={true} component={HomePage} />
+        </main>
+      </ThemeProvider>
+    </BrowserRouter>
   )
 }
 
