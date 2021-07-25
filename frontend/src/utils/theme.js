@@ -1,4 +1,5 @@
 import { createTheme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 export const theme = createTheme({
   palette: {
@@ -16,6 +17,16 @@ export const theme = createTheme({
     fontFamily: 'Prompt',
     h1: {
       fontWeight: 500,
+    },
+  },
+})
+
+export const useStyles = makeStyles({
+  navlink: {
+    color: '#ffffff',
+    textDecoration: 'none',
+    'a:visited': {
+      color: '#ffffff',
     },
   },
 })
