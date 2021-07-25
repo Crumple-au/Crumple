@@ -17,6 +17,9 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/crumple', {
 
 const port = process.env.PORT || 5000;
 
+app.get('/', (req, res) => { 
+    res.send('Hello from Express!')
+})
 app.use('/api/users', userRouter);
 
 app.listen(port, () => {
