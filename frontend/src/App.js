@@ -2,13 +2,16 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/core'
 
-import HomePage from './screens/HomePage'
 import NavBar from './components/NavBar'
 import Categories from './components/Categories.jsx'
 import About from './screens/About.jsx'
 import FAQs from './screens/FAQs.jsx'
 import Error from './screens/Error.jsx'
 import { theme } from './utils/theme'
+
+//PAGES
+import HomePage from './screens/HomePage'
+import SigninPage from './screens/SigninPage'
 
 const App = () => {
   return (
@@ -28,6 +31,7 @@ const App = () => {
           <Route path='/faqs'>
             <FAQs />
           </Route>
+          <Route path='/signin' component={SigninPage} />
           <Route path='*'>
             <Error />
           </Route>

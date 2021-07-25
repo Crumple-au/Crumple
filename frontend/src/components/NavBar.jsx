@@ -37,7 +37,9 @@ const NavBar = () => {
             <FaShoppingCart />
           </Box>
           <Box p='1.5rem'>
-            <Typography>LOGIN</Typography>
+            <Link to='/signin'>
+              <Typography>LOGIN</Typography>
+            </Link>
           </Box>
           <Box p='1.5rem' pr='5rem'>
             <Typography>SIGN UP</Typography>
