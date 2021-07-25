@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
-import { Box, Typography, AppBar, Toolbar, Grid } from '@material-ui/core'
+import {
+  Box,
+  Typography,
+  AppBar,
+  Toolbar,
+  Grid,
+  Button,
+} from '@material-ui/core'
 
 import { black, useStyles } from '../utils/theme'
 import logo from '../images/crumple-logo.jpg'
@@ -33,16 +40,18 @@ const NavBar = () => {
           </Link>
         </Box>
         <Grid container justifyContent='flex-end'>
-          <Box p='1.5rem'>
+          <Box p='2rem'>
             <FaShoppingCart />
           </Box>
-          <Box p='1.5rem'>
-            <Link to='/signin' className={classes.navlink}>
-              LOGIN
-            </Link>
+          <Box py='1.5rem'>
+            <Button component={Link} variant='contained' to='/signin'>
+              LOG IN
+            </Button>
           </Box>
           <Box p='1.5rem' pr='5rem'>
-            <Typography>SIGN UP</Typography>
+            <Button variant='contained' color='primary'>
+              SIGN UP
+            </Button>
           </Box>
         </Grid>
       </Toolbar>
