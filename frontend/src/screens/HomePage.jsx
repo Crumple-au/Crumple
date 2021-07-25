@@ -7,7 +7,7 @@ import stick0 from '../images/crumple-stick0.jpg'
 
 const HomePage = () => {
   return (
-    <Box my='4vh'>
+    <Box mt='4vh'>
       <Box
         display='flex'
         flexDirection='column'
@@ -15,7 +15,7 @@ const HomePage = () => {
         width='auto'
         alignItems='center'
         justifyContent='center'
-        pt='11vh'
+        pt='14vh'
       >
         <Typography variant='h1'>made for makers</Typography>
         <Typography variant='h4' color='textSecondary'>
@@ -39,8 +39,8 @@ const HomePage = () => {
           </Button>
         </Box>
       </Box>
-      <Box p='3rem' pl='5rem'>
-        <img src={stick0} alt='stickman' height='900' width='auto'></img>
+      <Box ml='5rem' mt='3vh'>
+        <img src={stick0} alt='stickman' height='850' width='auto'></img>
       </Box>
     </Box>
   )
