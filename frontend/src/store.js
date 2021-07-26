@@ -1,13 +1,14 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import {userSigninReducer} from './reducers/userReducers';
+import {userSigninReducer, userRegisterReducer,} from './reducers/userReducers';
 
 const initialState = {
     userSignin: { },
 };
 
 const reducer = combineReducers({
-    userSignin: userSigninReducer
+    userSignin: userSigninReducer,
+    userRegister: userRegisterReducer,
 });
 
 // Below code to be able to use Redux browser extention
