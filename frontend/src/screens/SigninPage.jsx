@@ -39,7 +39,7 @@ function SigninPage(props) {
             <span>Crumple</span>
           </div>
 
-          <div class="alert-box">
+          <div className="alert-box">
               {loading && <div>Loading...</div>}
               {error && <div>{error}</div>}
           </div>
@@ -64,7 +64,7 @@ function SigninPage(props) {
             </li>
             <li>
               <label htmlFor='password'>Password 
-                <Link className="link">Forgot your password?</Link>
+                <Link to="#" className="link">Forgot your password?</Link>
               </label>
               <input
                 type='password'

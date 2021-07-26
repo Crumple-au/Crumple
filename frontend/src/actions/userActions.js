@@ -18,10 +18,10 @@ const signin = (email, password) => async (dispatch) => {
     }
 };
 
-const register = (name, email, password) => async (dispatch) => {
-    dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
+const register = (email, password) => async (dispatch) => {
+    dispatch({ type: USER_REGISTER_REQUEST, payload: { email, password } });
     try {
-        const { data } = await Axios.post(envUrl + "/api/users/register", { name, email, password });
+        const { data } = await Axios.post(envUrl + "/api/users/register", { email, password });
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: USER_REGISTER_FAIL, payload: error.message });

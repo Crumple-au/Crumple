@@ -2,11 +2,10 @@ function envTypeUrl(envType) {
     if (envType === 'production') {
         const PRODUCTION_URL = 'https://crumple-au.herokuapp.com';
         return PRODUCTION_URL
-    };
+    }
 
     if (envType === 'development') {
-        const DEVELOPMENT_URL = 'http://localhost:3000';
-        return DEVELOPMENT_URL
+        return ''
     }
     else {
         console.error("Please specify which environment you are in.")
