@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #323232;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Signin Page */
+
+.form {
+  border: 1px solid black;
+  background-color: #eeebeb;
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  .form-container {
+    // border: 1px solid blue;
+    height: 45vh;
+    width: 25vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    .form-heading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // border: 1px solid green;
+
+      .logo {
+        width: 3rem;
+        height: 3rem;
+      }
+  
+      span {
+        margin-left: 1rem;
+        font-weight: bold;
+      }
+
+    }
+
+    .alert-box {
+      // border: 1px solid purple;
+      width: 20vw;
+      height: 110px;
+      margin-top: 2.5rem;
+    }
+
+    .form-fields {
+      // border: 1px solid red;
+      width: 20vw;
+
+      li {
+        list-style-type: none;
+        margin: .5rem 0;
+      }
+
+      label {
+        font-weight: 600;
+
+        .link{
+          font-size: .8rem;
+          font-weight: 400;
+          align-self: flex-end;
+        }
+      }
+
+      input {
+        width: 100%;
+        height: 2.3rem;
+        border-radius: 3px;
+        border: 1px solid rgb(126, 126, 126);
+        margin-top: 5px;
+      }
+
+      h3, label, input { 
+        display: flex;
+        // border: 1px solid purple;
+        justify-content: space-between;
+      }
+
+      button {
+        width: 60%;
+        height: 2rem;
+        border: none;
+        color: white;
+        font-weight: 600;
+        letter-spacing: 1px;
+        border-radius: 3px;
+        margin-top: 1rem;
+      }
+
+      button.primary {
+        background-color: #6184C4;
+      }
+      button:hover {
+        background-color: #a4bff1;
+      }
+    }
+
+  }
+
+}

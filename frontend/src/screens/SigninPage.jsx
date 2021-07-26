@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { signin } from '../actions/userActions.js'
+import logo from '../images/crumple-logo.jpg'
 
 function SigninPage(props) {
   const userSignin = useSelector((state) => state.userSignin)
@@ -32,46 +33,52 @@ function SigninPage(props) {
     <div className='form'>
       <form onSubmit={submitHandler}>
         <ul className='form-container'>
-          <li>
-            <h2>Sign-In</h2>
-          </li>
-          <li>
-            {loading && <div>Loading...</div>}
-            {error && <div>{error}</div>}
-          </li>
-          <li>
-            <label htmlFor='email'>Email</label>
-            <input
-              type='email'
-              name='email'
-              id='email'
-              onChange={(e) => setEmail(e.target.value)}
-            ></input>
-          </li>
-          <li>
-            <label htmlFor='password'>Password</label>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-          </li>
-          <li>
-            <button type='submit' className='button primary'>
-              Signin
-            </button>
-          </li>
-          <li>New to Crumple?</li>
-          <li>
-            <Link
-              to={
-                redirect === '/' ? 'register' : 'register?redirect=' + redirect
-              }
-            >
-              Create your Crumple account
-            </Link>
-          </li>
+
+          <div className="form-heading">
+            <img className="logo" src={logo} alt="Crumple logo"></img>
+            <span>Crumple</span>
+          </div>
+
+          <div class="alert-box">
+              {loading && <div>Loading...</div>}
+              {error && <div>{error}</div>}
+          </div>
+
+          <div className="form-fields">
+            <h3>Welcome back</h3>
+            
+            <li>
+              <label htmlFor='email'>Email 
+                <Link
+                  className="link" 
+                  to={redirect === '/' ? 'register' : 'register?redirect=' + redirect}>
+                  New to Crumple?
+                </Link>
+              </label>
+              <input
+                type='email'
+                name='email'
+                id='email'
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </li>
+            <li>
+              <label htmlFor='password'>Password 
+                <Link className="link">Forgot your password?</Link>
+              </label>
+              <input
+                type='password'
+                id='password'
+                name='password'
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </li>
+            <li>
+              <button type='submit' className='button primary'>
+                Sign in
+              </button>
+            </li>
+          </div>
         </ul>
       </form>
     </div>
