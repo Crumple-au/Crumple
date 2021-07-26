@@ -49,7 +49,7 @@ const NavBar = () => {
             </Button>
           </Box>
           <Box p='1.5rem' pr='5rem'>
-            <Button variant='contained' color='primary'>
+            <Button component={Link} variant='contained' color='primary' to='/signup'>
               SIGN UP
             </Button>
           </Box>

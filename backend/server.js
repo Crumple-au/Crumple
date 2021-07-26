@@ -1,7 +1,8 @@
 import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-const cors = require('cors')
+import cors from 'cors';
+// const cors = require('cors')
 import userRouter from './routes/userRouter.js'
 
 dotenv.config();
