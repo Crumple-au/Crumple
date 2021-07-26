@@ -3,7 +3,11 @@ import thunk from 'redux-thunk';
 import {userSigninReducer, userRegisterReducer,} from './reducers/userReducers';
 
 const initialState = {
-    userSignin: { },
+    userSignin: { 
+        userInfo: localStorage.getItem('userInfo') 
+        ? JSON.parse(localStorage.getItem('userInfo'))
+        : null
+    }
 };
 
 const reducer = combineReducers({

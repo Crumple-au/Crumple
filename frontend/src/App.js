@@ -12,9 +12,11 @@ import { theme } from './utils/theme'
 //PAGES
 import HomePage from './screens/HomePage'
 import SigninPage from './screens/SigninPage'
+import ProfilePage from './screens/ProfilePage'
 import RegisterPage from './screens/RegisterPage'
 
 const App = () => {
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -32,8 +34,11 @@ const App = () => {
           <Route path='/faqs'>
             <FAQs />
           </Route>
+
           <Route path='/signin' component={SigninPage} />
           <Route path='/signup' component={RegisterPage} />
+          <Route path='/profile' component={ProfilePage} />
+
           <Route path='*'>
             <Error />
           </Route>
