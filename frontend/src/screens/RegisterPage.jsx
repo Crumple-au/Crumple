@@ -10,7 +10,6 @@ function RegisterPage(props) {
     const { loading, userInfo, error } = userRegister;
     const dispatch = useDispatch();
 
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
@@ -19,9 +18,9 @@ function RegisterPage(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(register(name, email, password));
+        dispatch(register( email, password));
     }
-
+    
     useEffect(() => {
         if (userInfo) {
             props.history.push(redirect);
@@ -38,7 +37,7 @@ function RegisterPage(props) {
                         <span>Crumple</span>
                     </div>
 
-                    <div class="alert-box">
+                    <div className="alert-box">
                         {loading && <div>Loading...</div>}
                         {error && <div>{error}</div>}
                     </div>
@@ -48,7 +47,7 @@ function RegisterPage(props) {
 
                         <li>
                             <label htmlFor='email'>Email 
-                                <Link className="link">Already have an account?</Link>
+                                <Link to="#" className="link">Already have an account?</Link>
                             </label>
                             <input
                                 type='email'
@@ -67,11 +66,11 @@ function RegisterPage(props) {
                             ></input>
                         </li>
                         <li>
-                            <label htmlFor='password'>Confirm Password </label>
+                            <label htmlFor='confirmPassword'>Confirm Password </label>
                             <input
-                                type='password'
-                                id='password'
-                                name='password'
+                                type='confirmPassword'
+                                id='confirmPassword'
+                                name='confirmPassword'
                                 onChange={(e) => setPassword(e.target.value)}
                             ></input>
                         </li>
