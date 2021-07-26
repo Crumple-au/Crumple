@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../actions/userActions';
+import logo from '../images/crumple-logo.jpg'
 
 function RegisterPage(props) {
 
@@ -9,7 +10,6 @@ function RegisterPage(props) {
     const { loading, userInfo, error } = userRegister;
     const dispatch = useDispatch();
 
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
@@ -18,9 +18,9 @@ function RegisterPage(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(register(name, email, password));
+        dispatch(register( email, password));
     }
-
+    
     useEffect(() => {
         if (userInfo) {
             props.history.push(redirect);
@@ -28,39 +28,58 @@ function RegisterPage(props) {
     }, [userInfo]);
 
     return (
-        <div className="form">
-            <form onSubmit={submitHandler} >
-                <ul className="form-container">
-                    <li>
-                        <h2>Create Account</h2>
-                    </li>
-                    <li>
+        <div className='form'>
+            <form onSubmit={submitHandler}>
+                <ul className='form-container'>
+
+                    <div className="form-heading">
+                        <img className="logo" src={logo} alt="Crumple logo"></img>
+                        <span>Crumple</span>
+                    </div>
+
+                    <div className="alert-box">
                         {loading && <div>Loading...</div>}
                         {error && <div>{error}</div>}
-                    </li>
-                    <li>
-                        <label htmlFor="name">Name</label>
-                        <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="rePassword">Re-Enter Password</label>
-                        <input type="password" id="rePassword" name="rePassword" onChange={(e) => setRePassword(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <button type="submit" className="button primary">Register</button>
-                    </li>
-                    <li>
-                    Already have an Crumple account?
-                    <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} className="button secondary text-center" >Create your Crumple account</Link>
-                    </li>
+                    </div>
+
+                    <div className="form-fields">
+                    <h3>Join a community of creates!</h3>
+
+                        <li>
+                            <label htmlFor='email'>Email 
+                                <Link to="#" className="link">Already have an account?</Link>
+                            </label>
+                            <input
+                                type='email'
+                                name='email'
+                                id='email'
+                                onChange={(e) => setEmail(e.target.value)}
+                            ></input>
+                        </li>
+                        <li>
+                            <label htmlFor='password'>Password </label>
+                            <input
+                                type='password'
+                                id='password'
+                                name='password'
+                                onChange={(e) => setPassword(e.target.value)}
+                            ></input>
+                        </li>
+                        <li>
+                            <label htmlFor='confirmPassword'>Confirm Password </label>
+                            <input
+                                type='confirmPassword'
+                                id='confirmPassword'
+                                name='confirmPassword'
+                                onChange={(e) => setPassword(e.target.value)}
+                            ></input>
+                        </li>
+                        <li>
+                            <button type='submit' className='button primary'>
+                            Sign in
+                            </button>
+                        </li>
+                    </div>
                 </ul>
             </form>
         </div>
