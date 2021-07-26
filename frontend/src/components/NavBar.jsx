@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { signout } from '../actions/userActions.js';
 import { FaShoppingCart } from 'react-icons/fa'
 import {
   Box,
@@ -15,6 +17,14 @@ import logo from '../images/crumple-logo.jpg'
 
 const NavBar = () => {
   const classes = useStyles()
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  const dispatch = useDispatch();
+
+  const signoutHandler = () => {
+    dispatch(signout());
+  };
 
   return (
     <AppBar style={{ backgroundColor: black }} position='sticky'>
@@ -43,16 +53,40 @@ const NavBar = () => {
           <Box p='2rem'>
             <FaShoppingCart />
           </Box>
-          <Box py='1.5rem'>
-            <Button component={Link} variant='contained' to='/signin'>
-              LOG IN
-            </Button>
-          </Box>
-          <Box p='1.5rem' pr='5rem'>
-            <Button component={Link} variant='contained' color='primary' to='/signup'>
-              SIGN UP
-            </Button>
-          </Box>
+
+          {userInfo ? (
+            <Box py='1.5rem' className="dropdown">
+              <Button to="#" variant='contained' to='/profile'>
+                {userInfo.name}
+              </Button>
+              <ul className="dropdown-content">
+                <li>
+                  <Link className="link" to='/profile'>
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link" to="#signout" onClick={signoutHandler}>
+                    Sign Out
+                  </Link>
+                </li>
+              </ul>
+            </Box>
+          ): (
+            <>
+              <Box py='1.5rem'>
+                <Button component={Link} variant='contained' to='/signin'>
+                  LOG IN
+                </Button>
+              </Box>
+              <Box p='1.5rem' pr='5rem'>
+                <Button component={Link} variant='contained' color='primary' to='/signup'>
+                  SIGN UP
+                </Button>
+              </Box>
+            </>
+          )}
+
         </Grid>
       </Toolbar>
     </AppBar>
