@@ -14,7 +14,8 @@ function envTypeUrl(envType) {
 }
 
 // Make sure to change this before each build.
-const envUrl = envTypeUrl('development')
+// const envUrl = envTypeUrl('development')
+const envUrl = envTypeUrl('production')
 
 console.log('You are connected to ' + envUrl + ' host.');
 
