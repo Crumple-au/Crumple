@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=dev nodemon babel-node backend/server.js",
-    "test": "cross-env NODE_ENV=test jest backend/__tests__ --detectOpenHandles --testTimeout=10000"
+    "test": "cross-env NODE_ENV=test jest backend/__tests__ --forceExit  --detectOpenHandles --testTimeout=10000"
   },
   "author": "Irah Rosete and Ryan Tavcar",
   "license": "ISC",
