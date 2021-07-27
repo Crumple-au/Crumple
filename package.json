@@ -8,8 +8,15 @@
     "node": "14.x",
     "npm": "7.16.0"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "scripts": {
-    "start": "nodemon babel-node backend/server.js"
+    "start": "cross-env NODE_ENV=dev nodemon babel-node backend/server.js",
+    "test": "cross-env NODE_ENV=test jest backend/__tests__ --detectOpenHandles --testTimeout=10000"
   },
   "author": "Irah Rosete and Ryan Tavcar",
   "license": "ISC",
@@ -25,7 +32,11 @@
   },
   "devDependencies": {
     "@babel/node": "^7.14.7",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.8",
-    "nodemon": "^2.0.12"
+    "cross-env": "^7.0.3",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.4"
   }
 }

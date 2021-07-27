@@ -2,8 +2,8 @@ import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-// const cors = require('cors')
 import userRouter from './routes/userRouter.js'
+import mongodb_database from './config.js'
 
 dotenv.config();
 
@@ -14,16 +14,11 @@ const corsOptions = {
     optionsSuccessStatus: 200 // For legacy browser support
 }
 app.use(cors(corsOptions));
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "https://crumple.netlify.app"); // update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/crumple', {
+mongoose.connect(process.env.MONGODB_URL || mongodb_database , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -38,5 +33,6 @@ app.use('/api/users', userRouter);
 
 
 app.listen(port, () => {
+    console.log(`Node environment is set to ${process.env.NODE_ENV}`)
     console.log(`Example app listening at http://localhost:${port}`)
 });
