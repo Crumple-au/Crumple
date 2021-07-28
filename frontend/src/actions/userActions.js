@@ -12,7 +12,10 @@ import {
     USER_DETAILS_FAIL,
     USER_LIST_REQUEST,
     USER_LIST_SUCCESS,
-    USER_LIST_FAIL,} from "../constants/userConstants";
+    USER_LIST_FAIL,
+    USER_UPDATE_PROFILE_FAIL,
+    USER_UPDATE_PROFILE_REQUEST,
+    USER_UPDATE_PROFILE_SUCCESS} from "../constants/userConstants";
 import ENV_URL from '../config.js'
 
 const signin = (email, password) => async (dispatch) => {
@@ -80,4 +83,24 @@ const listUsers = () => async (dispatch, getState) => {
     }
 };
 
-export { signin, register, signout, detailsUser, listUsers };
+const updateUserProfile = (user) => async (dispatch, getState) => {
+    dispatch({ type: USER_UPDATE_PROFILE_REQUEST, payload: user });
+    const {userSignin: { userInfo } } = getState();
+    try {
+        const { data } = await Axios.put(`/api/users/profile/edit/${userInfo._id}`, user, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
+        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } 
+    catch (error) {
+        const message =
+            error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        dispatch({ type: USER_UPDATE_PROFILE_FAIL, payload: message });
+    }
+};
+
+export { signin, register, signout, detailsUser, listUsers, updateUserProfile };

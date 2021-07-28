@@ -7,6 +7,7 @@ import {generateToken, isAuth, isAdmin} from '../util/util.js';
 
 const userRouter = express.Router();
 
+// create user data samples
 userRouter.get(
     '/seed',
     expressAsyncHandler(async (req, res) => {
@@ -15,6 +16,7 @@ userRouter.get(
     })
 );
 
+// Post signin data
 userRouter.post(
     '/signin',
     expressAsyncHandler(async (req, res) => {
@@ -36,6 +38,7 @@ userRouter.post(
     })
 );
 
+// Post register user data
 userRouter.post(
     '/register',
     expressAsyncHandler(async (req, res) => {
@@ -54,6 +57,7 @@ userRouter.post(
     })
 );
 
+//get user profile
 userRouter.get(
     '/profile/:id',
     expressAsyncHandler(async (req, res) => {
@@ -74,6 +78,52 @@ userRouter.get(
     })
 );
 
+//edit user
+// userRouter.put(
+//     '/profile/edit/:id',
+//     isAuth,
+//     expressAsyncHandler(async (req, res) => {
+//         const user = await User.findById(req.params.id);
+//         if (user) {
+//             user.name = req.body.name || user.name;
+//             user.email = req.body.email || user.email;
+//             user.description = req.body.description || user.description;
+//             user.isSeller = Boolean(req.body.isSeller);
+
+//             const updatedUser = await user.save();
+//             res.send({ message: 'User Profile Updated', user: updatedUser });
+//         } else {
+//             res.status(404).send({ message: 'User Not Found' });
+//         }
+//     })
+// );
+
+userRouter.put(
+    '/profile/edit/:id',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const user = await User.findById(req.user._id);
+        if (user) {
+            user.name = req.body.name || user.name;
+            user.email = req.body.email || user.email;
+            user.description = req.body.description || user.description;
+
+            const updatedUser = await user.save();
+            res.send({
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                email: updatedUser.email,
+                description: updatedUser.description,
+                isSeller: user.isSeller,
+            });
+        }
+        else {
+            res.status(404).send({ message: 'User Not Found' });
+        }
+    })
+);
+
+// get all users
 userRouter.get(
     '/',
     isAuth,

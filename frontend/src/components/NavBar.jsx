@@ -27,7 +27,7 @@ const NavBar = () => {
   const signoutHandler = () => {
     dispatch(signout());
   };
-  
+
   return (
     <AppBar style={{ backgroundColor: black }} position='sticky'>
       <Toolbar>
@@ -68,6 +68,11 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link className="link" to={`/profile/edit/${userInfo._id}`}>
+                    Edit Profile
+                  </Link>
+                </li>
+                <li>
                   <Link className="link" to='/users'>
                     All users
                   </Link>
@@ -90,6 +95,11 @@ const NavBar = () => {
                 <li>
                   <Link className="link" to={`/profile/${userInfo._id}`}>
                     Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link" to={`/profile/edit/${userInfo._id}`}>
+                    Edit Profile
                   </Link>
                 </li>
                 <li>

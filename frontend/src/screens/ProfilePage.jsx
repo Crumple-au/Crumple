@@ -22,7 +22,7 @@ function ProfilePage() {
         if (!user) {
             dispatch(detailsUser(userId));
         }
-    }, [dispatch, user ]);
+    }, [dispatch, user, userInfo ]);
     return (
         <div>
             {user && (
