@@ -5,10 +5,10 @@ import { detailsUser } from '../actions/userActions';
 
 function ProfilePage() {
     const { userId } = useParams();
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [isAdmin, setIsAdmin] = useState('');
-    const [isSeller, setIsSeller] = useState();
+    // const [name, setName] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [isAdmin, setIsAdmin] = useState('');
+    // const [isSeller, setIsSeller] = useState();
 
 
     const userSignin = useSelector((state) => state.userSignin);
@@ -21,20 +21,19 @@ function ProfilePage() {
     useEffect(() => {
         if (!user) {
             dispatch(detailsUser(userId));
-        } else {
-            setName(user.name);
-            setEmail(user.email);
-            setIsAdmin(String(user.isAdmin));
-            setIsSeller(String(user.isSeller));
         }
-    }, [dispatch, userInfo._id, userId, user]);
-
+    }, [dispatch, user ]);
     return (
         <div>
-            <h1>{name }'s Profile page</h1>
-            <h1>{email }</h1>
-            <h1>Admin: {isAdmin }</h1>
-            <h1>Seller: {isSeller }</h1>
+            {user && (
+                <>
+                    <h1>{user.name }'s Profile page</h1>
+                    <h1>{user.email }</h1>
+                    <h1>Admin: {String(user.isAdmin) }</h1>
+                    <h1>Seller: {String(user.isSeller) }</h1>     
+                    <p>{user.description}</p> 
+                </>
+            )}
         </div>
     )
 }

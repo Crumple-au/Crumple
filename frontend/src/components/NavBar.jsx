@@ -27,11 +27,7 @@ const NavBar = () => {
   const signoutHandler = () => {
     dispatch(signout());
   };
-
-  useEffect(() => {
-    console.log(userInfo._id)
-  }, [])
-
+  
   return (
     <AppBar style={{ backgroundColor: black }} position='sticky'>
       <Toolbar>

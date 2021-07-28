@@ -64,6 +64,7 @@ userRouter.get(
                 _id: user._id,
                 name: user.name,
                 email: user.email,
+                description: user.description,
                 isAdmin: user.isAdmin,
                 isSeller: user.isSeller
             });
