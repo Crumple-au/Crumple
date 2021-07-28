@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from '../actions/userActions.js';
@@ -11,6 +11,7 @@ import {
   Grid,
   Button,
 } from '@material-ui/core'
+import { detailsUser } from '../actions/userActions';
 
 import { black, useStyles } from '../utils/theme'
 import logo from '../images/crumple-logo.jpg'
@@ -20,6 +21,7 @@ const NavBar = () => {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
   const dispatch = useDispatch();
 
   const signoutHandler = () => {
@@ -53,16 +55,51 @@ const NavBar = () => {
           <Box p='2rem'>
             <FaShoppingCart />
           </Box>
-
-          {userInfo ? (
+          
+          {userInfo && userInfo.isAdmin ? (
             <Box py='1.5rem' className="dropdown">
               <Button to="#" variant='contained' to='/profile'>
                 {userInfo.name}
               </Button>
               <ul className="dropdown-content">
                 <li>
-                  <Link className="link" to='/profile'>
+                  <Link className="link" to={`/profile/${userInfo._id}`}>
                     Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link" to={`/profile/edit/${userInfo._id}`}>
+                    Edit Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link" to='/users'>
+                    All users
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link" to="#signout" onClick={signoutHandler}>
+                    Sign Out
+                  </Link>
+                </li>
+              </ul>
+            </Box>
+          )
+          :
+          userInfo ? (
+            <Box py='1.5rem' className="dropdown">
+              <Button to="#" variant='contained' to='/profile'>
+                {userInfo.name}
+              </Button>
+              <ul className="dropdown-content">
+                <li>
+                  <Link className="link" to={`/profile/${userInfo._id}`}>
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link" to={`/profile/edit/${userInfo._id}`}>
+                    Edit Profile
                   </Link>
                 </li>
                 <li>

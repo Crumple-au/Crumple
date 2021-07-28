@@ -3,9 +3,11 @@ function nodeEnv() {
         return 'https://crumple-au.herokuapp.com';
     }
     else if (process.env.NODE_ENV === 'development') {
+        console.log('You are in the ' + process.env.NODE_ENV + ' build.');
         return ''
     }
     else if (process.env.NODE_ENV === 'test') {
+        console.log('You are in the ' + process.env.NODE_ENV + ' build.');
         return ''
     }
     else {
@@ -14,7 +16,5 @@ function nodeEnv() {
 }
 
 const ENV_URL = nodeEnv()
-
-console.log('You are in the ' + process.env.NODE_ENV + ' build.');
 
 export default ENV_URL;
