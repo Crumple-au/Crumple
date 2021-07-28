@@ -36,8 +36,6 @@ app.post('/signin', async(req, res) => {
     res.status(200).json({email})
 })
 
-
-
 describe('User Endpoints', () => {
     it('Should get data from /seed', (done) => {
         jest.useFakeTimers()
