@@ -12,6 +12,7 @@ import Error from './screens/Error'
 import SigninPage from './screens/SigninPage'
 import ProfilePage from './screens/ProfilePage'
 import RegisterPage from './screens/RegisterPage'
+import ListUsersPage from './screens/ListUsersPage'
 
 import { theme } from './utils/theme'
 import store from './store'
@@ -40,6 +41,7 @@ const App = () => {
             <Route path='/signin' component={SigninPage} />
             <Route path='/signup' component={RegisterPage} />
             <Route path='/profile/:userId' component={ProfilePage} />
+            <Route path='/users' component={ListUsersPage} />
 
             <Route path='*'>
               <Error />

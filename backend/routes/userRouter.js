@@ -3,7 +3,7 @@ import expressAsyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
 import seed from '../util/seed.js';
 import User from '../models/userModel.js';
-import {generateToken} from '../util/util.js';
+import {generateToken, isAuth, isAdmin} from '../util/util.js';
 
 const userRouter = express.Router();
 
@@ -73,5 +73,14 @@ userRouter.get(
     })
 );
 
+userRouter.get(
+    '/',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const users = await User.find({});
+        res.send(users);
+    })
+);
 
 export default userRouter;

@@ -9,7 +9,10 @@ import {
     USER_SIGNOUT,
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
-    USER_DETAILS_FAIL} from "../constants/userConstants";
+    USER_DETAILS_FAIL,
+    USER_LIST_REQUEST,
+    USER_LIST_SUCCESS,
+    USER_LIST_FAIL,} from "../constants/userConstants";
 import ENV_URL from '../config.js'
 
 const signin = (email, password) => async (dispatch) => {
@@ -60,4 +63,21 @@ const detailsUser = (userId) => async (dispatch, getState) => {
     }
 };
 
-export { signin, register, signout, detailsUser };
+const listUsers = () => async (dispatch, getState) => {
+    dispatch({ type: USER_LIST_REQUEST });
+    try {
+        const { userSignin: { userInfo } } = getState();
+        const { data } = await Axios.get('/api/users/', {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({ type: USER_LIST_SUCCESS, payload: data });
+        } catch (error) {
+        const message =
+            error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        dispatch({ type: USER_LIST_FAIL, payload: message });
+    }
+};
+
+export { signin, register, signout, detailsUser, listUsers };

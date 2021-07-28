@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from '../actions/userActions.js';
 import { FaShoppingCart } from 'react-icons/fa'
@@ -59,8 +59,33 @@ const NavBar = () => {
           <Box p='2rem'>
             <FaShoppingCart />
           </Box>
-
-          {userInfo ? (
+          
+          {userInfo && userInfo.isAdmin ? (
+            <Box py='1.5rem' className="dropdown">
+              <Button to="#" variant='contained' to='/profile'>
+                {userInfo.name}
+              </Button>
+              <ul className="dropdown-content">
+                <li>
+                  <Link className="link" to={`/profile/${userInfo._id}`}>
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link" to='/users'>
+                    All users
+                  </Link>
+                </li>
+                <li>
+                  <Link className="link" to="#signout" onClick={signoutHandler}>
+                    Sign Out
+                  </Link>
+                </li>
+              </ul>
+            </Box>
+          )
+          :
+          userInfo ? (
             <Box py='1.5rem' className="dropdown">
               <Button to="#" variant='contained' to='/profile'>
                 {userInfo.name}
