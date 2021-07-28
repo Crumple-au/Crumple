@@ -17,6 +17,7 @@ import { theme } from './utils/theme'
 import store from './store'
 
 const App = () => {
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -38,7 +39,7 @@ const App = () => {
 
             <Route path='/signin' component={SigninPage} />
             <Route path='/signup' component={RegisterPage} />
-            <Route path='/profile' component={ProfilePage} />
+            <Route path='/profile/:userId' component={ProfilePage} />
 
             <Route path='*'>
               <Error />

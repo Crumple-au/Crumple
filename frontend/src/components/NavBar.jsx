@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from '../actions/userActions.js';
 import { FaShoppingCart } from 'react-icons/fa'
@@ -11,6 +11,7 @@ import {
   Grid,
   Button,
 } from '@material-ui/core'
+import { detailsUser } from '../actions/userActions';
 
 import { black, useStyles } from '../utils/theme'
 import logo from '../images/crumple-logo.jpg'
@@ -20,11 +21,16 @@ const NavBar = () => {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
   const dispatch = useDispatch();
 
   const signoutHandler = () => {
     dispatch(signout());
   };
+
+  useEffect(() => {
+    console.log(userInfo._id)
+  }, [])
 
   return (
     <AppBar style={{ backgroundColor: black }} position='sticky'>
@@ -61,7 +67,7 @@ const NavBar = () => {
               </Button>
               <ul className="dropdown-content">
                 <li>
-                  <Link className="link" to='/profile'>
+                  <Link className="link" to={`/profile/${userInfo._id}`}>
                     Profile
                   </Link>
                 </li>

@@ -58,8 +58,15 @@ userRouter.get(
     '/profile/:id',
     expressAsyncHandler(async (req, res) => {
         const user = await User.findById(req.params.id);
+        console.log('Params ID: ' + req.params.id)
         if (user) {
-            res.send(user);
+            res.send({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+                isSeller: user.isSeller
+            });
         } else {
             res.status(404).send({ message: 'User Not Found' });
         }
