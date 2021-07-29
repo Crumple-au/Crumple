@@ -83,7 +83,7 @@ userRouter.put(
     '/profile/edit/:id',
     isAuth,
     expressAsyncHandler(async (req, res) => {
-        const user = await User.findById(req.user._id);
+        const user = await User.findById(req.params.id);
         if (user) {
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
@@ -114,5 +114,25 @@ userRouter.get(
         res.send(users);
     })
 );
+
+//Delete users / rn only admins can delete a user
+userRouter.delete(
+    '/delete/:id',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            if (user.email === 'admin1@example.com' || user.email === 'admin2@example.com') {
+                res.status(400).send({ message: 'Can Not Delete Admin User' });
+                return;
+            }
+            const deleteUser = await user.remove();
+            res.send({ message: 'User Deleted', user: deleteUser });
+        } else {
+            res.status(404).send({ message: 'User Not Found' });
+        }
+    })
+)
 
 export default userRouter;

@@ -167,14 +167,14 @@ code {
 /* Profile Page */
 
 .profile-container {
-  border: 1px solid red;
+  // border: 1px solid red;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   margin-top: 5rem;
 
   .sidebar {
-    border: 1px solid blue;
+    // border: 1px solid blue;
     width: 10vw;
     display: flex;
     flex-direction: column;
@@ -183,8 +183,8 @@ code {
     text-decoration: none;
 
     ul {
+      // border: 1px solid blue;
       list-style: none;
-      border: 1px solid blue;
     }
     
     .selected {
@@ -193,8 +193,9 @@ code {
   }
 
   .main {
+    // border: 1px solid purple;
+    padding: 3rem;
     color: white;
-    border: 1px solid purple;
     border-radius: 2px;
     background-color: #323232;
     width: 40vw;

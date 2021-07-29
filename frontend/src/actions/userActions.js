@@ -15,7 +15,10 @@ import {
     USER_LIST_FAIL,
     USER_UPDATE_PROFILE_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
-    USER_UPDATE_PROFILE_SUCCESS} from "../constants/userConstants";
+    USER_UPDATE_PROFILE_SUCCESS,
+    USER_DELETE_FAIL,
+    USER_DELETE_REQUEST,
+    USER_DELETE_SUCCESS} from "../constants/userConstants";
 import ENV_URL from '../config.js'
 
 const signin = (email, password) => async (dispatch) => {
@@ -103,4 +106,21 @@ const updateUserProfile = (user) => async (dispatch, getState) => {
     }
 };
 
-export { signin, register, signout, detailsUser, listUsers, updateUserProfile };
+const deleteUser = (userId) => async (dispatch, getState) => {
+    dispatch({ type: USER_DELETE_REQUEST, payload: userId });
+    const { userSignin: { userInfo } } = getState();
+    try {
+        const { data } = await Axios.delete(`/api/users/delete/${userId}`, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({ type: USER_DELETE_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        dispatch({ type: USER_DELETE_FAIL, payload: message });
+    }
+};
+
+export { signin, register, signout, detailsUser, listUsers, updateUserProfile, deleteUser };

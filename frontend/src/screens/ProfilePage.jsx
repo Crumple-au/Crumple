@@ -10,8 +10,8 @@ import Settings from '../components/Settings';
 function ProfilePage() {
     const { userId } = useParams();
 
-    const userSignin = useSelector((state) => state.userSignin);
-    const { userInfo } = userSignin;
+    // const userSignin = useSelector((state) => state.userSignin);
+    // const { userInfo } = userSignin;
     const userDetails = useSelector((state) => state.userDetails);
     const { loading, error, user } = userDetails;
 
@@ -20,8 +20,12 @@ function ProfilePage() {
     useEffect(() => {
         if (!user) {
             dispatch(detailsUser(userId));
+            // find error in prodcution
+            console.log(user)
         }
-    }, [dispatch, user, userInfo ]);
+        // find error in prodcution
+        console.log(user)
+    }, [dispatch, user ]);
     return (
         <BrowserRouter>
             <div className="profile-container">
