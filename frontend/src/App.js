@@ -12,11 +12,14 @@ import Error from './screens/Error'
 import SigninPage from './screens/SigninPage'
 import ProfilePage from './screens/ProfilePage'
 import RegisterPage from './screens/RegisterPage'
+import ListUsersPage from './screens/ListUsersPage'
+import EditProfilePage from './screens/EditProfilePage'
 
 import { theme } from './utils/theme'
 import store from './store'
 
 const App = () => {
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -38,7 +41,9 @@ const App = () => {
 
             <Route path='/signin' component={SigninPage} />
             <Route path='/signup' component={RegisterPage} />
-            <Route path='/profile' component={ProfilePage} />
+            <Route path='/profile/edit/:userId' component={EditProfilePage} />
+            <Route path='/profile/:userId' component={ProfilePage} />
+            <Route path='/users' component={ListUsersPage} />
 
             <Route path='*'>
               <Error />
