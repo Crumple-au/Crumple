@@ -16,7 +16,11 @@ import {
     USER_UPDATE_PROFILE_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_RESET,
-    USER_UPDATE_PROFILE_SUCCESS,} from "../constants/userConstants";
+    USER_UPDATE_PROFILE_SUCCESS,
+    USER_DELETE_FAIL,
+    USER_DELETE_REQUEST,
+    USER_DELETE_RESET,
+    USER_DELETE_SUCCESS} from "../constants/userConstants";
 
 function userSigninReducer(state = {}, action) {
     switch (action.type) {
@@ -88,4 +92,19 @@ const userUpdateProfileReducer = (state = {}, action) => {
     }
 };
 
-export {userSigninReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer}
+const userDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_DELETE_REQUEST:
+            return { loading: true };
+        case USER_DELETE_SUCCESS:
+            return { loading: false, success: true };
+        case USER_DELETE_FAIL:
+            return { loading: false, error: action.payload };
+        case USER_DELETE_RESET:
+            return {};
+        default:
+            return state;
+    }
+};
+
+export {userSigninReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userDeleteReducer}
