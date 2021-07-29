@@ -13,5 +13,5 @@ frontend/setupTests.js
 /node_modules
 .env
 .babelrc
-/Procfile
-/package-lock.json
+Procfile
+package-lock.json

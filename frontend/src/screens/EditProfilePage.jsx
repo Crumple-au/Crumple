@@ -13,8 +13,8 @@ function EditProfilePage(props) {
     const [description, setDescription] = useState('');
     const [isSeller, setIsSeller] = useState(false);
 
-    const userSignin = useSelector((state) => state.userSignin);
-    const { userInfo } = userSignin;
+    // const userSignin = useSelector((state) => state.userSignin);
+    // const { userInfo } = userSignin;
 
     const userDetails = useSelector((state) => state.userDetails);
     const { loading, error, user } = userDetails;
@@ -32,7 +32,7 @@ function EditProfilePage(props) {
         // dispatch update profile
         dispatch(
             updateUserProfile({
-                userId: userInfo._id,
+                userId: userId,
                 name,
                 email,
                 description,
@@ -45,17 +45,17 @@ function EditProfilePage(props) {
     useEffect(() => {
         if (successUpdate) {
             dispatch({ type: USER_UPDATE_PROFILE_RESET });
-            props.history.push(`/profile/${userInfo._id}`);
+            props.history.push(`/profile/${userId}`);
         }
         if (!user) {
-            dispatch(detailsUser(userInfo._id));
+            dispatch(detailsUser(userId));
         } else {
-            setName(userInfo.name);
-            setEmail(userInfo.email);
-            setDescription(userInfo.description)
-            setIsSeller(userInfo.isSeller);
+            setName(user.name);
+            setEmail(user.email);
+            setDescription(user.description)
+            setIsSeller(user.isSeller);
         }
-    }, [dispatch, userInfo._id, user, successUpdate]);
+    }, [dispatch, user, successUpdate]);
 
     return (
         <div className='form'>
@@ -63,7 +63,7 @@ function EditProfilePage(props) {
                 <ul className='form-container'>
 
                     <div className="form-heading">
-                        <h1>Edit User {userInfo.name}</h1>
+                        <h1>Edit User {user.name}</h1>
                     </div>
 
                     <div className="alert-box">
@@ -104,7 +104,7 @@ function EditProfilePage(props) {
                                 onChange={(e) => setDescription(e.target.value)}
                                 ></textarea>
                         </li>
-                        <li>
+                        {/* <li>
                             <label htmlFor="isSeller">Is Seller</label>
                             <input
                                 id="isSeller"
@@ -112,7 +112,7 @@ function EditProfilePage(props) {
                                 checked={isSeller}
                                 onChange={(e) => setIsSeller(e.target.checked)}
                                 ></input>
-                        </li>
+                        </li> */}
                         <li>
                             <button type="submit" className="primary">
                                 Update
