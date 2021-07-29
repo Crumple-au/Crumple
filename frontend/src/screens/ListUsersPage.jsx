@@ -1,28 +1,36 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom'
-import {listUsers } from '../actions/userActions';
-import { detailsUser } from '../actions/userActions';
+import { Link } from 'react-router-dom'
+import {listUsers,  deleteUser } from '../actions/userActions';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
 
 function ListUsersPage(props) {
-    const { userId } = useParams();
+    // const { userId } = useParams();
 
     const userList = useSelector((state) => state.userList);
     const { loading, error, users } = userList;
 
-    const userDetails = useSelector((state) => state.userDetails);
-    const { user } = userDetails;
+    const userDelete = useSelector((state) => state.userDelete);
+    const {
+        loading: loadingDelete,
+        error: errorDelete,
+        success: successDelete,
+    } = userDelete;
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (!user) {
-            dispatch(detailsUser(userId));
+    const deleteHandler = (user) => {
+        if (window.confirm('Are you sure?')) {
+            dispatch(deleteUser(user._id));
         }
+    }
+
+    useEffect(() => {
         dispatch(listUsers());
-        dispatch({ type: USER_DETAILS_RESET });
-    }, [dispatch]);
+        dispatch({
+            type: USER_DETAILS_RESET,
+        });
+    }, [dispatch, successDelete]);
 
     return (
         <div>
@@ -65,6 +73,7 @@ function ListUsersPage(props) {
                         <button
                         type="button"
                         className="small"
+                        onClick={() => deleteHandler(user)}
                         >
                         Delete
                         </button>
