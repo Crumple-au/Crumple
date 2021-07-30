@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 // const cors = require('cors')
 import userRouter from './routes/userRouter.js'
+import path from 'path';
 
 dotenv.config();
 
@@ -40,12 +41,13 @@ app.use('/api/users', userRouter);
 app.use(express.static('client/build'))
 
 if (process.env.NODE_ENV === 'production') {  
-    app.use(express.static(path.join(__dirname, "frontend/build")));
+    app.use(express.static(path.join(__dirname, "/frontend/build")));
     app.get("/*", (_, res) => {
-        res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+        res.sendFile(path.join(__dirname, "/frontend/build/", "index.html"));
     });
 }
 
+const __dirname = path.resolve();
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
