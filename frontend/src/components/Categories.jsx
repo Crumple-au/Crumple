@@ -1,7 +1,12 @@
 import React from 'react'
+import SearchBar from './SearchBar'
 
 const Categories = () => {
-  return <div>Categories</div>
+  return (
+    <>
+      <SearchBar />
+    </>
+  )
 }
 
 export default Categories
