@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { signout } from '../actions/userActions.js';
+import { useDispatch, useSelector } from 'react-redux'
+import { signout } from '../actions/userActions.js'
 import { FaShoppingCart } from 'react-icons/fa'
 import {
   Box,
@@ -11,7 +11,7 @@ import {
   Grid,
   Button,
 } from '@material-ui/core'
-import { detailsUser } from '../actions/userActions';
+import { detailsUser } from '../actions/userActions'
 
 import { black, useStyles } from '../utils/theme'
 import logo from '../images/crumple-logo.jpg'
@@ -19,14 +19,14 @@ import logo from '../images/crumple-logo.jpg'
 const NavBar = () => {
   const classes = useStyles()
 
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
+  const userSignin = useSelector((state) => state.userSignin)
+  const { userInfo } = userSignin
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const signoutHandler = () => {
-    dispatch(signout());
-  };
+    dispatch(signout())
+  }
 
   return (
     <AppBar style={{ backgroundColor: black }} position='sticky'>
@@ -53,63 +53,61 @@ const NavBar = () => {
         </Box>
         <Grid container justifyContent='flex-end'>
           <Box p='2rem'>
-            <FaShoppingCart />
+            <FaShoppingCart fontSize='1.6rem' />
           </Box>
-          
+
           {userInfo && userInfo.isAdmin ? (
-            <Box py='1.5rem' className="dropdown">
-              <Button to="#" variant='contained' to='/profile'>
+            <Box py='1.5rem' className='dropdown'>
+              <Button to='#' variant='contained' to='/profile'>
                 {userInfo.name}
               </Button>
-              <ul className="dropdown-content">
+              <ul className='dropdown-content'>
                 <li>
-                  <Link className="link" to={`/profile/${userInfo._id}`}>
+                  <Link className='link' to={`/profile/${userInfo._id}`}>
                     Profile
                   </Link>
                 </li>
                 <li>
-                  <Link className="link" to={`/profile/edit/${userInfo._id}`}>
+                  <Link className='link' to={`/profile/edit/${userInfo._id}`}>
                     Edit Profile
                   </Link>
                 </li>
                 <li>
-                  <Link className="link" to='/allusers'>
+                  <Link className='link' to='/allusers'>
                     All users
                   </Link>
                 </li>
                 <li>
-                  <Link className="link" to="#signout" onClick={signoutHandler}>
+                  <Link className='link' to='#signout' onClick={signoutHandler}>
                     Sign Out
                   </Link>
                 </li>
               </ul>
             </Box>
-          )
-          :
-          userInfo ? (
-            <Box py='1.5rem' className="dropdown">
-              <Button to="#" variant='contained' to='/profile'>
+          ) : userInfo ? (
+            <Box py='1.5rem' className='dropdown'>
+              <Button to='#' variant='contained' to='/profile'>
                 {userInfo.name}
               </Button>
-              <ul className="dropdown-content">
+              <ul className='dropdown-content'>
                 <li>
-                  <Link className="link" to={`/profile/${userInfo._id}`}>
+                  <Link className='link' to={`/profile/${userInfo._id}`}>
                     Profile
                   </Link>
                 </li>
                 <li>
-                  <Link className="link" to={`/profile/edit/${userInfo._id}`}>
+                  <Link className='link' to={`/profile/edit/${userInfo._id}`}>
                     Edit Profile
                   </Link>
                 </li>
                 <li>
-                  <Link className="link" to="#signout" onClick={signoutHandler}>
+                  <Link className='link' to='#signout' onClick={signoutHandler}>
                     Sign Out
                   </Link>
                 </li>
               </ul>
             </Box>
-          ): (
+          ) : (
             <>
               <Box py='1.5rem'>
                 <Button component={Link} variant='contained' to='/signin'>
@@ -117,13 +115,17 @@ const NavBar = () => {
                 </Button>
               </Box>
               <Box p='1.5rem' pr='5rem'>
-                <Button component={Link} variant='contained' color='primary' to='/signup'>
+                <Button
+                  component={Link}
+                  variant='contained'
+                  color='primary'
+                  to='/signup'
+                >
                   SIGN UP
                 </Button>
               </Box>
             </>
           )}
-
         </Grid>
       </Toolbar>
     </AppBar>
