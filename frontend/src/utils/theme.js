@@ -29,6 +29,13 @@ export const useStyles = makeStyles({
       color: '#ffffff',
     },
   },
+  formControl: {
+    minWidth: 120,
+    marginTop: '1rem',
+  },
+  textForm: {
+    marginTop: '1rem',
+  },
 })
 
 export const primary = '#6184C4'
