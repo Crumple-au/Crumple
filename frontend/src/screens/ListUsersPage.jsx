@@ -6,7 +6,7 @@ import { USER_DETAILS_RESET } from '../constants/userConstants';
 
 function ListUsersPage(props) {
     // const { userId } = useParams();
-
+    
     const userList = useSelector((state) => state.userList);
     const { loading, error, users } = userList;
 
@@ -52,7 +52,7 @@ function ListUsersPage(props) {
                     </tr>
                 </thead>
                 <tbody>
-                {users ? users.map((user) => (
+                {users.map((user) => (
                     <tr key={user._id}>
                     <td>{user._id}</td>
                     <td>
@@ -79,9 +79,7 @@ function ListUsersPage(props) {
                         </button>
                     </td>
                     </tr>
-                ))
-                : <h1>No users</h1>
-                }
+                ))}
                 </tbody>
             </table>
             )}
