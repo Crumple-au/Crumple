@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   FormControl,
   MenuItem,
@@ -11,6 +11,15 @@ import { useStyles } from '../utils/theme'
 
 const SearchBar = () => {
   const classes = useStyles()
+
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(category, search)
+    setSearch('')
+  }
 
   return (
     <Box
@@ -31,6 +40,8 @@ const SearchBar = () => {
           id='discover'
           select
           defaultValue=''
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
         >
           <MenuItem value='drawing'>DRAWING</MenuItem>
           <MenuItem value='design'>DESIGN</MenuItem>
@@ -48,13 +59,22 @@ const SearchBar = () => {
           id='search'
           size='small'
           className={classes.textForm}
+          autoFocus
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </FormControl>
-      <FormControl>
-        <Button className={classes.textForm} variant='contained'>
-          <FaSearch fontSize='1.6rem' />
+      <Box>
+        <Button
+          type='submit'
+          onClick={handleSubmit}
+          className={classes.textForm}
+          variant='contained'
+          size='large'
+        >
+          <FaSearch fontSize='1.4rem' />
         </Button>
-      </FormControl>
+      </Box>
     </Box>
   )
 }

@@ -53,7 +53,7 @@ const NavBar = () => {
         </Box>
         <Grid container justifyContent='flex-end'>
           <Box p='2rem'>
-            <FaShoppingCart fontSize='1.6rem' />
+            <FaShoppingCart fontSize='1.4rem' />
           </Box>
 
           {userInfo && userInfo.isAdmin ? (

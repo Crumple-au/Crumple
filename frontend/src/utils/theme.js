@@ -36,6 +36,12 @@ export const useStyles = makeStyles({
   textForm: {
     marginTop: '1rem',
   },
+  card: {
+    maxWidth: 345,
+  },
+  cardMedia: {
+    height: 100,
+  },
 })
 
 export const primary = '#6184C4'
