@@ -1,8 +1,6 @@
 import React from 'react'
 import {
   FormControl,
-  InputLabel,
-  Select,
   MenuItem,
   TextField,
   Box,
@@ -26,8 +24,13 @@ const Categories = () => {
           size='small'
           className={classes.formControl}
         >
-          <InputLabel id='discover'>DISCOVER</InputLabel>
-          <Select labelId='discover' id='discover'>
+          <TextField
+            variant='outlined'
+            size='small'
+            label='DISCOVER'
+            id='discover'
+            select
+          >
             <MenuItem value='drawing'>DRAWING</MenuItem>
             <MenuItem value='design'>DESIGN</MenuItem>
             <MenuItem value='merch'>MERCH</MenuItem>
@@ -36,7 +39,7 @@ const Categories = () => {
             <MenuItem value='film'>FILM</MenuItem>
             <MenuItem value='music'>MUSIC</MenuItem>
             <MenuItem value='crafts'>CRAFTS</MenuItem>
-          </Select>
+          </TextField>
         </FormControl>
         <FormControl variant='filled' size='small'>
           <TextField
