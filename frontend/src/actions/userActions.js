@@ -56,7 +56,7 @@ const detailsUser = (userId) => async (dispatch, getState) => {
         userSignin: { userInfo },
     } = getState();
     try {
-        const { data } = await Axios.get(`/api/users/profile/${userId}`, {
+        const { data } = await Axios.get(ENV_URL + `/api/users/profile/${userId}`, {
         headers: { Authorization: `Bearer ${userInfo?.token}` },
     });
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
@@ -73,7 +73,7 @@ const listUsers = () => async (dispatch, getState) => {
     dispatch({ type: USER_LIST_REQUEST });
     try {
         const { userSignin: { userInfo } } = getState();
-        const { data } = await Axios.get('/api/users', {
+        const { data } = await Axios.get(ENV_URL + '/api/users', {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_LIST_SUCCESS, payload: data });
@@ -90,7 +90,7 @@ const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: USER_UPDATE_PROFILE_REQUEST, payload: user });
     const {userSignin: { userInfo } } = getState();
     try {
-        const { data } = await Axios.put(`/api/users/profile/edit/${userInfo._id}`, user, {
+        const { data } = await Axios.put(ENV_URL + `/api/users/profile/edit/${userInfo._id}`, user, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
@@ -110,7 +110,7 @@ const deleteUser = (userId) => async (dispatch, getState) => {
     dispatch({ type: USER_DELETE_REQUEST, payload: userId });
     const { userSignin: { userInfo } } = getState();
     try {
-        const { data } = await Axios.delete(`/api/users/delete/${userId}`, {
+        const { data } = await Axios.delete(ENV_URL + `/api/users/delete/${userId}`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_DELETE_SUCCESS, payload: data });
