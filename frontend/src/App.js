@@ -49,7 +49,7 @@ const App = () => {
             <Route path='/signup' component={RegisterPage} />
             <Route path='/profile/edit/:userId' component={EditProfilePage} />
             <Route path='/profile/:userId' component={ProfilePage} />
-            <Route path='/users/allusers' component={ListUsersPage} />
+            <Route path='/allusers' component={ListUsersPage} />
 
             <Route path='*'>
               <Error />

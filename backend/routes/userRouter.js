@@ -105,7 +105,7 @@ userRouter.put(
 
 // get all users
 userRouter.get(
-    '/allusers',
+    '/',
     isAuth,
     isAdmin,
     expressAsyncHandler(async (req, res) => {
