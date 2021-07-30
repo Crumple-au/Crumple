@@ -20,11 +20,8 @@ function ProfilePage() {
     useEffect(() => {
         if (!user) {
             dispatch(detailsUser(userId));
-            // find error in prodcution
-            console.log(user)
         }
-        // find error in prodcution
-        console.log(user)
+
     }, [dispatch, user ]);
     return (
         <BrowserRouter>
@@ -37,22 +34,33 @@ function ProfilePage() {
                     <NavLink activeClassName="selected" to={`/profile/${userId}/faq`} >FAQ</NavLink>
                 </nav>
 
-                <Switch>
-                    <Route path='/profile/:userId/products'>
-                        <Product/>
-                    </Route>
-                    <Route path='/profile/:userId/payments'>
-                        <Payments />
-                    </Route>
-                    <Route path='/profile/:userId/settings'>
-                        <Settings />
-                    </Route>
-                    <Route path='/profile/:userId'>
-                        <Profile 
-                            user={user}
-                        />
-                    </Route>
-                </Switch>
+                {loading ? 
+                    <>
+                        <h1>loading...</h1>
+                    </>
+                : error ?
+                    <>
+                        {error.message}
+                    </>
+                :
+                    <Switch>
+                        <Route path='/profile/:userId/products'>
+                            <Product/>
+                        </Route>
+                        <Route path='/profile/:userId/payments'>
+                            <Payments />
+                        </Route>
+                        <Route path='/profile/:userId/settings'>
+                            <Settings />
+                        </Route>
+                        <Route path='/profile/:userId'>
+                            <Profile 
+                                user={user}
+                                />
+                        </Route>
+                    </Switch>
+                }   
+
             </div>
         </BrowserRouter>
     )

@@ -202,3 +202,143 @@ code {
     height: 60vh;
   }
 }
+
+/* Laptop */
+@media (min-width: 1250px) and (max-width: 1400px) {
+
+  .form {
+    width: 50vw;
+    height: auto;
+
+    .form-container {
+      // border: 1px solid blue;
+      height: 55vh;
+      width: 40vw;
+  
+      .form-fields {
+        // border: 1px solid red;
+        width: 100%;
+
+        input {
+          width: 100%;
+        }
+        
+      }
+
+    }
+
+  }
+
+}
+
+
+/* Tablet */
+@media (min-width: 416px) and (max-width: 1024px) {
+
+  .form {
+    width: 60vw;
+    height: auto;
+
+    .form-container {
+      // border: 1px solid blue;
+      height: 55vh;
+      width: 50vw;
+  
+      .form-fields {
+        // border: 1px solid red;
+        width: 100%;
+
+        input {
+          width: 100%;
+        }
+        
+      }
+
+    }
+
+  }
+
+    /* Profile Page */
+    .profile-container {
+      // border: 1px solid red;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 3rem;
+  
+      .sidebar {
+        // border: 1px solid blue;
+        width: 90vw;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+      }
+  
+      .main {
+        // border: 1px solid purple;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        width: 90vw;
+        height: auto;
+        
+      }
+    }
+
+}
+
+/* Mobile */
+@media (min-width: 200px) and (max-width: 415px) {
+
+  // Signin and register
+  .form {
+    width: 80vw;
+    height: auto;
+
+    .form-container {
+      // border: 1px solid blue;
+      height: 55vh;
+      width: 70vw;
+  
+      .form-fields {
+        // border: 1px solid red;
+        width: 100%;
+
+        input {
+          width: 100%;
+        }
+
+      }
+
+    }
+
+  }
+
+  /* Profile Page */
+  .profile-container {
+    // border: 1px solid red;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+
+    .sidebar {
+      // border: 1px solid blue;
+      width: 90vw;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .main {
+      // border: 1px solid purple;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      width: 90vw;
+      height: auto;
+      
+    }
+  }
+
+}
