@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Redirect  } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
-import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
+import { USER_UPDATE_PROFILE_RESET, USER_DETAILS_RESET } from '../constants/userConstants';
 
 function EditProfilePage(props) {
     const {userId} = useParams();
@@ -47,9 +47,11 @@ function EditProfilePage(props) {
             dispatch({ type: USER_UPDATE_PROFILE_RESET });
             props.history.push(`/profile/${userId}`);
         }
-        if (!user) {
+        else if (!user) {
             dispatch(detailsUser(userId));
+            // dispatch({ type: USER_DETAILS_RESET });
         } else {
+            console.log(user)
             setName(user.name);
             setEmail(user.email);
             setDescription(user.description)
@@ -57,13 +59,14 @@ function EditProfilePage(props) {
         }
     }, [dispatch, user, successUpdate]);
 
+
     return (
         <div className='form'>
             <form onSubmit={submitHandler}>
                 <ul className='form-container'>
 
                     <div className="form-heading">
-                        <h1>Edit User {user.name}</h1>
+                        <h1>Edit User {name}</h1>
                     </div>
 
                     <div className="alert-box">

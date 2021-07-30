@@ -258,11 +258,39 @@ code {
 
   }
 
+    /* Profile Page */
+    .profile-container {
+      // border: 1px solid red;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 3rem;
+  
+      .sidebar {
+        // border: 1px solid blue;
+        width: 90vw;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+      }
+  
+      .main {
+        // border: 1px solid purple;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        width: 90vw;
+        height: auto;
+        
+      }
+    }
+
 }
 
 /* Mobile */
 @media (min-width: 200px) and (max-width: 415px) {
 
+  // Signin and register
   .form {
     width: 80vw;
     height: auto;
@@ -285,4 +313,32 @@ code {
     }
 
   }
+
+  /* Profile Page */
+  .profile-container {
+    // border: 1px solid red;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+
+    .sidebar {
+      // border: 1px solid blue;
+      width: 90vw;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .main {
+      // border: 1px solid purple;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      width: 90vw;
+      height: auto;
+      
+    }
+  }
+
 }

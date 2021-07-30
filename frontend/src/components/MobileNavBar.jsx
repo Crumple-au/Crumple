@@ -106,20 +106,20 @@ return (
                 <Grid container justifyContent='flex-end'>
                     <Box py='1.5rem' className="dropdown">
 
-                        <Box to="#" variant='contained' to='/profile'>
+                        <Box to="#" variant='contained'>
                             <FiMenu size={30}/>
                         </Box>
 
                             <ul className="dropdown-content">
 
                                 <li py='1.5rem'>
-                                    <Link component={Link} className={classes.navlink} to='/signin'>
+                                    <Link className={classes.navlink} to='/signin'>
                                         LOG IN
                                     </Link>
                                 </li>
 
                                 <li p='1.5rem'>
-                                    <Link component={Link} className={classes.navlink} to='/signup'>
+                                    <Link className={classes.navlink} to='/signup'>
                                         SIGN UP
                                     </Link>
                                 </li>

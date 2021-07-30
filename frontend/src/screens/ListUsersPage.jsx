@@ -27,19 +27,19 @@ function ListUsersPage(props) {
 
     useEffect(() => {
         dispatch(listUsers());
-        dispatch({
-            type: USER_DETAILS_RESET,
-        });
+        dispatch({type: USER_DETAILS_RESET});
     }, [dispatch, successDelete]);
 
     return (
         <div>
             <h1>Users</h1>
+
             {loading ? (
                 <h1>Loading...</h1>
             ) : error ? (
-            <h1>{error}</h1>
+                <h1>{error}</h1>
             ) : (
+
             <table className="table">
                 <thead>
                     <tr>
@@ -52,7 +52,7 @@ function ListUsersPage(props) {
                     </tr>
                 </thead>
                 <tbody>
-                {users.map((user) => (
+                {users ? users.map((user) => (
                     <tr key={user._id}>
                     <td>{user._id}</td>
                     <td>
@@ -65,7 +65,7 @@ function ListUsersPage(props) {
                         <button
                         type="button"
                         className="small"
-                        onClick={() => props.history.push(`/user/${user._id}/edit`)}
+                        onClick={() => props.history.push(`/profile/edit/${user._id}`)}
                         >
                         Edit
                         </button>
@@ -79,7 +79,9 @@ function ListUsersPage(props) {
                         </button>
                     </td>
                     </tr>
-                ))}
+                ))
+                : <h1>No users</h1>
+                }
                 </tbody>
             </table>
             )}
