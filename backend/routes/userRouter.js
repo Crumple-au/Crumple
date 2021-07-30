@@ -62,7 +62,6 @@ userRouter.get(
     '/profile/:id',
     expressAsyncHandler(async (req, res) => {
         const user = await User.findById(req.params.id);
-        console.log('Params ID: ' + req.params.id)
         if (user) {
             res.send({
                 _id: user._id,

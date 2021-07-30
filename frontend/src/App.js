@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/core'
 import { Provider } from 'react-redux'
+import { useMediaQuery } from 'react-responsive'
 
 import NavBar from './components/NavBar'
 import HomePage from './screens/HomePage'
 import Categories from './components/Categories'
+import MobileNavBar from './components/MobileNavBar'
 import About from './screens/About'
 import FAQs from './screens/FAQs'
 import Error from './screens/Error'
@@ -20,11 +22,15 @@ import store from './store'
 
 const App = () => {
 
+  // for mobile devices
+  const isSmallScreen = useMediaQuery({ minWidth: 200, maxWidth: 800 });
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Router>
-          <NavBar />
+          {/* <NavBar /> */}
+          { isSmallScreen ? <MobileNavBar /> : <NavBar/> }
           <Switch>
             <Route exact path='/'>
               <HomePage />
@@ -43,7 +49,7 @@ const App = () => {
             <Route path='/signup' component={RegisterPage} />
             <Route path='/profile/edit/:userId' component={EditProfilePage} />
             <Route path='/profile/:userId' component={ProfilePage} />
-            <Route path='/users' component={ListUsersPage} />
+            <Route path='/allusers' component={ListUsersPage} />
 
             <Route path='*'>
               <Error />

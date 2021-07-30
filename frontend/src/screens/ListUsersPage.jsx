@@ -6,7 +6,7 @@ import { USER_DETAILS_RESET } from '../constants/userConstants';
 
 function ListUsersPage(props) {
     // const { userId } = useParams();
-
+    
     const userList = useSelector((state) => state.userList);
     const { loading, error, users } = userList;
 
@@ -27,19 +27,19 @@ function ListUsersPage(props) {
 
     useEffect(() => {
         dispatch(listUsers());
-        dispatch({
-            type: USER_DETAILS_RESET,
-        });
+        dispatch({type: USER_DETAILS_RESET});
     }, [dispatch, successDelete]);
 
     return (
         <div>
             <h1>Users</h1>
+
             {loading ? (
                 <h1>Loading...</h1>
             ) : error ? (
-            <h1>{error}</h1>
+                <h1>{error}</h1>
             ) : (
+
             <table className="table">
                 <thead>
                     <tr>
@@ -65,7 +65,7 @@ function ListUsersPage(props) {
                         <button
                         type="button"
                         className="small"
-                        onClick={() => props.history.push(`/user/${user._id}/edit`)}
+                        onClick={() => props.history.push(`/profile/edit/${user._id}`)}
                         >
                         Edit
                         </button>
