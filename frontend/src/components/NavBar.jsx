@@ -73,7 +73,7 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="link" to='/users/allusers'>
+                  <Link className="link" to='/allusers'>
                     All users
                   </Link>
                 </li>
