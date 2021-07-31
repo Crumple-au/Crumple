@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/userRouter.js'
+import artworkRouter from './routes/artworkRoutes.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/users', userRouter);
+app.use('/api/artworks', artworkRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
