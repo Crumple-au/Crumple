@@ -23,8 +23,8 @@ const Categories = () => {
     <>
       <SearchBar />
 
-      <Box m='2rem'>
-        <Grid container spacing={0} justifyContent='center'>
+      <Box m='4rem 2rem 2rem 2rem'>
+        <Grid container spacing={1} justifyContent='center' alignItems='center'>
           {categories.map((category) => {
             return (
               <Grid item xs={12} sm={6} md={3} align='center' key={category.id}>
