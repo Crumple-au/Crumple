@@ -60,7 +60,7 @@ function EditProfilePage(props) {
 
 
     return (
-        <div className='form'>
+        <div className='main'>
             <form onSubmit={submitHandler}>
                 <ul className='form-container'>
 
