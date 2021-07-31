@@ -11,7 +11,8 @@ const app = express();
 
 app.use(cors({
     origin: "https://crumple.netlify.app",
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true,
 }));
 
 
