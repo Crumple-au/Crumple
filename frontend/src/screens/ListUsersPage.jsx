@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom'
 import {listUsers,  deleteUser } from '../actions/userActions';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
-import SearchBox from '../components/SearchBox'
-
+import SearchBar from '../components/SearchBar'
 function ListUsersPage(props) {
 
     const {name = 'all'} = useParams();
@@ -41,10 +40,8 @@ function ListUsersPage(props) {
             ) : error ? (
                 <h1>{error}</h1>
             ) : (
-
-            <>
-                <SearchBox />
-
+                <>
+                <SearchBar/>
                 <table className="table">
                     <thead>
                         <tr>
@@ -87,7 +84,7 @@ function ListUsersPage(props) {
                     ))}
                     </tbody>
                 </table>
-            </>
+                </>
             )}
         </div>
     )
