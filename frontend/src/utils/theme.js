@@ -37,11 +37,7 @@ export const useStyles = makeStyles({
     marginTop: '1rem',
   },
   card: {
-    maxWidth: 345,
     margin: '1rem',
-  },
-  cardMedia: {
-    height: 100,
   },
 })
 
