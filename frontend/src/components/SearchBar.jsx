@@ -59,7 +59,6 @@ const SearchBar = () => {
           id='search'
           size='small'
           className={classes.textForm}
-          autoFocus
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
