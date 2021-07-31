@@ -5,22 +5,22 @@ import userRouter from './routes/userRouter.js'
 import artworkRouter from './routes/artworkRoutes.js';
 import cors from 'cors';
 
-dotenv.config();
+dotenv.config()
 
-const app = express();
+const app = express()
 
 app.use(cors({origin: '*'}));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/crumple', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-});
+})
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000
 
 app.get('/', (req, res) => { 
     res.send('Hello from Express!')
@@ -31,4 +31,4 @@ app.use('/api/artworks', artworkRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
-});
+})
