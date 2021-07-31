@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({origin: 'https://crumple.netlify.app/profile/6103a7bac7dce30004fe2ebd'}));
+app.use(cors({origin: '*'}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
