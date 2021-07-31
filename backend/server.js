@@ -17,6 +17,7 @@ const app = express();
 
 app.use(cors());
 app.options('*', cors())
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -32,18 +33,7 @@ app.get('/', (req, res) => {
     res.send('Hello from Express!')
 })
 
-app.use('/api/users', userRouter);
-
-app.use(express.static(__dirname + "/frontend/build"))
-
-if (process.env.NODE_ENV === 'production') {  
-    app.use(express.static(path.join(__dirname, "/frontend/build")));
-    app.get("/*", (_, res) => {
-        res.sendFile(path.join(__dirname, "/frontend/build/", "index.html"));
-    });
-}
-
-const __dirname = path.resolve();
+app.use('/api/users', cors(), userRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
