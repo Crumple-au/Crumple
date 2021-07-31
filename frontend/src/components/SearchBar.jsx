@@ -37,7 +37,9 @@ const SearchBar = () => {
           variant='outlined'
           size='small'
           label='DISCOVER'
+          role='dropdown'
           id='discover'
+          inputProps={{ id: 'discover', 'data-testid': 'listbox' }}
           select
           defaultValue=''
           value={category}
@@ -57,6 +59,7 @@ const SearchBar = () => {
         <TextField
           variant='outlined'
           id='search'
+          label='Search'
           size='small'
           className={classes.textForm}
           value={search}
@@ -66,6 +69,8 @@ const SearchBar = () => {
       <Box>
         <Button
           type='submit'
+          id='search-button'
+          data-testid='search-button'
           onClick={handleSubmit}
           className={classes.textForm}
           variant='contained'
