@@ -50,7 +50,6 @@ const App = () => {
             <Route path='/profile/edit/:userId' component={EditProfilePage} />
             <Route path='/profile/:userId' component={ProfilePage} />
             <Route path='/allusers' component={ListUsersPage} />
-
             <Route path='*'>
               <Error />
             </Route>

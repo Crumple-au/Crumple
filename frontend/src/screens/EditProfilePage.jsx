@@ -51,7 +51,6 @@ function EditProfilePage(props) {
             dispatch(detailsUser(userId));
             // dispatch({ type: USER_DETAILS_RESET });
         } else {
-            console.log(user)
             setName(user.name);
             setEmail(user.email);
             setDescription(user.description)
@@ -66,7 +65,7 @@ function EditProfilePage(props) {
                 <ul className='form-container'>
 
                     <div className="form-heading">
-                        <h1>Edit User {name}</h1>
+                        <h1>Edit {name}</h1>
                     </div>
 
                     <div className="alert-box">

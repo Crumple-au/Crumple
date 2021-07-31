@@ -90,6 +90,50 @@ const data = {
             isAdmin: false,
             isSeller: true,
         },
+    ],
+    artworks: [
+        {
+            name: 'Painting of Mona Lisa',
+            category: 'Painting',
+            price: 700,
+            inStock: 10,
+            description: 'My version of the Mona Lisa.'
+        },
+        {
+            name: 'Sculpture of Mars',
+            category: 'Sculpture',
+            price: 700,
+            inStock: 10,
+            description: 'This is a marble sculpture of Mars.'
+        },
+        {
+            name: 'Melbourne SkyLine',
+            category: 'Photography',
+            price: 700,
+            inStock: 10,
+            description: 'Photograph of the Melbourne city skyline.'
+        },
+        {
+            name: 'Painting of Mona Lisa',
+            category: 'Painting',
+            price: 700,
+            inStock: 10,
+            description: 'My version of the Mona Lisa.'
+        },
+        {
+            name: 'Sculpture of Mars',
+            category: 'Sculpture',
+            price: 700,
+            inStock: 10,
+            description: 'This is a marble sculpture of Mars.'
+        },
+        {
+            name: 'Melbourne SkyLine',
+            category: 'Photography',
+            price: 700,
+            inStock: 10,
+            description: 'Photograph of the Melbourne city skyline.'
+        }
     ]
 }
 
