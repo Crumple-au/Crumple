@@ -1,9 +1,9 @@
 import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import cors from 'cors';
 import userRouter from './routes/userRouter.js'
 import path from 'path';
+const cors = require('cors')
 
 dotenv.config();
 
@@ -15,13 +15,8 @@ const app = express();
 //     credentials: true,
 // }));
 
-app.use(cors({
-    origin: true,
-    credentials: true,
-    preflightContinue: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
-}));
-
+app.use(cors());
+app.options('*', cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
