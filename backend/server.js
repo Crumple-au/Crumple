@@ -9,12 +9,18 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({
-    origin: "https://crumple.netlify.app",
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: true,
-}));
+// app.use(cors({
+//     origin: "https://crumple.netlify.app",
+//     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+//     credentials: true,
+// }));
 
+app.use(cors({
+    origin: true,
+    credentials: true,
+    preflightContinue: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
