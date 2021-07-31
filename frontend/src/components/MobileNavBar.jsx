@@ -59,7 +59,7 @@ return (
                         </li>
 
                         <li>
-                            <Link className="link" to='/users'>
+                            <Link className="link" to='/allusers'>
                                 All users
                             </Link>
                         </li>
