@@ -2,8 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/userRouter.js'
-import path from 'path';
-const cors = require('cors')
+import cors from 'cors';
 
 dotenv.config();
 
@@ -15,8 +14,7 @@ const app = express();
 //     credentials: true,
 // }));
 
-app.use(cors());
-app.options('*', cors())
+app.use(cors({origin: 'null'}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,7 +31,7 @@ app.get('/', (req, res) => {
     res.send('Hello from Express!')
 })
 
-app.use('/api/users', cors(), userRouter);
+app.use('/api/users', userRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
