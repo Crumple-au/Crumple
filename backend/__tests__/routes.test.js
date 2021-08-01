@@ -23,7 +23,7 @@ app.get('/seed', function(req, res) {
 
 app.post(
     '/signin', 
-    async(req, res) => {
+    (req, res) => {
         const { email, password } = req.body
         if (!email || !password) {
             res.send(400)
@@ -34,36 +34,48 @@ app.post(
 
 app.post(
     '/register', 
-    async(req, res) => {
-        const user = new User({
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 8),
-        });
-        if (user) {
-            res.status(200).json(user);
+    (req, res) => {
+        try{
+            const user = new User({
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 8),
+            });
+            if (user) {
+                const createdUser = user.save();
+                res.status(200).send({
+                    _id: createdUser._id,
+                    email: createdUser.email,
+                    isAdmin: createdUser.isAdmin,
+                    isSeller: createdUser.isSeller,
+                    token: generateToken(createdUser),
+                });
+            }   
+        } catch(e) {
+            res.status(400).json({message: 'User could not be saved'})
         }
-        // const createdUser = await user.save();
-        // res.status(200).send({
-        //     _id: createdUser._id,
-        //     email: createdUser.email,
-        //     isAdmin: createdUser.isAdmin,
-        //     isSeller: user.isSeller,
-        //     token: generateToken(createdUser),
-        // });
     }
 );
 
-// app.post('/sumArrayOfNumbers', (req, res) => {
-//     let arrayOfNumbers = req.body.submittedNumbers;
-
-//     let sumOfAoN = arrayOfNumbers.reduce((total, nextNumber) => {
-//         return total += nextNumber;
-//     });
-
-//     res.json({
-//         sum: sumOfAoN
-//     });
-// });
+app.get(
+    '/profile/:id',
+    (req, res) => {
+        try{
+            const user = User.findById(req.params.id);
+            if (user && req.params.id) {
+                res.status(200).send({
+                    _id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    description: user.description,
+                    isAdmin: user.isAdmin,
+                    isSeller: user.isSeller
+                });
+            }
+        } catch(e) {
+            res.status(404).json({ message: 'User Not Found' });
+        }
+    }
+)
 
 describe('User Endpoints', () => {
 
@@ -93,23 +105,40 @@ describe('User Endpoints', () => {
                 email: "user5@example.com", 
                 password: '1234'  
             });
-        console.log(response.body)
+
         expect(response.statusCode).toEqual(200);
-    })
+    });
 
-    // it('Should return 55 when given an array of 1-10.', async () => {
-    //     // Build & make the request:
-    //     const res = await request(app)
-	// 		.post('/sumArrayOfNumbers')
-	// 		.send({
-	// 			submittedNumbers: [1,2,3,4,5,6,7,8,9,10]
-	// 		});
-		
-	// 	// Check the result of the request:
-	// 	expect(res.statusCode).toEqual(200);
-		
-	// });
+    it("should repsond with status code 400", async() => {
 
+        const response = await request(app)
+            .post('/register')
+            .send({
+                email: "user5@example.com", 
+                password: undefined  
+            });
+
+        expect(response.statusCode).toEqual(400);
+    });
+
+    it("should repsond with status code 200 and user object", async() => {
+
+        const id = '61024b128def3a27b8211796';
+        const response = await request(app)
+            .get(`/profile/${id}`)
+
+        expect(response.statusCode).toEqual(200);
+    });
+
+    it("should repsond with status code 404 and message", async() => {
+
+        const id = ''
+        const response = await request(app)
+            .get(`/profile/${id}`)
+
+        expect(response.statusCode).toEqual(404);
+        // expect(response.statusCode).toEqual(404);
+    });
 
 });
 
