@@ -22,7 +22,7 @@ function ProfilePage() {
             dispatch(detailsUser(userId));
         }
 
-    }, [dispatch, user ]);
+    }, [dispatch, user, userId ]);
     return (
         <BrowserRouter>
             <div className="profile-container">

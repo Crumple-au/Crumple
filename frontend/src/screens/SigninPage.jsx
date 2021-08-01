@@ -26,7 +26,7 @@ function SigninPage(props) {
       props.history.push(redirect)
       console.log(redirect)
     }
-  }, [userInfo])
+  }, [userInfo, props.history, redirect])
 
 
   return (
