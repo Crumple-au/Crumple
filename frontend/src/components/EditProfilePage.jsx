@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useParams, Redirect  } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
-import { USER_UPDATE_PROFILE_RESET, USER_DETAILS_RESET } from '../constants/userConstants';
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 function EditProfilePage(props) {
     const {userId} = useParams();
@@ -19,11 +19,7 @@ function EditProfilePage(props) {
     const userDetails = useSelector((state) => state.userDetails);
     const { loading, error, user } = userDetails;
     const userUpdateProfile  = useSelector((state) => state.userUpdateProfile );
-    const {
-        loading: loadingUpdate,
-        error: errorUpdate,
-        success: successUpdate,
-    } = userUpdateProfile ;
+    const { success: successUpdate } = userUpdateProfile ;
 
     const dispatch = useDispatch();
 
@@ -49,18 +45,17 @@ function EditProfilePage(props) {
         }
         else if (!user) {
             dispatch(detailsUser(userId));
-            // dispatch({ type: USER_DETAILS_RESET });
         } else {
             setName(user.name);
             setEmail(user.email);
             setDescription(user.description)
             setIsSeller(user.isSeller);
         }
-    }, [dispatch, user, successUpdate]);
+    }, [dispatch, user, successUpdate, props.history, userId]);
 
 
     return (
-        <div className='form'>
+        <div className='main'>
             <form onSubmit={submitHandler}>
                 <ul className='form-container'>
 

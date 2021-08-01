@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import userRouter from './routes/userRouter.js'
 import artworkRouter from './routes/artworkRoutes.js';
 import cors from 'cors';
+import mongodb_database from './config.js';
 
 dotenv.config()
 
@@ -14,7 +15,7 @@ app.use(cors({origin: '*'}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/crumple', {
+mongoose.connect(process.env.MONGODB_URL || mongodb_database , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -30,5 +31,6 @@ app.use('/api/users', userRouter);
 app.use('/api/artworks', artworkRouter);
 
 app.listen(port, () => {
+    console.log(`Node environment is set to ${process.env.NODE_ENV}`)
     console.log(`Example app listening at http://localhost:${port}`)
 })

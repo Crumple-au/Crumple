@@ -28,4 +28,19 @@ artworkRouter.get(
     })
 );
 
+artworkRouter.get(
+    '/:id',
+    expressAsyncHandler(async (req, res) => {
+        const artwork = await Artwork.findById(req.params.id).populate(
+            'seller',
+            'seller.name'
+        );
+        if (artwork) {
+            res.send(artwork);
+        } else {
+            res.status(404).send({ message: 'Artwork Not Found' });
+        }
+    })
+);
+
 export default artworkRouter;

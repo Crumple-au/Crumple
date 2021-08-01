@@ -5,7 +5,7 @@ import { detailsUser } from '../actions/userActions';
 import Profile from '../components/Profile'
 import Product from '../components/Product'
 import Payments from '../components/Payments';
-import Settings from '../components/Settings';
+import EditProfilePage from '../components/EditProfilePage';
 
 function ProfilePage() {
     const { userId } = useParams();
@@ -22,7 +22,7 @@ function ProfilePage() {
             dispatch(detailsUser(userId));
         }
 
-    }, [dispatch, user ]);
+    }, [dispatch, user, userId ]);
     return (
         <BrowserRouter>
             <div className="profile-container">
@@ -51,7 +51,7 @@ function ProfilePage() {
                             <Payments />
                         </Route>
                         <Route path='/profile/:userId/settings'>
-                            <Settings />
+                            <EditProfilePage />
                         </Route>
                         <Route path='/profile/:userId'>
                             <Profile 

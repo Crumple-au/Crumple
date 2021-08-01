@@ -12,7 +12,7 @@ function RegisterPage(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rePassword, setRePassword] = useState('');
+    // const [rePassword, setRePassword] = useState('');
 
     const redirect = props.location.search ? props.location.search.split('=')[1] : '/'
 
@@ -25,7 +25,7 @@ function RegisterPage(props) {
         if (userInfo) {
             props.history.push(redirect);
         }
-    }, [userInfo]);
+    }, [userInfo, props.history, redirect]);
 
     return (
         <div className='form'>
@@ -68,7 +68,7 @@ function RegisterPage(props) {
                         <li>
                             <label htmlFor='confirmPassword'>Confirm Password </label>
                             <input
-                                type='confirmPassword'
+                                type='password'
                                 id='confirmPassword'
                                 name='confirmPassword'
                                 onChange={(e) => setPassword(e.target.value)}

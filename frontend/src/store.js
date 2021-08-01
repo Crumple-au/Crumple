@@ -6,12 +6,18 @@ import {userSigninReducer,
     userListReducer, 
     userUpdateProfileReducer,
     userDeleteReducer} from './reducers/userReducers';
+import { cartReducer } from './reducers/cartReducers';
 
 const initialState = {
     userSignin: { 
         userInfo: localStorage.getItem('userInfo') 
         ? JSON.parse(localStorage.getItem('userInfo'))
         : null
+    },
+    cart: {
+        cartItems: localStorage.getItem('cartItems') 
+        ? JSON.parse(localStorage.getItem('cartItems'))
+        : []
     }
 };
 
@@ -22,6 +28,7 @@ const reducer = combineReducers({
     userList: userListReducer,
     userUpdateProfile: userUpdateProfileReducer,
     userDelete: userDeleteReducer,
+    cart: cartReducer
 });
 
 // Below code to be able to use Redux browser extention

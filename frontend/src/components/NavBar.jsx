@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signout } from '../actions/userActions.js'
@@ -11,7 +11,6 @@ import {
   Grid,
   Button,
 } from '@material-ui/core'
-import { detailsUser } from '../actions/userActions'
 
 import { black, useStyles } from '../utils/theme'
 import logo from '../images/crumple-logo.jpg'
@@ -21,6 +20,9 @@ const NavBar = () => {
 
   const userSignin = useSelector((state) => state.userSignin)
   const { userInfo } = userSignin
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
   const dispatch = useDispatch()
 
@@ -53,7 +55,11 @@ const NavBar = () => {
         </Box>
         <Grid container justifyContent='flex-end'>
           <Box p='2rem'>
-            <FaShoppingCart fontSize='1.4rem' />
+            <Link className='link' to={'/cart'}>
+              <FaShoppingCart fontSize='1.4rem' className={classes.navlink} />
+              {cartItems.length > 0 && <span className="badge">{cartItems.length}</span>}
+            </Link>
+            
           </Box>
 
           {userInfo && userInfo.isAdmin ? (
@@ -65,11 +71,6 @@ const NavBar = () => {
                 <li>
                   <Link className='link' to={`/profile/${userInfo._id}`}>
                     Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link className='link' to={`/profile/edit/${userInfo._id}`}>
-                    Edit Profile
                   </Link>
                 </li>
                 <li>
@@ -93,11 +94,6 @@ const NavBar = () => {
                 <li>
                   <Link className='link' to={`/profile/${userInfo._id}`}>
                     Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link className='link' to={`/profile/edit/${userInfo._id}`}>
-                    Edit Profile
                   </Link>
                 </li>
                 <li>

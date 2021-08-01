@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/core'
 import { Provider } from 'react-redux'
@@ -15,7 +15,7 @@ import SigninPage from './screens/SigninPage'
 import ProfilePage from './screens/ProfilePage'
 import RegisterPage from './screens/RegisterPage'
 import ListUsersPage from './screens/ListUsersPage'
-import EditProfilePage from './screens/EditProfilePage'
+import CartPage from './screens/CartPage'
 
 import { theme } from './utils/theme'
 import store from './store'
@@ -47,9 +47,9 @@ const App = () => {
 
             <Route path='/signin' component={SigninPage} />
             <Route path='/signup' component={RegisterPage} />
-            <Route path='/profile/edit/:userId' component={EditProfilePage} />
             <Route path='/profile/:userId' component={ProfilePage} />
             <Route path='/allusers' component={ListUsersPage} />
+            <Route path="/cart/:artworkId?" component={CartPage} />
             <Route path='*'>
               <Error />
             </Route>
