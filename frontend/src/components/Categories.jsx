@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SearchBar from './SearchBar'
 import {
   Box,
@@ -13,11 +13,11 @@ import {
 } from '@material-ui/core'
 
 import { useStyles } from '../utils/theme'
-import { data } from '../data/categories'
+import { useFetch } from '../utils/helpers'
 
 const Categories = () => {
+  const { categories } = useFetch('api/categories')
   const classes = useStyles()
-  const [categories, setCategories] = useState(data)
 
   return (
     <>
@@ -37,7 +37,12 @@ const Categories = () => {
                         p='1rem'
                         border={3}
                       >
-                        {category.image}
+                        <img
+                          src={category.image}
+                          alt={category.altName}
+                          height='100px'
+                          width='100px'
+                        />
                       </Box>
                     </CardMedia>
                     <CardContent>
