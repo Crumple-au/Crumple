@@ -31,7 +31,7 @@ const HomePage = () => {
         <Box m='2rem'>
           <Button
             component={Link}
-            to='/discover'
+            to='/categories'
             variant='contained'
             color='primary'
           >
