@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 function CartPage(props) {
-    const productId = useParams();
+    const {artworkId} = useParams();
     const qty = props.location.search
     ? Number(props.location.search.split('=')[1])
     : 1;
@@ -14,10 +14,11 @@ function CartPage(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (productId) {
-            dispatch(addToCart(productId, qty));
+        if (artworkId) {
+            dispatch(addToCart(artworkId, qty));
         }
-    }, [dispatch, productId, qty]);
+        console.log(cartItems)
+    }, [dispatch, artworkId, qty]);
 
     return (
         <div>
@@ -26,12 +27,12 @@ function CartPage(props) {
                 <h3>Cart is empty</h3>
             :
                 <>
-                    {cartItems.map((item) => {
-                        <>
-                            <p>{item.name}</p>
-                            <p>{item.price}</p>
-                        </>
-                    })}
+                    {cartItems.map((item) => (
+                        <ul key={item.artwork}>
+                            <li>{item.name}</li>
+                            <li>{item.price}</li>
+                        </ul>
+                    ))}
                 </>
             }
 
