@@ -19,6 +19,16 @@ code {
     monospace;
 }
 
+/* Cart Badge */
+.badge {
+  background-color: #f02020;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 0.4rem 0.5rem;
+  font-size: .7rem;
+  margin-left: 0.2rem;
+}
+
 /* Error Page */
 .errorGif {
   width: 50vw;

@@ -22,6 +22,9 @@ const NavBar = () => {
   const userSignin = useSelector((state) => state.userSignin)
   const { userInfo } = userSignin
 
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   const dispatch = useDispatch()
 
   const signoutHandler = () => {
@@ -53,7 +56,11 @@ const NavBar = () => {
         </Box>
         <Grid container justifyContent='flex-end'>
           <Box p='2rem'>
-            <FaShoppingCart fontSize='1.4rem' />
+            <Link className='link' to={'/cart'}>
+              <FaShoppingCart fontSize='1.4rem' className={classes.navlink} />
+              {cartItems.length > 0 && <span className="badge">{cartItems.length}</span>}
+            </Link>
+            
           </Box>
 
           {userInfo && userInfo.isAdmin ? (
@@ -65,11 +72,6 @@ const NavBar = () => {
                 <li>
                   <Link className='link' to={`/profile/${userInfo._id}`}>
                     Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link className='link' to={`/profile/edit/${userInfo._id}`}>
-                    Edit Profile
                   </Link>
                 </li>
                 <li>
@@ -93,11 +95,6 @@ const NavBar = () => {
                 <li>
                   <Link className='link' to={`/profile/${userInfo._id}`}>
                     Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link className='link' to={`/profile/edit/${userInfo._id}`}>
-                    Edit Profile
                   </Link>
                 </li>
                 <li>

@@ -53,12 +53,6 @@ return (
                         </li>
 
                         <li>
-                            <Link className="link" to={`/profile/edit/${userInfo._id}`}>
-                                Edit Profile
-                            </Link>
-                        </li>
-
-                        <li>
                             <Link className="link" to='/allusers'>
                                 All users
                             </Link>
@@ -84,12 +78,6 @@ return (
                         <li>
                             <Link className="link" to={`/profile/${userInfo._id}`}>
                                 Profile
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link className="link" to={`/profile/edit/${userInfo._id}`}>
-                                Edit Profile
                             </Link>
                         </li>
 

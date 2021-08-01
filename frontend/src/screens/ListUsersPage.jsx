@@ -67,7 +67,7 @@ function ListUsersPage(props) {
                             <button
                             type="button"
                             className="small"
-                            onClick={() => props.history.push(`/profile/edit/${user._id}`)}
+                            onClick={() => props.history.push(`/profile/${user._id}/settings`)}
                             >
                             Edit
                             </button>
