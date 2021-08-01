@@ -1,10 +1,13 @@
-function envTypeUrl(envType) {
-    if (envType === 'production') {
-        const PRODUCTION_URL = 'https://crumple-au.herokuapp.com';
-        return PRODUCTION_URL
+function nodeEnv() {
+    if (process.env.NODE_ENV === 'production') {
+        return 'https://crumple-au.herokuapp.com';
     }
-
-    if (envType === 'development') {
+    else if (process.env.NODE_ENV === 'development') {
+        console.log('You are in the ' + process.env.NODE_ENV + ' build.');
+        return ''
+    }
+    else if (process.env.NODE_ENV === 'test') {
+        console.log('You are in the ' + process.env.NODE_ENV + ' build.');
         return ''
     }
     else {
@@ -12,10 +15,6 @@ function envTypeUrl(envType) {
     }
 }
 
-// Make sure to change this before each build.
-// const envUrl = envTypeUrl('development')
-const envUrl = envTypeUrl('production')
+const ENV_URL = nodeEnv()
 
-console.log('You are connected to ' + envUrl + ' host.');
-
-export default envUrl;
+export default ENV_URL;
