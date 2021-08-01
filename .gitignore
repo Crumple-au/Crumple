@@ -6,7 +6,7 @@ frontend/config.js
 frontend/coverage
 frontend/.env
 frontend/reportWebVitals.js
-frontend/setupTests.js
+# frontend/setupTests.js
 
 //Backend
 
