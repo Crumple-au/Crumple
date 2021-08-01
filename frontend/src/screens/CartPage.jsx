@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { addToCart, removeFromCart } from '../actions/cartActions';
+import { useParams } from 'react-router-dom';
+import { addToCart } from '../actions/cartActions';
 
 function CartPage(props) {
     const {artworkId} = useParams();
@@ -10,7 +10,7 @@ function CartPage(props) {
     : 1;
 
     const cart = useSelector((state) => state.cart);
-    const { cartItems, error } = cart;
+    const { cartItems } = cart;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function CartPage(props) {
             dispatch(addToCart(artworkId, qty));
         }
         console.log(cartItems)
-    }, [dispatch, artworkId, qty]);
+    }, [dispatch, artworkId, qty, cartItems]);
 
     return (
         <div>
@@ -30,7 +30,7 @@ function CartPage(props) {
                     {cartItems.map((item) => (
                         <ul key={item.artwork}>
                             <li>{item.name}</li>
-                            <li>{item.price}</li>
+                            <li>${item.price}</li>
                         </ul>
                     ))}
                 </>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signout } from '../actions/userActions.js'
@@ -11,7 +11,6 @@ import {
   Grid,
   Button,
 } from '@material-ui/core'
-import { detailsUser } from '../actions/userActions'
 
 import { black, useStyles } from '../utils/theme'
 import logo from '../images/crumple-logo.jpg'

@@ -1,22 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {listUsers,  deleteUser } from '../actions/userActions';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
 import SearchBar from '../components/SearchBar'
 function ListUsersPage(props) {
-
-    const {name = 'all'} = useParams();
     
     const userList = useSelector((state) => state.userList);
     const { loading, error, users } = userList;
 
     const userDelete = useSelector((state) => state.userDelete);
-    const {
-        loading: loadingDelete,
-        error: errorDelete,
-        success: successDelete,
-    } = userDelete;
+    const { success: successDelete } = userDelete;
 
     const dispatch = useDispatch();
 
