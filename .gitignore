@@ -10,8 +10,8 @@ frontend/reportWebVitals.js
 
 //Backend
 
-/node_modules
-.env
+backend/node_modules
+backend/.env
 .babelrc
 Procfile
-package-lock.json
+bacnkend/package-lock.json

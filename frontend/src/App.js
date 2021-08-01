@@ -21,21 +21,20 @@ import { theme } from './utils/theme'
 import store from './store'
 
 const App = () => {
-
   // for mobile devices
-  const isSmallScreen = useMediaQuery({ minWidth: 200, maxWidth: 800 });
+  const isSmallScreen = useMediaQuery({ minWidth: 200, maxWidth: 800 })
 
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Router>
           {/* <NavBar /> */}
-          { isSmallScreen ? <MobileNavBar /> : <NavBar/> }
+          {isSmallScreen ? <MobileNavBar /> : <NavBar />}
           <Switch>
             <Route exact path='/'>
               <HomePage />
             </Route>
-            <Route path='/discover'>
+            <Route path='/categories'>
               <Categories />
             </Route>
             <Route path='/about'>
@@ -49,7 +48,7 @@ const App = () => {
             <Route path='/signup' component={RegisterPage} />
             <Route path='/profile/:userId' component={ProfilePage} />
             <Route path='/allusers' component={ListUsersPage} />
-            <Route path="/cart/:artworkId?" component={CartPage} />
+            <Route path='/cart/:artworkId?' component={CartPage} />
             <Route path='*'>
               <Error />
             </Route>
