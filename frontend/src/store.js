@@ -6,6 +6,9 @@ import {userSigninReducer,
     userListReducer, 
     userUpdateProfileReducer,
     userDeleteReducer} from './reducers/userReducers';
+import {
+    productListReducer
+} from './reducers/artworkReducers'
 import { cartReducer } from './reducers/cartReducers';
 
 const initialState = {
@@ -28,6 +31,7 @@ const reducer = combineReducers({
     userList: userListReducer,
     userUpdateProfile: userUpdateProfileReducer,
     userDelete: userDeleteReducer,
+    artworkList: productListReducer,
     cart: cartReducer
 });
 
