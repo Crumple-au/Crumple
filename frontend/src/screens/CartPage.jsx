@@ -17,7 +17,7 @@ function CartPage(props) {
         if (artworkId) {
             dispatch(addToCart(artworkId, qty));
         }
-        console.log(cartItems)
+        console.log('CartItems: ', cartItems)
     }, [dispatch, artworkId, qty, cartItems]);
 
     return (
