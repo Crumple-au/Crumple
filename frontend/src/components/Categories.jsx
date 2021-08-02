@@ -16,7 +16,7 @@ import { useStyles } from '../utils/theme'
 import { useFetch } from '../utils/helpers'
 
 const Categories = () => {
-  const { categories } = useFetch('api/categories')
+  const { categories } = useFetch('/api/categories')
   const classes = useStyles()
 
   console.log(categories)
