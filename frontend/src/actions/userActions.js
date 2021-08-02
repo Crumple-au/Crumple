@@ -52,9 +52,7 @@ const signout = () => (dispatch) => {
 
 const detailsUser = (userId) => async (dispatch, getState) => {
     dispatch({ type: USER_DETAILS_REQUEST, payload: userId });
-    const {
-        userSignin: { userInfo },
-    } = getState();
+    const { userSignin: { userInfo } } = getState();
     try {
         const { data } = await Axios.get(ENV_URL + `/api/users/profile/${userId}`, {
         headers: { Authorization: `Bearer ${userInfo?.token}` },
