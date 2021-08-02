@@ -29,18 +29,33 @@ artworkRouter.get(
 );
 
 artworkRouter.get(
-    '/:id',
+    '/',
     expressAsyncHandler(async (req, res) => {
-        const artwork = await Artwork.findById(req.params.id).populate(
-            'seller',
-            'seller.name'
-        );
-        if (artwork) {
-            res.send(artwork);
-        } else {
-            res.status(404).send({ message: 'Artwork Not Found' });
-        }
+        const seller = req.query.seller || '';
+        const sellerFilter = seller ? { seller } : {};
+        const artworks = await Artwork.find({
+            ...sellerFilter,
+        })
+        .populate('seller', 'seller.name');
+        res.send({ artworks });
     })
 );
+
+
+// artworkRouter.get(
+//     '/:id',
+//     expressAsyncHandler(async (req, res) => {
+//         console.log(req.params.id)
+//         const artwork = await Artwork.findById(req.params.id).populate(
+//             'seller',
+//             'seller.name'
+//         );
+//         if (artwork) {
+//             res.send(artwork);
+//         } else {
+//             res.status(404).send({ message: 'Artwork Not Found' });
+//         }
+//     })
+// );
 
 export default artworkRouter;
