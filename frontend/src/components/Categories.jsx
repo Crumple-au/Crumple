@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import {
   Box,
@@ -19,7 +20,6 @@ const Categories = () => {
   const { categories } = useFetch('/api/categories')
   const classes = useStyles()
 
-  console.log(categories)
   return (
     <>
       <SearchBar />
@@ -61,7 +61,9 @@ const Categories = () => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button size='small'>Explore</Button>
+                    <Link to={`/category/${category._id}`}>
+                      <Button size='small'>Explore</Button>
+                    </Link>
                   </CardActions>
                 </Card>
               </Grid>

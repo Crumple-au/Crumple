@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive'
 import NavBar from './components/NavBar'
 import HomePage from './screens/HomePage'
 import Categories from './components/Categories'
+import Category from './components/Category'
 import MobileNavBar from './components/MobileNavBar'
 import About from './screens/About'
 import FAQs from './screens/FAQs'
@@ -37,6 +38,7 @@ const App = () => {
             <Route path='/categories'>
               <Categories />
             </Route>
+            <Route path='/category/:id' children={<Category />} />
             <Route path='/about'>
               <About />
             </Route>
