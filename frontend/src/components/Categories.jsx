@@ -19,6 +19,7 @@ const Categories = () => {
   const { categories } = useFetch('api/categories')
   const classes = useStyles()
 
+  console.log(categories)
   return (
     <>
       <SearchBar />
@@ -27,7 +28,14 @@ const Categories = () => {
         <Grid container spacing={1} justifyContent='center' alignItems='center'>
           {categories.map((category) => {
             return (
-              <Grid item xs={12} sm={6} md={3} align='center' key={category.id}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                align='center'
+                key={category._id}
+              >
                 <Card className={classes.card}>
                   <CardActionArea>
                     <CardMedia>
