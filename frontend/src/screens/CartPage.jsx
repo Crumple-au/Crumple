@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { addToCart } from '../actions/cartActions';
 
 function CartPage(props) {
@@ -17,7 +17,7 @@ function CartPage(props) {
         if (artworkId) {
             dispatch(addToCart(artworkId, qty));
         }
-        console.log(cartItems)
+        console.log('CartItems: ', cartItems)
     }, [dispatch, artworkId, qty, cartItems]);
 
     return (

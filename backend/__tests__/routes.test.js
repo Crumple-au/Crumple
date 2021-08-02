@@ -14,8 +14,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use('/api/users', userRouter);
-
 app.get('/seed', function(req, res) {
     const createdUsers = User.insertMany(seed.users);
     res.status(200).json({ createdUsers })
