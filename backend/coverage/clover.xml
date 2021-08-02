@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1627874610515" clover="3.2.0">
-  <project timestamp="1627874610516" name="All files">
-    <metrics statements="104" coveredstatements="41" conditionals="44" coveredconditionals="7" methods="19" coveredmethods="3" elements="167" coveredelements="51" complexity="0" loc="104" ncloc="104" packages="4" files="10" classes="10"/>
+<coverage generated="1627875226640" clover="3.2.0">
+  <project timestamp="1627875226640" name="All files">
+    <metrics statements="117" coveredstatements="45" conditionals="48" coveredconditionals="7" methods="21" coveredmethods="4" elements="186" coveredelements="56" complexity="0" loc="117" ncloc="117" packages="5" files="11" classes="11"/>
     <package name="backend">
       <metrics statements="21" coveredstatements="16" conditionals="8" coveredconditionals="5" methods="3" coveredmethods="2"/>
       <file name="config.js" path="C:\Users\Ryan James\Desktop\Crumple\backend\config.js">
@@ -120,6 +120,25 @@
         <line num="128" count="0" type="stmt"/>
         <line num="129" count="0" type="stmt"/>
         <line num="131" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="backend.tests">
+      <metrics statements="13" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="helpers.js" path="C:\Users\Ryan James\Desktop\Crumple\backend\tests\helpers.js">
+        <metrics statements="13" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="18" type="stmt"/>
+        <line num="7" count="18" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
       </file>
     </package>
     <package name="backend.util">
