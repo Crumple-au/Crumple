@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGODB_URL || mongodb_database, {
 const port = process.env.PORT || 5000
 
 app.get('/', (req, res) => {
-  res.send('Hello from Express!')
+  res.status(200).send('Hello from Express!')
 })
 
 app.use('/api/users', userRouter)
@@ -40,3 +40,8 @@ app.listen(port, () => {
   console.log(`Node environment is set to ${process.env.NODE_ENV}`)
   console.log(`Crumple is listening at http://localhost:${port}`)
 })
+
+// module.exports = {
+//   app
+// }
+export default app
