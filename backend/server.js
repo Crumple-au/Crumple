@@ -36,12 +36,9 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message })
 })
 
-app.listen(port, () => {
-  console.log(`Node environment is set to ${process.env.NODE_ENV}`)
-  console.log(`Crumple is listening at http://localhost:${port}`)
-})
+//app.listen(port, () => {
+//   console.log(`Node environment is set to ${process.env.NODE_ENV}`)
+//   console.log(`Crumple is listening at http://localhost:${port}`)
+// })
 
-// module.exports = {
-//   app
-// }
 export default app

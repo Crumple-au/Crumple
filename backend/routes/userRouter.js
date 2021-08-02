@@ -31,7 +31,6 @@ userRouter.post(
                     isSeller: user.isSeller,
                     token: generateToken(user),
                 });
-                return;
             }
         }
         res.status(401).send({ message: 'Invalid email or password' });
