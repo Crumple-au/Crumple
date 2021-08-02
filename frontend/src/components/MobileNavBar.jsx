@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signout } from '../actions/userActions.js'
 import { FiMenu } from 'react-icons/fi'
-import { Box, AppBar, Toolbar, Grid, Button } from '@material-ui/core'
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  Grid,
+  Button,
+  Typography,
+} from '@material-ui/core'
 
 import { black, useStyles } from '../utils/theme'
 import logo from '../images/crumple-logo.jpg'
@@ -31,10 +38,15 @@ const MobileNavBar = () => {
             <img src={logo} alt='logo' width='60' />
           </Link>
         </Box>
+        <Box pr='5rem'>
+          <Link to='/' className={classes.navlink}>
+            <Typography variant='h5'>crumple</Typography>
+          </Link>
+        </Box>
 
         {userInfo && userInfo.isAdmin ? (
           <Box py='1.5rem' className='dropdown'>
-            <Button to='#' variant='contained' to='/profile'>
+            <Button variant='contained' to='/profile'>
               {userInfo.name}
             </Button>
 
@@ -60,7 +72,7 @@ const MobileNavBar = () => {
           </Box>
         ) : userInfo ? (
           <Box py='1.5rem' className='dropdown'>
-            <Button to='#' variant='contained' to='/profile'>
+            <Button variant='contained' to='/profile'>
               {userInfo.name}
             </Button>
             <ul className='dropdown-content'>

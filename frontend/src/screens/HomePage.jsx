@@ -25,15 +25,15 @@ const HomePage = () => {
             alignItems='center'
             justifyContent='center'
           >
-            <Typography variant='h1'>made for makers</Typography>
-            <Typography variant='h4' color='textSecondary'>
+            <Typography variant='h2'>made for makers</Typography>
+            <Typography variant='h5' color='textSecondary'>
               <span style={{ color: primary }}>crumple</span> makes it easy
             </Typography>
-            <Typography variant='h4' color='textSecondary'>
+            <Typography variant='h5' color='textSecondary'>
               for <span style={{ color: secondary }}>artists</span> and{' '}
               <span style={{ color: secondary }}>creatives</span>
             </Typography>
-            <Typography variant='h4' color='textSecondary'>
+            <Typography variant='h5' color='textSecondary'>
               to get paid for their work.
             </Typography>
 
