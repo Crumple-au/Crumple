@@ -3,23 +3,30 @@ import { useParams } from 'react-router-dom'
 import { useFetch } from '../utils/helpers'
 
 const Category = () => {
-  const [category, setCategory] = useState('')
+  // const [category, setCategory] = useState([])
+  
   const { id } = useParams()
-  const { categories } = useFetch('/api/categories')
+  const { categories } = useFetch(`/api/categories/${id}`)
 
-  console.log(categories)
-  console.log(id)
 
+  
   useEffect(() => {
+    // console.log('Categories', categories.name)
+    // console.log('ID', id)
+
     // const newCategory = categories.find((category) => category._id === id)
-    // setCategory(newCategory.name)
+    // setCategory(newCategory)
+    // console.log(newCategory)
   }, [])
 
-  console.log(category)
 
   return (
     <>
-      <h1>{id}</h1>
+      <ul key={categories._id}>
+        <li>{categories.name}</li>
+        <li>{categories.description}</li>
+        <img src={categories.image} alt={categories.altName} height="100"></img>
+      </ul>
     </>
   )
 }
