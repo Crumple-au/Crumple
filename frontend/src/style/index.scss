@@ -86,6 +86,27 @@ code {
   margin-bottom: 0.5rem;
 }
 
+/* StepsUI Component */
+
+.steps-ui {
+  display: flex;
+  flex-direction: row;
+  
+  div {
+    border-top: 0.3rem #c0c0c0 solid;
+    color: #c0c0c0;
+    flex: 1;
+    padding: 1rem;
+    font-weight: bold;
+  }
+} 
+.steps-ui {
+  div.active {
+    border-top-color: #F62D01;
+    color: #F62D01;
+  }
+} 
+
 /* Error Page */
 .errorGif {
   width: 50vw;
