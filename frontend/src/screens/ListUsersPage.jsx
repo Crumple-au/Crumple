@@ -5,6 +5,7 @@ import {listUsers,  deleteUser } from '../actions/userActions';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
 import SearchBar from '../components/SearchBar'
 import Alert from '../components/Alert'
+import Preloader from '../components/Preloader'
 
 function ListUsersPage(props) {
     
@@ -34,12 +35,12 @@ function ListUsersPage(props) {
         <div>
             <h1>Users</h1>
 
-            {loadingDelete && <h3>Loading...</h3>}
+            {loadingDelete && <Preloader/>}
             {errorDelete && <Alert variant="danger">{errorDelete}</Alert>}
             {successDelete && <Alert variant="success">User Deleted Succussfully</Alert>}
 
             {loading ? (
-                <h1>Loading...</h1>
+                <Preloader/>
             ) : error ? (
                 <Alert variant="danger">{error}</Alert>
             ) : (
