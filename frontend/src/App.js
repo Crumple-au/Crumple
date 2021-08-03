@@ -18,6 +18,7 @@ import RegisterPage from './screens/RegisterPage'
 import ListUsersPage from './screens/ListUsersPage'
 import CartPage from './screens/CartPage'
 import ShippingPage from './screens/ShippingPage'
+import PaymentPage from './screens/PaymentPage'
 
 import { theme } from './utils/theme'
 import store from './store'
@@ -53,6 +54,7 @@ const App = () => {
             <Route path='/allusers' component={ListUsersPage} />
             <Route path='/cart/:artworkId?' component={CartPage} />
             <Route path='/shipping' component={ShippingPage} />
+            <Route path='/payment' component={PaymentPage} />
             <Route path='*'>
               <Error />
             </Route>

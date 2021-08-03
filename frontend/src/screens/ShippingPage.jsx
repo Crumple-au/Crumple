@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { saveShippingAddress } from '../actions/cartActions';
 import StepsUI from '../components/StepsUI';
 
 const shippingSteps = {
-    signin: 'Signin',
-    shipping: 'Shipping',
-    payment: 'Payment',
-    placeOrder: 'Place Order'
+    text1: 'Signin',
+    text2: 'Shipping',
+    text3: 'Payment',
+    text4: 'Place Order'
 }
 
 function ShippingPage(props) {
@@ -26,10 +27,26 @@ function ShippingPage(props) {
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
     const [country, setCountry] = useState(shippingAddress.country);
 
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        dispatch(
+            saveShippingAddress({
+                fullName,
+                address,
+                city,
+                postalCode,
+                country
+            }
+        ))
+        
+        props.history.push('/payment')
+    }
+
     return (
         <div>
             <StepsUI step1 step2 text={shippingSteps}></StepsUI>
-            <form>
+            <form onSubmit={submitHandler} >
                 <div>
                     <h1>Shipping Address</h1>
                 </div>
@@ -89,7 +106,6 @@ function ShippingPage(props) {
                         ></input>
                     </div>
                     <div>
-                        <label />
                         <button className="primary" type="submit">
                             Continue
                         </button>

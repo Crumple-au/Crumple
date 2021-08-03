@@ -23,7 +23,7 @@ const initialState = {
         : [],
         shippingAddress: localStorage.getItem('shippingAddress')
             ? JSON.parse(localStorage.getItem('shippingAddress'))
-            : {},
+            : {}
     }
 };
 
