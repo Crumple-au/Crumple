@@ -93,6 +93,7 @@ userRouter.put(
                 name: updatedUser.name,
                 email: updatedUser.email,
                 description: updatedUser.description,
+                isAdmin: user.isAdmin,
                 isSeller: user.isSeller,
                 token: generateToken(updatedUser),
             });

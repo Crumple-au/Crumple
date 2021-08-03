@@ -13,11 +13,10 @@ function EditProfilePage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
-    const [isSeller, setIsSeller] = useState(false);
 
 
     const userDetails = useSelector((state) => state.userDetails);
-    const { loading, error, user } = userDetails;
+    const { user } = userDetails;
     const userUpdateProfile  = useSelector((state) => state.userUpdateProfile );
     const { 
         loading: loadingUpdate,
@@ -34,25 +33,23 @@ function EditProfilePage(props) {
                 userId: userId,
                 name,
                 email,
-                description,
-                isSeller
+                description
             })
         );
-
     };
 
     useEffect(() => {
         if (successUpdate) {
             dispatch({ type: USER_UPDATE_PROFILE_RESET });
-            // props.history.push(`/profile/${userId}`);
+            dispatch(detailsUser(userId));
         }
-        else if (!user) {
+        
+        if (!user) {
             dispatch(detailsUser(userId));
         } else {
             setName(user.name);
             setEmail(user.email);
-            setDescription(user.description)
-            setIsSeller(user.isSeller);
+            setDescription(user.description);
         }
     }, [dispatch, user, successUpdate, errorUpdate, props.history, userId]);
 
@@ -67,8 +64,8 @@ function EditProfilePage(props) {
                     </div>
 
                     {loadingUpdate && <Preloader/>}
-                    {errorUpdate && <Alert variant="danger">{errorUpdate}</Alert>}
                     {successUpdate && <Alert variant="success">User Updated Succussfully</Alert>}
+                    {errorUpdate && <Alert variant="danger">{errorUpdate}</Alert>}
 
                     <div className="form-fields">
                         <li>
