@@ -5,7 +5,13 @@ function ShippingPage() {
 
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
-    console.log(userInfo)
+    const cart = useSelector((state) => state.cart);
+    const { shippingAddress } = cart;
+
+    const dispatch = useDispatch();
+
+    
+    
     return (
         <div>
             

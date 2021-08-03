@@ -33,6 +33,8 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
             return { ...state, error: action.payload };
         case CART_EMPTY:
             return { ...state, error: '', cartItems: [] };
+        case CART_SAVE_SHIPPING_ADDRESS:
+            return { ...state, shippingAddress: action.payload };
         default:
             return state;
     }
