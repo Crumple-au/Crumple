@@ -17,6 +17,7 @@ import ProfilePage from './screens/ProfilePage'
 import RegisterPage from './screens/RegisterPage'
 import ListUsersPage from './screens/ListUsersPage'
 import CartPage from './screens/CartPage'
+import ShippingPage from './screens/ShippingPage'
 
 import { theme } from './utils/theme'
 import store from './store'
@@ -51,6 +52,7 @@ const App = () => {
             <Route path='/profile/:userId' component={ProfilePage} />
             <Route path='/allusers' component={ListUsersPage} />
             <Route path='/cart/:artworkId?' component={CartPage} />
+            <Route path='/shipping' component={ShippingPage} />
             <Route path='*'>
               <Error />
             </Route>
