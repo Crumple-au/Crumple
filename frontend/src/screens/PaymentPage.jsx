@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { savePaymentMethod } from '../actions/cartActions';
 import StepsUI from '../components/StepsUI';
 
 const shippingSteps = {
@@ -8,7 +10,24 @@ const shippingSteps = {
     text4: 'Place Order'
 }
 
-function PaymentPage() {
+function PaymentPage(props) {
+
+    const cart = useSelector((state) => state.cart);
+    const { shippingAddress } = cart;
+    if (!shippingAddress.address) {
+        props.history.push('/shipping');
+    }
+    const dispatch = useDispatch();
+
+    const [paymentMethod, setPaymentMethod] = useState('Paypal');
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(
+            savePaymentMethod(paymentMethod)
+        )
+        console.log(paymentMethod)
+    }
     return (
         <div>
             <StepsUI step1 step2 step3 text={shippingSteps}></StepsUI>
@@ -26,6 +45,7 @@ function PaymentPage() {
                     name="paymentMethod"
                     required
                     checked
+                    onChange={(e) => setPaymentMethod(e.target.value)}
                     >
                     </input>
                     <label htmlFor="paypal">Paypal</label>
@@ -37,6 +57,7 @@ function PaymentPage() {
                     value="stripe"
                     name="paymentMethod"
                     required
+                    onChange={(e) => setPaymentMethod(e.target.value)}
                     >
                     </input>
                     <label htmlFor="stripe">Stripe</label>
