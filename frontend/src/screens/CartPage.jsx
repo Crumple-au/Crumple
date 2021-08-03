@@ -42,9 +42,11 @@ function CartPage(props) {
                 <>
                     {cartItems.map((item) => (
                         <ul key={item._id}>
-                            <li>{item.name}</li>
+                            <li>Artwork: {item.name}</li>
+                            <li>Artist: 
+                                <Link to={`/profile/${item.seller._id}`}> {item.seller.name}</Link>
+                            </li>
                             <li>${item.price}</li>
-                            <li>{item.seller.name}</li>
                             <button
                                 type="button"
                                 onClick={() => removeFromCartHandler(item._id)}
