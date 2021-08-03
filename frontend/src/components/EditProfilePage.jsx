@@ -1,11 +1,13 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from "axios";
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
+import ENV_URL from '../config.js'
+
 
 function EditProfilePage(props) {
     const {userId} = useParams();
@@ -13,10 +15,17 @@ function EditProfilePage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
-
+    const [file, setFile] = useState('')
+    const [images, setImages] = useState([]);
+    const [loadingUpload, setLoadingUpload] = useState(false);
+    const [errorUpload, setErrorUpload] = useState('');
+console.log(images)
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
 
     const userDetails = useSelector((state) => state.userDetails);
     const { user } = userDetails;
+
     const userUpdateProfile  = useSelector((state) => state.userUpdateProfile );
     const { 
         loading: loadingUpdate,
@@ -25,9 +34,14 @@ function EditProfilePage(props) {
 
     const dispatch = useDispatch();
 
-    const submitHandler = (e) => {
+    const submitHandler = async(e) => {
         e.preventDefault();
         // dispatch update profile
+        const result = await postImage({image: file});
+        setImages([result.imagePath]);
+        console.log('images:', images);
+        console.log('result.imagePath:', result.imagePath);
+
         dispatch(
             updateUserProfile({
                 userId: userId,
@@ -37,6 +51,25 @@ function EditProfilePage(props) {
             })
         );
     };
+
+    async function postImage({image}) {
+        const formData = new FormData();
+        formData.append("image", image)
+    
+        const result = await Axios.post(ENV_URL + '/api/images', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        });
+        return result.data
+    }
+
+    const fileSelected = event => {
+        event.preventDefault()
+        const file = event.target.files[0]
+        setFile(file)
+    }
 
     useEffect(() => {
         if (successUpdate) {
@@ -100,15 +133,19 @@ function EditProfilePage(props) {
                                 onChange={(e) => setDescription(e.target.value)}
                                 ></textarea>
                         </li>
-                        {/* <li>
-                            <label htmlFor="isSeller">Is Seller</label>
+                        <li>
+                            <label htmlFor="imageFile">Image File</label>
                             <input
-                                id="isSeller"
-                                type="checkbox"
-                                checked={isSeller}
-                                onChange={(e) => setIsSeller(e.target.checked)}
-                                ></input>
-                        </li> */}
+                                type="file"
+                                id="imageFile"
+                                label="Choose Image"
+                                onChange={fileSelected}
+                            ></input>
+                            {loadingUpload && <Preloader></Preloader>}
+                            {errorUpload && (
+                                <Alert variant="danger">{errorUpload}</Alert>
+                            )}
+                        </li>
                         <li>
                             <button type="submit" className="primary">
                                 Update
@@ -117,6 +154,12 @@ function EditProfilePage(props) {
                     </div>
                 </ul>
             </form>
+            {/* { images.map( image => (
+                <div key={image.pathName}>
+                    <img src={image.pathName}></img>
+                </div>
+            ))} */}
+            <img src=" /images/c423e81879921c6e61a67a41e80cf3b6" alt="s3 image"></img>
         </div>
     );
 }
