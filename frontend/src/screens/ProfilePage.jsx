@@ -13,14 +13,14 @@ import Profile from '../components/Profile'
 import Artworks from '../components/Artworks'
 import Payments from '../components/Payments'
 import EditProfilePage from '../components/EditProfilePage'
+import Alert from '../components/Alert'
+import Preloader from '../components/Preloader'
 
 function ProfilePage() {
   const { userId } = useParams()
 
-  // const userSignin = useSelector((state) => state.userSignin);
-  // const { userInfo } = userSignin;
   const artworkList = useSelector((state) => state.artworkList)
-  const { artworks } = artworkList
+  const {  artworks } = artworkList
 
   const userDetails = useSelector((state) => state.userDetails)
   const { loading, error, user } = userDetails
@@ -33,6 +33,7 @@ function ProfilePage() {
       dispatch(listArtworks({ seller: userId }))
     }
   }, [dispatch, user, userId])
+
   return (
     <BrowserRouter>
       <div className='profile-container'>
@@ -65,11 +66,12 @@ function ProfilePage() {
 
         {loading ? (
           <>
-            <h1>loading...</h1>
+            <Preloader/>
           </>
         ) : error ? (
-          <>{error.message}</>
+            <Alert variant="danger">{error}</Alert>
         ) : (
+          
           <Switch>
             <Route path='/profile/:userId/artworks'>
               <Artworks user={user} artworks={artworks} />

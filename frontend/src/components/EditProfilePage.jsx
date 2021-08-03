@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
+import Alert from '../components/Alert'
+import Preloader from '../components/Preloader'
 
 function EditProfilePage(props) {
     const {userId} = useParams();
@@ -13,13 +15,14 @@ function EditProfilePage(props) {
     const [description, setDescription] = useState('');
     const [isSeller, setIsSeller] = useState(false);
 
-    // const userSignin = useSelector((state) => state.userSignin);
-    // const { userInfo } = userSignin;
 
     const userDetails = useSelector((state) => state.userDetails);
     const { loading, error, user } = userDetails;
     const userUpdateProfile  = useSelector((state) => state.userUpdateProfile );
-    const { success: successUpdate } = userUpdateProfile ;
+    const { 
+        loading: loadingUpdate,
+        error: errorUpdate,
+        success: successUpdate } = userUpdateProfile ;
 
     const dispatch = useDispatch();
 
@@ -41,7 +44,7 @@ function EditProfilePage(props) {
     useEffect(() => {
         if (successUpdate) {
             dispatch({ type: USER_UPDATE_PROFILE_RESET });
-            props.history.push(`/profile/${userId}`);
+            // props.history.push(`/profile/${userId}`);
         }
         else if (!user) {
             dispatch(detailsUser(userId));
@@ -51,7 +54,7 @@ function EditProfilePage(props) {
             setDescription(user.description)
             setIsSeller(user.isSeller);
         }
-    }, [dispatch, user, successUpdate, props.history, userId]);
+    }, [dispatch, user, successUpdate, errorUpdate, props.history, userId]);
 
 
     return (
@@ -63,10 +66,9 @@ function EditProfilePage(props) {
                         <h1>Edit {name}</h1>
                     </div>
 
-                    <div className="alert-box">
-                        {loading && <div>Loading...</div>}
-                        {error && <div>{error}</div>}
-                    </div>
+                    {loadingUpdate && <Preloader/>}
+                    {errorUpdate && <Alert variant="danger">{errorUpdate}</Alert>}
+                    {successUpdate && <Alert variant="success">User Updated Succussfully</Alert>}
 
                     <div className="form-fields">
                         <li>

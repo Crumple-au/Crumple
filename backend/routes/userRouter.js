@@ -94,6 +94,7 @@ userRouter.put(
                 email: updatedUser.email,
                 description: updatedUser.description,
                 isSeller: user.isSeller,
+                token: generateToken(updatedUser),
             });
         }
         else {
