@@ -44,7 +44,7 @@ function CartPage(props) {
                         <ul key={item._id}>
                             <li>Artwork: {item.name}</li>
                             <li>Artist: 
-                                <Link to={`/profile/${item.seller._id}`}> {item.seller.name}</Link>
+                                <Link to={`/profile/${item.seller._id}`}> {item.seller.name} </Link>
                             </li>
                             <li>${item.price}</li>
                             <button
