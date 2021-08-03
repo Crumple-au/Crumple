@@ -1,5 +1,13 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import StepsUI from '../components/StepsUI';
+
+const shippingSteps = {
+    signin: 'Signin',
+    shipping: 'Shipping',
+    payment: 'Payment',
+    placeOrder: 'Place Order'
+}
 
 function ShippingPage(props) {
 
@@ -20,7 +28,8 @@ function ShippingPage(props) {
 
     return (
         <div>
-            <form className="form">
+            <StepsUI step1 step2 text={shippingSteps}></StepsUI>
+            <form>
                 <div>
                     <h1>Shipping Address</h1>
                 </div>
