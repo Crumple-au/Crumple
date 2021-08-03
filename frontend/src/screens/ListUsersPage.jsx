@@ -4,13 +4,18 @@ import { Link } from 'react-router-dom'
 import {listUsers,  deleteUser } from '../actions/userActions';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
 import SearchBar from '../components/SearchBar'
+import Alert from '../components/Alert'
+
 function ListUsersPage(props) {
     
     const userList = useSelector((state) => state.userList);
     const { loading, error, users } = userList;
 
     const userDelete = useSelector((state) => state.userDelete);
-    const { success: successDelete } = userDelete;
+    const { 
+        loading: loadingDelete,
+        error: errorDelete,
+        success: successDelete } = userDelete;
 
     const dispatch = useDispatch();
 
@@ -29,10 +34,14 @@ function ListUsersPage(props) {
         <div>
             <h1>Users</h1>
 
+            {loadingDelete && <h3>Loading...</h3>}
+            {errorDelete && <Alert variant="danger">{errorDelete}</Alert>}
+            {successDelete && <Alert variant="success">User Deleted Succussfully</Alert>}
+
             {loading ? (
                 <h1>Loading...</h1>
             ) : error ? (
-                <h1>{error}</h1>
+                <Alert variant="danger">{error}</Alert>
             ) : (
                 <>
                 <SearchBar/>
