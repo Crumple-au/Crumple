@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../actions/cartActions';
 
+
 function CartPage(props) {
     const {artworkId} = useParams();
     const qty = props.location.search
@@ -18,7 +19,7 @@ function CartPage(props) {
             dispatch(addToCart(artworkId, qty));
         }
         console.log('CartItems: ', cartItems)
-    }, [dispatch, artworkId, qty, cartItems]);
+    }, [dispatch, artworkId, qty]);
 
     return (
         <div>
@@ -31,6 +32,7 @@ function CartPage(props) {
                         <ul key={item.artwork}>
                             <li>{item.name}</li>
                             <li>${item.price}</li>
+                            <li>{item.seller.name}</li>
                         </ul>
                     ))}
                 </>
