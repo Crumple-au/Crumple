@@ -20,13 +20,14 @@ function PaymentPage(props) {
     const dispatch = useDispatch();
 
     const [paymentMethod, setPaymentMethod] = useState('Paypal');
+    console.log(paymentMethod)
 
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(
             savePaymentMethod(paymentMethod)
         )
-        console.log(paymentMethod)
+        props.history.push('/placeorder');
     }
     return (
         <div>
@@ -36,7 +37,7 @@ function PaymentPage(props) {
                 <h3>Payment Method</h3>
             </div>
 
-            <form>
+            <form onSubmit={submitHandler}>
                 <div>
                     <input
                     type="radio"
