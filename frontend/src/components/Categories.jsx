@@ -60,6 +60,7 @@ const Categories = () => {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
+
                   <CardActions>
                     <Link to={`/category/${category._id}`}>
                       <Button size='small'>Explore</Button>
