@@ -21,8 +21,6 @@ const region = process.env.AWS_BUCKET_REGION
 const accessKeyId = process.env.AWS_ACCESS_KEY
 const secretAccessKey = process.env.AWS_SECRET_KEY
 
-const signedUrlExpireSeconds = 60 * 1;
-
 const s3 = new AWS.S3({
   accessKeyId: accessKeyId,
   signatureVersion: 'v4',
@@ -32,13 +30,16 @@ const s3 = new AWS.S3({
 
 const uploadRouter = express.Router();
 
+const EXPIRY_TIME = 604800;
+
 uploadRouter.get(
   '/:key',
   (req, res) => {
     const key = req.params.key
     const url = s3.getSignedUrl('getObject', {
         Bucket: bucketName,
-        Key: key
+        Key: key,
+        Expires: EXPIRY_TIME
     })
     console.log('URL: ', url)
     res.status(200).send(url)
