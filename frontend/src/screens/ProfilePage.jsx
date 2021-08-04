@@ -15,6 +15,7 @@ import Payments from '../components/Payments'
 import EditProfilePage from '../components/EditProfilePage'
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
+import UploadProfileImage from './UploadProfileImage'
 
 function ProfilePage() {
   const { userId } = useParams()
@@ -84,6 +85,9 @@ function ProfilePage() {
             </Route>
             <Route path='/profile/:userId'>
               <Profile user={user} />
+            </Route>
+            <Route path='/UploadProfileImage/'>
+              <UploadProfileImage />
             </Route>
           </Switch>
         )}

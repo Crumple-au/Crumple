@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Axios from "axios";
-import { useParams } from 'react-router-dom'
+// import Axios from "axios";
+import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
@@ -15,11 +15,11 @@ function EditProfilePage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
-    const [file, setFile] = useState('')
-    const [images, setImages] = useState([]);
-    const [loadingUpload, setLoadingUpload] = useState(false);
-    const [errorUpload, setErrorUpload] = useState('');
-console.log(images)
+    // const [file, setFile] = useState('')
+    // const [images, setImages] = useState('');
+    // const [loadingUpload, setLoadingUpload] = useState(false);
+    // const [errorUpload, setErrorUpload] = useState('');
+
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
 
@@ -37,11 +37,9 @@ console.log(images)
     const submitHandler = async(e) => {
         e.preventDefault();
         // dispatch update profile
-        const result = await postImage({image: file});
-        setImages([result.imagePath]);
-        console.log('images:', images);
-        console.log('result.imagePath:', result.imagePath);
-
+        // const s3url = await postImage({image: file});
+        // setImages(s3url);
+        
         dispatch(
             updateUserProfile({
                 userId: userId,
@@ -50,29 +48,30 @@ console.log(images)
                 description
             })
         );
-    };
+        // console.log('images:', images);
+        };
 
-    async function postImage({image}) {
-        const formData = new FormData();
-        formData.append("image", image)
+    // async function postImage({image}) {
+    //     const formData = new FormData();
+    //     formData.append("image", image)
     
-        const result = await Axios.post(ENV_URL + '/api/images', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                Authorization: `Bearer ${userInfo.token}`,
-            }
-        });
-        return result.data
-    }
+    //     const {data} = await Axios.post(ENV_URL + '/api/images', formData, {
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //             Authorization: `Bearer ${userInfo.token}`,
+    //         }
+    //     });
+    //     return data
+    // }
 
-    const fileSelected = event => {
-        event.preventDefault()
-        const file = event.target.files[0]
-        setFile(file)
-    }
+    // const fileSelected = event => {
+    //     event.preventDefault()
+    //     const file = event.target.files[0]
+    //     setFile(file)
+    // }
 
     useEffect(() => {
-        if (successUpdate) {
+        if (successUpdate) {            
             dispatch({ type: USER_UPDATE_PROFILE_RESET });
             dispatch(detailsUser(userId));
         }
@@ -101,6 +100,7 @@ console.log(images)
                     {errorUpdate && <Alert variant="danger">{errorUpdate}</Alert>}
 
                     <div className="form-fields">
+                        <Link to="/uploadProfileImage">Update Profile Picture</Link>
                         <li>
                             <label htmlFor="name">Name</label>
                             <input
@@ -133,7 +133,7 @@ console.log(images)
                                 onChange={(e) => setDescription(e.target.value)}
                                 ></textarea>
                         </li>
-                        <li>
+                        {/* <li>
                             <label htmlFor="imageFile">Image File</label>
                             <input
                                 type="file"
@@ -145,7 +145,7 @@ console.log(images)
                             {errorUpload && (
                                 <Alert variant="danger">{errorUpload}</Alert>
                             )}
-                        </li>
+                        </li> */}
                         <li>
                             <button type="submit" className="primary">
                                 Update
@@ -159,7 +159,7 @@ console.log(images)
                     <img src={image.pathName}></img>
                 </div>
             ))} */}
-            <img src=" /images/c423e81879921c6e61a67a41e80cf3b6" alt="s3 image"></img>
+            {/* <img src={images} alt="s3 image"></img> */}
         </div>
     );
 }
