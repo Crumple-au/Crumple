@@ -52,7 +52,7 @@ uploadRouter.post(
     // console.log('REQ.FILE: ', req.file)
     // const file = req.body.image
     const file = req.file
-    console.log('FILE: ',  file)
+    // console.log('FILE: ',  file)
     // apply filter
     // resize 
     

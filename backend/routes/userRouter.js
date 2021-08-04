@@ -67,6 +67,7 @@ userRouter.get(
                 name: user.name,
                 email: user.email,
                 description: user.description,
+                image: user.image,
                 isAdmin: user.isAdmin,
                 isSeller: user.isSeller
             });
@@ -82,10 +83,12 @@ userRouter.put(
     isAuth,
     expressAsyncHandler(async (req, res) => {
         const user = await User.findById(req.params.id);
+        console.log("USERROUTER PROFILE PUT: ", req.body.images)
         if (user) {
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
             user.description = req.body.description || user.description;
+            user.image = req.body.images || user.image;
 
             const updatedUser = await user.save();
             res.send({
@@ -93,6 +96,7 @@ userRouter.put(
                 name: updatedUser.name,
                 email: updatedUser.email,
                 description: updatedUser.description,
+                image: updatedUser.image,
                 isAdmin: user.isAdmin,
                 isSeller: user.isSeller,
                 token: generateToken(updatedUser),

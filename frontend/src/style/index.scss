@@ -88,7 +88,7 @@ code {
 
 /* Crop Container */
 .image-upload {
-  border: 1px solid purple;
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
   width: 60vw;
@@ -99,26 +99,26 @@ code {
     // border: 1px solid black;
     width: inherit;
     height: inherit;
-    // position: absolute;
+    // position: relative;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 
     .crop-container {
-      border: 1px solid red;
+      // border: 1px solid red;
       width: auto;
       height: inherit;
       position: relative;
       top: 0;
       left: 0;
       right: 0;
-      bottom: 150px;
+      bottom: 80px;
 
       .controls {
-        border: 1px solid green;
+        // border: 1px solid green;
         position: absolute;
-        bottom: 10px;
+        bottom: 0;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -129,8 +129,6 @@ code {
 
   .resized-image {
     border: 1px solid blue;
-    width: 100%;
-    height: auto;
   }
 
 }
@@ -338,6 +336,12 @@ code {
     width: 40vw;
     overflow-y : auto;
     height: 60vh;
+
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
   }
 
   .main::-webkit-scrollbar {
