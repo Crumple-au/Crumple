@@ -86,6 +86,55 @@ code {
   margin-bottom: 0.5rem;
 }
 
+/* Crop Container */
+.image-upload {
+  border: 1px solid purple;
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  height: 60vh;
+
+  
+  .image-cropper {
+    // border: 1px solid black;
+    width: inherit;
+    height: inherit;
+    // position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .crop-container {
+      border: 1px solid red;
+      width: auto;
+      height: inherit;
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 150px;
+
+      .controls {
+        border: 1px solid green;
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    
+  }
+
+  .resized-image {
+    border: 1px solid blue;
+    width: 100%;
+    height: auto;
+  }
+
+}
+
 /* StepsUI Component */
 
 .steps-ui {

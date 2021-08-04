@@ -1,30 +1,67 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from "axios";
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
 import ENV_URL from '../config.js'
+import Cropper from 'react-easy-crop'
+import Slider from '@material-ui/core/Slider'
+import Button from '@material-ui/core/Button'
+import getCroppedImg from '../utils/cropImage';
+
 
 function UploadProfileImage() {
 
-    const [file, setFile] = useState('')
+    // const CONTAINER_HEIGHT = 300
+    // const croppedArea = {
+    //     x: 100,
+    //     y: 100,
+    //     width: 500,
+    //     height: 500
+    // }
+
+    // const croppedAreaPixels = {
+    //     x: 100, 
+    //     y: 100,
+    //     width: 500,
+    //     height: 500
+    // }
+
+    const [file, setFile] = useState({})
     const [images, setImages] = useState('');
+    const [croppedImage, setCropppedImage] = useState({});
+    // const [croppedAreaPixels, setCroppedAreaPixels] = useState({});
+    const [preview, setPreview] = useState('');
     const [loadingUpload, setLoadingUpload] = useState(false);
     const [errorUpload, setErrorUpload] = useState('');
 
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
 
+    const [crop, setCrop] = useState({ x: 100, y: 100 })
+    const [zoom, setZoom] = useState(1)
+
+    const onCropComplete = useCallback( async(croppedArea, croppedAreaPixels) => {
+        // console.log(croppedArea, croppedAreaPixels)
+        try {
+            const cropImage = await getCroppedImg(preview, croppedAreaPixels);
+            // console.log('CROPIMAGE: ', cropImage)
+            setCropppedImage(cropImage)
+        } catch (e) {
+            console.log(e)
+        }
+        
+    }, [])
+
     async function postImageHandler(event) {
         event.preventDefault()
-
         const formData = new FormData();
-        formData.append("image", file)
+        formData.append("image", croppedImage )
     
         const {data} = await Axios.post(ENV_URL + '/api/images/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `Bearer ${userInfo.token}`
             }
         });
         getImage(data)
@@ -40,11 +77,12 @@ function UploadProfileImage() {
     const fileSelected = event => {
         event.preventDefault()
         const file = event.target.files[0]
+        setPreview( URL.createObjectURL(event.target.files[0]) );
         setFile(file)
     }
 
     return (
-        <>
+        <div className='image-upload'>
             <form onSubmit={postImageHandler}>
                 <div>
                     <label htmlFor="imageFile">Image File</label>
@@ -64,8 +102,38 @@ function UploadProfileImage() {
                 </button>
             </form>
 
-            <img src={images} alt="S3 Image"></img>
-        </>
+            <div className="image-cropper">
+                <div className="crop-container" >
+                    <Cropper
+                    cropShape='round'
+                    image={preview}
+                    crop={crop}
+                    zoom={zoom}
+                    aspect={4 / 3}
+                    onCropChange={setCrop}
+                    onCropComplete={onCropComplete}
+                    onZoomChange={setZoom}
+                    />
+
+                    <div className="controls">
+                        <Slider
+                            value={zoom}
+                            min={1}
+                            max={3}
+                            step={0.1}
+                            aria-labelledby="Zoom"
+                            onChange={(e, zoom) => setZoom(zoom)}
+                            classes={{ root: 'slider' }}
+                            />
+                    </div>
+                </div>
+            </div>
+
+            <div className="resized-image">
+                {images ? <img src={images} alt="S3 Image"></img> : <p>no image</p> }
+            </div>
+            
+        </div>
     )
 }
 

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-// import Axios from "axios";
 import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
-import ENV_URL from '../config.js'
 
 
 function EditProfilePage(props) {
@@ -15,10 +13,6 @@ function EditProfilePage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
-    // const [file, setFile] = useState('')
-    // const [images, setImages] = useState('');
-    // const [loadingUpload, setLoadingUpload] = useState(false);
-    // const [errorUpload, setErrorUpload] = useState('');
 
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -48,27 +42,8 @@ function EditProfilePage(props) {
                 description
             })
         );
-        // console.log('images:', images);
-        };
 
-    // async function postImage({image}) {
-    //     const formData = new FormData();
-    //     formData.append("image", image)
-    
-    //     const {data} = await Axios.post(ENV_URL + '/api/images', formData, {
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data',
-    //             Authorization: `Bearer ${userInfo.token}`,
-    //         }
-    //     });
-    //     return data
-    // }
-
-    // const fileSelected = event => {
-    //     event.preventDefault()
-    //     const file = event.target.files[0]
-    //     setFile(file)
-    // }
+    };
 
     useEffect(() => {
         if (successUpdate) {            
@@ -133,19 +108,6 @@ function EditProfilePage(props) {
                                 onChange={(e) => setDescription(e.target.value)}
                                 ></textarea>
                         </li>
-                        {/* <li>
-                            <label htmlFor="imageFile">Image File</label>
-                            <input
-                                type="file"
-                                id="imageFile"
-                                label="Choose Image"
-                                onChange={fileSelected}
-                            ></input>
-                            {loadingUpload && <Preloader></Preloader>}
-                            {errorUpload && (
-                                <Alert variant="danger">{errorUpload}</Alert>
-                            )}
-                        </li> */}
                         <li>
                             <button type="submit" className="primary">
                                 Update
@@ -154,12 +116,6 @@ function EditProfilePage(props) {
                     </div>
                 </ul>
             </form>
-            {/* { images.map( image => (
-                <div key={image.pathName}>
-                    <img src={image.pathName}></img>
-                </div>
-            ))} */}
-            {/* <img src={images} alt="s3 image"></img> */}
         </div>
     );
 }

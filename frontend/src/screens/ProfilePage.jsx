@@ -86,9 +86,7 @@ function ProfilePage() {
             <Route path='/profile/:userId'>
               <Profile user={user} />
             </Route>
-            <Route path='/UploadProfileImage/'>
-              <UploadProfileImage />
-            </Route>
+            <Route path='/UploadProfileImage' component={UploadProfileImage} />
           </Switch>
         )}
       </div>

@@ -40,7 +40,7 @@ uploadRouter.get(
         Bucket: bucketName,
         Key: key
     })
-    // console.log('URL: ', url)
+    console.log('URL: ', url)
     res.status(200).send(url)
 })
 
@@ -48,14 +48,18 @@ uploadRouter.post(
   '/',
   isAuth,
   upload.single('image'), async (req, res) => {
-  const file = req.file
-  // apply filter
-  // resize 
-  
-  const result = await uploadFile(file)
-  await unlinkFile(file.path)
-  // console.log('RESULT.KEY: ', result.Key)
-  res.status(200).send(result.Key)
+    // console.log('REQUEST: ', req)
+    // console.log('REQ.FILE: ', req.file)
+    // const file = req.body.image
+    const file = req.file
+    console.log('FILE: ',  file)
+    // apply filter
+    // resize 
+    
+    const result = await uploadFile(file)
+    await unlinkFile(file.path)
+    // console.log('RESULT.KEY: ', result.Key)
+    res.status(200).send(result.Key)
 })
 
 export default uploadRouter;
