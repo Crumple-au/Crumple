@@ -1,9 +1,11 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
+import Alert from '../components/Alert'
+import Preloader from '../components/Preloader'
+
 
 function EditProfilePage(props) {
     const {userId} = useParams();
@@ -11,47 +13,52 @@ function EditProfilePage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
-    const [isSeller, setIsSeller] = useState(false);
 
-    // const userSignin = useSelector((state) => state.userSignin);
-    // const { userInfo } = userSignin;
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
 
     const userDetails = useSelector((state) => state.userDetails);
-    const { loading, error, user } = userDetails;
+    const { user } = userDetails;
+
     const userUpdateProfile  = useSelector((state) => state.userUpdateProfile );
-    const { success: successUpdate } = userUpdateProfile ;
+    const { 
+        loading: loadingUpdate,
+        error: errorUpdate,
+        success: successUpdate } = userUpdateProfile ;
 
     const dispatch = useDispatch();
 
-    const submitHandler = (e) => {
+    const submitHandler = async(e) => {
         e.preventDefault();
         // dispatch update profile
+        // const s3url = await postImage({image: file});
+        // setImages(s3url);
+        
         dispatch(
             updateUserProfile({
                 userId: userId,
                 name,
                 email,
-                description,
-                isSeller
+                description
             })
         );
 
     };
 
     useEffect(() => {
-        if (successUpdate) {
+        if (successUpdate) {            
             dispatch({ type: USER_UPDATE_PROFILE_RESET });
-            props.history.push(`/profile/${userId}`);
+            dispatch(detailsUser(userId));
         }
-        else if (!user) {
+        
+        if (!user) {
             dispatch(detailsUser(userId));
         } else {
             setName(user.name);
             setEmail(user.email);
-            setDescription(user.description)
-            setIsSeller(user.isSeller);
+            setDescription(user.description);
         }
-    }, [dispatch, user, successUpdate, props.history, userId]);
+    }, [dispatch, user, successUpdate, errorUpdate, props.history, userId]);
 
 
     return (
@@ -63,12 +70,12 @@ function EditProfilePage(props) {
                         <h1>Edit {name}</h1>
                     </div>
 
-                    <div className="alert-box">
-                        {loading && <div>Loading...</div>}
-                        {error && <div>{error}</div>}
-                    </div>
+                    {loadingUpdate && <Preloader/>}
+                    {successUpdate && <Alert variant="success">User Updated Succussfully</Alert>}
+                    {errorUpdate && <Alert variant="danger">{errorUpdate}</Alert>}
 
                     <div className="form-fields">
+                        <Link to="/uploadProfileImage">Update Profile Picture</Link>
                         <li>
                             <label htmlFor="name">Name</label>
                             <input
@@ -101,15 +108,6 @@ function EditProfilePage(props) {
                                 onChange={(e) => setDescription(e.target.value)}
                                 ></textarea>
                         </li>
-                        {/* <li>
-                            <label htmlFor="isSeller">Is Seller</label>
-                            <input
-                                id="isSeller"
-                                type="checkbox"
-                                checked={isSeller}
-                                onChange={(e) => setIsSeller(e.target.checked)}
-                                ></input>
-                        </li> */}
                         <li>
                             <button type="submit" className="primary">
                                 Update

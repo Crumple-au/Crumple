@@ -1,16 +1,31 @@
-import React from 'react'
+import React from 'react';
+import Chip from '@material-ui/core/Chip';
 
 function Profile({ user }) {
+
     return (
         <main className="main">
             {user ? (
-                <>
-                    <h1>{user.name }'s Profile page</h1>
-                    <h1>{user.email }</h1>
-                    <h1>Admin: {String(user.isAdmin) }</h1>
-                    <h1>Seller: {String(user.isSeller) }</h1>     
-                    <p>{user.description}</p> 
-                </>
+                <div className="profile-wrapper">
+                        <div className="profile-header">
+                            <img  src={user.image} alt="profile picture"></img>
+                            <div className="heading">
+                                <h1>{user.name}</h1>
+                                {user.isAdmin ? 
+                                    <Chip 
+                                        label="admin"
+                                        color="primary"
+                                        className="admin-badge"
+                                    /> 
+                                    : ''}
+                            </div>
+                        </div>
+                    
+                    <div className="profile-details">
+                        <p>{user.email }</p>
+                        <p>{user.description}</p>
+                    </div>
+                </div>
             )
             : <h1>No profile data</h1>
             }
