@@ -3,9 +3,10 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import userRouter from './routes/userRouter.js'
 import artworkRouter from './routes/artworkRoutes.js'
+import categoryRouter from './routes/categoryRoutes.js'
+import uploadRouter from './routes/uploadRoutes.js'
 import cors from 'cors'
 import mongodb_database from './config.js'
-import categoryRouter from './routes/categoryRoutes.js'
 
 dotenv.config()
 
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRouter)
 app.use('/api/artworks', artworkRouter)
 app.use('/api/categories', categoryRouter)
+app.use('/api/images', uploadRouter)
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message })
