@@ -4,24 +4,17 @@ import { Typography, Box, Button, Grid } from '@material-ui/core'
 
 import { primary, secondary } from '../utils/theme'
 import stick0 from '../images/crumple-stick0.jpg'
-import crumpleArt from '../images/crumple-artwork.jpg'
 
 const HomePage = () => {
   return (
-    <Box display='flex'>
+    <Box display='flex' pt='6em'>
       <Grid container>
+        <Grid item xs={12} sm={12} md={2} align='center'></Grid>
         <Grid item xs={12} sm={12} md={4} align='center'>
-          <Box mt='3rem'>
-            <img src={stick0} alt='stickman' height='750' width='auto'></img>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={12} md={6} align='center'>
           <Box
             display='flex'
             flexDirection='column'
-            height='90vh'
-            // width='auto'
+            height='100%'
             alignItems='center'
             justifyContent='center'
           >
@@ -50,16 +43,12 @@ const HomePage = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={2} align='center'>
-          <Box p='0 5rem 0 0'>
-            <img
-              src={crumpleArt}
-              alt='crumple-artwork'
-              height='250'
-              width='auto'
-            ></img>
+        <Grid item xs={12} sm={12} md={4} align='center'>
+          <Box>
+            <img src={stick0} alt='stickman' height='auto' width='350'></img>
           </Box>
         </Grid>
+        <Grid item xs={12} sm={12} md={2} align='center'></Grid>
       </Grid>
     </Box>
   )
