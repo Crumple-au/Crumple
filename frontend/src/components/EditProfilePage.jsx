@@ -5,6 +5,7 @@ import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
+import UploadModal from '../components/UploadModal'
 
 
 function EditProfilePage(props) {
@@ -13,6 +14,7 @@ function EditProfilePage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
+    const [show, setShow] = useState(false)
 
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -63,6 +65,10 @@ function EditProfilePage(props) {
 
     return (
         <div className='main'>
+            <button onClick={() => setShow(true)} >Update Profile Picture</button>
+            {show && <UploadModal onClose={() => setShow(false)}  /> }
+            
+
             <form onSubmit={submitHandler}>
                 <ul className='form-container'>
 
@@ -75,7 +81,8 @@ function EditProfilePage(props) {
                     {errorUpdate && <Alert variant="danger">{errorUpdate}</Alert>}
 
                     <div className="form-fields">
-                        <Link to="/uploadProfileImage">Update Profile Picture</Link>
+                        {/* <Link to="/uploadProfileImage">Update Profile Picture</Link> */}
+
                         <li>
                             <label htmlFor="name">Name</label>
                             <input
