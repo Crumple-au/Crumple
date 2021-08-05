@@ -2,6 +2,7 @@ import React from 'react';
 import Chip from '@material-ui/core/Chip';
 
 function Profile({ user }) {
+    console.log(user)
 
     return (
         <main className="main">

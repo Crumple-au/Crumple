@@ -71,6 +71,25 @@ code {
   margin-left: 0.2rem;
 }
 
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: #f4f4f4;
+}
+.table td,
+.table th {
+  text-align: left;
+  border: 0.1rem solid #e4e4e4;
+  padding: 0.5rem;
+}
+.table button {
+  margin: 0 0.2rem;
+}
+
 /* Proceed to Checkout */
 
 .card {
@@ -296,10 +315,150 @@ code {
   }
 }
 
+/* Upload Modal */
+
+
+/* Crop Container */
+.image-upload {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  // width: 60vw;
+  // height: 60vh;
+
+  
+  .image-cropper {
+    // border: 1px solid black;
+    width: inherit;
+    height: inherit;
+    // position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .crop-container {
+      // border: 1px solid red;
+      width: auto;
+      height: inherit;
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 80px;
+
+      .controls {
+        border: 1px solid green;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    
+  }
+
+  .resized-image {
+    border: 1px solid blue;
+  }
+
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  
+
+  .modal-content{
+    position: relative;
+    width: 50vw;
+    height: 70vh;
+    background-color: #fff;
+    color: black;
+
+    .upload-form {
+      // border: 1px solid red;
+      label {
+        margin-left: 1rem;
+        border-bottom: 2px solid blue;
+      }
+      label:hover {
+        color: grey;
+      }
+    }
+
+    .modal-header {
+      padding: 10px;
+      h4 {
+        margin: 0;
+      }
+    }
+
+    .modal-body {
+      position: relative;
+      // border: 1px solid blue;
+      height: 50vh;
+      padding: 10px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .modal-footer {
+      padding: 10px;
+      // border: 1px solid blue;
+      height: 12vh;
+      background-color: #fff;
+
+      .controls {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .slider {
+          width: 50%;
+        }
+      }
+
+      button {
+        margin-top: 1rem;
+        margin-right: 1rem;
+        background-color: #6184C4;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        height: 1.7rem;
+        font-size: 12px;
+      }
+
+      button:hover {
+        background-color: #6184c4e9;
+      }
+
+      span {
+        color: grey;
+        font-size: 11px;
+      }
+    }
+  }
+}
+
 /* Profile Page */
 
 .profile-container {
   // border: 1px solid red;
+  font-family: prompt;
   width: 100%;
   height: auto;
   display: flex;
@@ -327,7 +486,7 @@ code {
   }
 
   .main {
-    // border: 1px solid purple;
+    // border: 1px solid red;
     padding: 3rem;
     color: white;
     border-radius: 2px;
@@ -335,6 +494,61 @@ code {
     width: 40vw;
     overflow-y: auto;
     height: auto;
+
+    .form-heading {
+      // border: 1px solid blue;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        margin-top: 1rem;
+        margin-right: 1rem;
+        background-color: #6184C4;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        height: 1.7rem;
+        font-size: 12px;
+      }
+  
+    }
+
+    button:hover {
+      background-color: #6184c4e9;
+    }
+    
+    .form-fields {
+      // border: 1px solid red;
+      display: flex;
+      flex-direction: column;
+
+      button {
+        margin-top: 1rem;
+        margin-right: 1rem;
+        background-color: #6184C4;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        height: 1.7rem;
+        font-size: 12px;
+        width: 100%;
+      }
+
+      li {
+        width: 100%;
+        margin: 5px;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        list-style: none;
+      }
+
+      input, textarea {
+        height: 26px;
+        border-radius: 3px;
+      }
+    }
 
     .profile-wrapper {
       // border: 1px solid green;
@@ -432,8 +646,6 @@ code {
   /* Profile Page */
   .profile-container {
     // border: 1px solid red;
-    width: 100%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 3rem;
@@ -441,9 +653,9 @@ code {
     .sidebar {
       // border: 1px solid blue;
       width: 90vw;
+      height: 5rem;
       flex-direction: row;
       justify-content: space-between;
-      margin-bottom: 2rem;
     }
 
     .main {
@@ -493,7 +705,9 @@ code {
       width: 90vw;
       flex-direction: row;
       justify-content: space-between;
-      margin-bottom: 2rem;
+      // margin-bottom: 2rem;
+      height: 5rem;
+
     }
 
     .main {
