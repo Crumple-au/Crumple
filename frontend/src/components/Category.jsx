@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Box,
   Grid,
@@ -10,14 +10,25 @@ import {
   CardActions,
 } from '@material-ui/core'
 import SearchBar from './SearchBar'
+import Artworks from './Artworks.jsx'
 import { useParams } from 'react-router-dom'
 import { useFetch } from '../utils/helpers'
 import { useStyles } from '../utils/theme'
+import { useDispatch, useSelector } from 'react-redux'
+// import { listArtworksAll } from '../actions/artworkActions'
 
 const Category = () => {
   const { id } = useParams()
   const { categories } = useFetch(`/api/categories/${id}`)
   const classes = useStyles()
+  // const dispatch = useDispatch()
+
+  const artworkList = useSelector((state) => state.artworkList)
+  const { artworks } = artworkList
+
+  // useEffect(() => {
+  //   dispatch(listArtworksAll)
+  // }, [dispatch])
 
   return (
     <>
@@ -58,11 +69,11 @@ const Category = () => {
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} md={3} align='center'>
-            <Box>Artworks here</Box>
-          </Grid>
         </Grid>
       </Box>
+      {/* <Grid item xs={12} sm={6} md={3} align='center'> */}
+      <Artworks artworks={artworks} />
+      {/* </Grid> */}
     </>
   )
 }
