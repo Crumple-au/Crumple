@@ -24,7 +24,7 @@ const Artworks = ({ user, artworks }) => {
         <Grid container spacing={1} justifyContent='center' alignItems='center'>
           {artworks.map((artwork) => {
             return (
-              <Grid item xs={12} sm={6} md={3} align='center' key={artwork._id}>
+              <Grid item xs={12} sm={6} md={3} key={artwork._id}>
                 <Card className={classes.card}>
                   <CardActionArea>
                     <CardMedia>
@@ -34,17 +34,14 @@ const Artworks = ({ user, artworks }) => {
                         p='1rem'
                         border={3}
                       >
-                        <img
-                          src={art}
-                          alt={artwork.name}
-                          height='100px'
-                          width='100px'
-                        />
+                        <div className='art'>
+                          <img src={art} alt={artwork.name} />
+                        </div>
                       </Box>
                     </CardMedia>
                     <CardContent>
-                      <Typography align='center'>{artwork.name}</Typography>
-                      <Typography align='center' color='textSecondary'>
+                      <Typography>{artwork.name}</Typography>
+                      <Typography color='textSecondary'>
                         By x artist name
                       </Typography>
                     </CardContent>
