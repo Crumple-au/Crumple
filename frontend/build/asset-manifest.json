@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.6b861752.chunk.css",
-    "main.js": "/static/js/main.d289fe34.chunk.js",
-    "main.js.map": "/static/js/main.d289fe34.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.c0f08417.js",
-    "runtime-main.js.map": "/static/js/runtime-main.c0f08417.js.map",
-    "static/js/2.2861833f.chunk.js": "/static/js/2.2861833f.chunk.js",
-    "static/js/2.2861833f.chunk.js.map": "/static/js/2.2861833f.chunk.js.map",
-    "static/js/3.e6c3bae9.chunk.js": "/static/js/3.e6c3bae9.chunk.js",
-    "static/js/3.e6c3bae9.chunk.js.map": "/static/js/3.e6c3bae9.chunk.js.map",
+    "main.css": "/static/css/main.6ae32ed0.chunk.css",
+    "main.js": "/static/js/main.68f54b2c.chunk.js",
+    "main.js.map": "/static/js/main.68f54b2c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d61aaf0d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d61aaf0d.js.map",
+    "static/js/2.445713fb.chunk.js": "/static/js/2.445713fb.chunk.js",
+    "static/js/2.445713fb.chunk.js.map": "/static/js/2.445713fb.chunk.js.map",
+    "static/js/3.5540a452.chunk.js": "/static/js/3.5540a452.chunk.js",
+    "static/js/3.5540a452.chunk.js.map": "/static/js/3.5540a452.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.6b861752.chunk.css.map": "/static/css/main.6b861752.chunk.css.map",
-    "static/js/2.2861833f.chunk.js.LICENSE.txt": "/static/js/2.2861833f.chunk.js.LICENSE.txt",
+    "static/css/main.6ae32ed0.chunk.css.map": "/static/css/main.6ae32ed0.chunk.css.map",
+    "static/js/2.445713fb.chunk.js.LICENSE.txt": "/static/js/2.445713fb.chunk.js.LICENSE.txt",
     "static/media/404.7725c6cd.gif": "/static/media/404.7725c6cd.gif",
-    "static/media/blue_cat_preloader.2e92250d.svg": "/static/media/blue_cat_preloader.2e92250d.svg",
+    "static/media/blue_cat_preloader.42ba91d5.svg": "/static/media/blue_cat_preloader.42ba91d5.svg",
+    "static/media/crumple-artwork.026642a5.jpg": "/static/media/crumple-artwork.026642a5.jpg",
     "static/media/crumple-stick0.9491f61b.jpg": "/static/media/crumple-stick0.9491f61b.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c0f08417.js",
-    "static/js/2.2861833f.chunk.js",
-    "static/css/main.6b861752.chunk.css",
-    "static/js/main.d289fe34.chunk.js"
+    "static/js/runtime-main.d61aaf0d.js",
+    "static/js/2.445713fb.chunk.js",
+    "static/css/main.6ae32ed0.chunk.css",
+    "static/js/main.68f54b2c.chunk.js"
   ]
 }
