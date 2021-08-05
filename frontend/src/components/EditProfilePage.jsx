@@ -5,6 +5,7 @@ import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
+import UploadModal from '../components/UploadModal'
 
 
 function EditProfilePage(props) {
@@ -13,6 +14,7 @@ function EditProfilePage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
+    const [show, setShow] = useState(false)
 
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -63,19 +65,23 @@ function EditProfilePage(props) {
 
     return (
         <div className='main'>
+
+            <div className="form-heading">
+                <h2>Edit your details</h2>
+                <button onClick={() => setShow(true)} >Update Profile Picture</button>
+                {show && <UploadModal onClose={() => setShow(false)}  /> }
+            </div>
+
             <form onSubmit={submitHandler}>
                 <ul className='form-container'>
 
-                    <div className="form-heading">
-                        <h1>Edit {name}</h1>
-                    </div>
 
                     {loadingUpdate && <Preloader/>}
                     {successUpdate && <Alert variant="success">User Updated Succussfully</Alert>}
                     {errorUpdate && <Alert variant="danger">{errorUpdate}</Alert>}
 
                     <div className="form-fields">
-                        <Link to="/uploadProfileImage">Update Profile Picture</Link>
+
                         <li>
                             <label htmlFor="name">Name</label>
                             <input
@@ -83,6 +89,7 @@ function EditProfilePage(props) {
                                 type="text"
                                 placeholder="Enter name"
                                 value={name}
+                                required
                                 onChange={(e) => setName(e.target.value)}
                                 ></input>
                         </li>
@@ -93,6 +100,7 @@ function EditProfilePage(props) {
                                 type="email"
                                 placeholder="Enter email"
                                 value={email}
+                                required
                                 onChange={(e) => setEmail(e.target.value)}
                                 ></input>
                         </li>
@@ -104,15 +112,14 @@ function EditProfilePage(props) {
                                 placeholder="Enter your description"
                                 value={description}
                                 maxLength="140"
+                                required
                                 style={{"resize": "none", "width": "100%", "height": "10rem"}}
                                 onChange={(e) => setDescription(e.target.value)}
                                 ></textarea>
                         </li>
-                        <li>
-                            <button type="submit" className="primary">
-                                Update
-                            </button>
-                        </li>
+                        <button type="submit" className="primary">
+                            Update
+                        </button>
                     </div>
                 </ul>
             </form>

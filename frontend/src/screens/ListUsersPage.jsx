@@ -33,7 +33,7 @@ function ListUsersPage(props) {
 
     return (
         <div>
-            <h1>Users</h1>
+            <h1>List of all users</h1>
 
             {loadingDelete && <Preloader/>}
             {errorDelete && <Alert variant="danger">{errorDelete}</Alert>}
@@ -52,7 +52,6 @@ function ListUsersPage(props) {
                             <th>ID</th>
                             <th>NAME</th>
                             <th>EMAIL</th>
-                            <th>IS SELLER</th>
                             <th>IS ADMIN</th>
                             <th>ACTIONS</th>
                         </tr>
@@ -60,30 +59,29 @@ function ListUsersPage(props) {
                     <tbody>
                     {users.map((user) => (
                         <tr key={user._id}>
-                        <td>{user._id}</td>
-                        <td>
-                            <Link to={`/profile/${user._id}`}>{user.name}</Link>
-                        </td>
-                        <td>{user.email}</td>
-                        <td>{user.isSeller ? 'YES' : ' NO'}</td>
-                        <td>{user.isAdmin ? 'YES' : 'NO'}</td>
-                        <td>
-                            <button
-                            type="button"
-                            className="small"
-                            onClick={() => props.history.push(`/profile/${user._id}/settings`)}
-                            >
-                            Edit
-                            </button>
+                            <td>{user._id}</td>
+                            <td>
+                                <Link to={`/profile/${user._id}`}>{user.name}</Link>
+                            </td>
+                            <td>{user.email}</td>
+                            <td>{user.isAdmin ? <strong>YES</strong> : 'NO'}</td>
+                            <td>
+                                <button
+                                type="button"
+                                className="small"
+                                onClick={() => props.history.push(`/profile/${user._id}/settings`)}
+                                >
+                                Edit
+                                </button>
 
-                            <button
-                            type="button"
-                            className="small"
-                            onClick={() => deleteHandler(user)}
-                            >
-                            Delete
-                            </button>
-                        </td>
+                                <button
+                                type="button"
+                                className="small"
+                                onClick={() => deleteHandler(user)}
+                                >
+                                Delete
+                                </button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
