@@ -92,6 +92,7 @@ const updateUserProfile = (user) => async (dispatch, getState) => {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
+        console.log(user)
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         localStorage.setItem('userInfo', JSON.stringify(data));
     } 
