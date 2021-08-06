@@ -592,6 +592,91 @@ code {
   }
 }
 
+.cart-container {
+  // border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .cart-contents {
+    // border: 1px solid blueviolet;
+    width: 70vw;
+  }
+
+  .cart-body {
+    // border: 1px solid green;
+    width: 25vw;
+    height: 50vh;
+    padding: 1rem;
+
+    button {
+      margin-top: 1rem;
+      margin-right: 1rem;
+      background-color: #6184c4;
+      border: none;
+      border-radius: 3px;
+      color: #fff;
+      height: 1.7rem;
+      width: 100%;
+      font-size: 12px;
+    }
+
+    button:hover {
+      background-color: #6184c4e9;
+    }
+  }
+}
+
+.shipping-container {
+    // border: 1px solid blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .shipping-form {
+      // border: 1px solid red;
+      width: auto;
+      
+      ul {
+        // border: 1px solid green;
+        padding: 0;
+        li {
+          width: 50vw;
+          margin: 5px;
+          display: flex;
+          flex-direction: column;
+          align-self: center;
+          list-style: none;
+
+          input {
+            height: 2rem;
+            border-radius: 3px;
+            border: 1px solid grey;
+          }
+        }
+      }
+
+      button {
+        margin-top: 1rem;
+        margin-right: 1rem;
+        background-color: #6184c4;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        height: 1.7rem;
+        width: 100%;
+        font-size: 12px;
+      }
+  
+      button:hover {
+        background-color: #6184c4e9;
+      }
+    }
+}
+
+
 /* Laptop */
 @media (min-width: 1250px) and (max-width: 1400px) {
   .form {
