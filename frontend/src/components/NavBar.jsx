@@ -64,7 +64,7 @@ const NavBar = () => {
           </Box>
 
           {userInfo && userInfo.isAdmin ? (
-            <Box py='1.5rem' className='dropdown'>
+            <Box py='1.5rem' pr='5rem' className='dropdown'>
               <Button variant='contained' to='/profile'>
                 {userInfo.name}
               </Button>
@@ -87,7 +87,7 @@ const NavBar = () => {
               </ul>
             </Box>
           ) : userInfo ? (
-            <Box py='1.5rem' className='dropdown'>
+            <Box py='1.5rem' pr='5rem' className='dropdown'>
               <Button variant='contained' to='/profile'>
                 {userInfo.name}
               </Button>
