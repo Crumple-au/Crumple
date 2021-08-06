@@ -27,7 +27,7 @@ const Category = () => {
   const { artworks, loading } = artworkList
 
   useEffect(() => {
-    dispatch(listArtworksAll() )
+    dispatch(listArtworksAll())
     console.log(artworks)
   }, [dispatch])
 
