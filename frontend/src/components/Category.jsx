@@ -27,9 +27,9 @@ const Category = () => {
   const { artworks, loading, error } = artworkList
 
   useEffect(() => {
-    dispatch(listArtworksAll)
+    dispatch(listArtworksAll())
     console.log(artworks)
-  }, [dispatch, artworks])
+  }, [dispatch])
 
   return (
     <>
