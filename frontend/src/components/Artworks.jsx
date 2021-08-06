@@ -22,7 +22,7 @@ const Artworks = ({ user, artworks }) => {
     <>
       <Box m='4rem 2rem 2rem 2rem'>
         <Grid container spacing={1} justifyContent='center' alignItems='center'>
-          {artworks.map((artwork) => {
+          {artworks && artworks.map((artwork) => {
             return (
               <Grid item xs={12} sm={6} md={3} key={artwork._id}>
                 <Card className={classes.card}>

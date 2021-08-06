@@ -24,12 +24,12 @@ const Category = () => {
   const dispatch = useDispatch()
 
   const artworkList = useSelector((state) => state.artworkAll)
-  const { artworks, loading, error } = artworkList
+  const { artworks, loading } = artworkList
 
   useEffect(() => {
-    dispatch(listArtworksAll)
+    dispatch(listArtworksAll() )
     console.log(artworks)
-  }, [dispatch, artworks])
+  }, [dispatch])
 
   return (
     <>
