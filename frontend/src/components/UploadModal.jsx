@@ -1,134 +1,139 @@
-import React, {useState, useCallback, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfile } from '../actions/userActions';
+import React, { useState, useCallback, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateUserProfile } from '../actions/userActions'
 import { useParams } from 'react-router-dom'
-import Axios from "axios";
+import Axios from 'axios'
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
 import ENV_URL from '../config.js'
 import Cropper from 'react-easy-crop'
 import Slider from '@material-ui/core/Slider'
-import getCroppedImg from '../utils/cropImage';
+import getCroppedImg from '../utils/cropImage'
 import usePostUpload from '../utils/usePostUpload'
 
 function UploadModal(props) {
+  const { userId } = useParams()
 
-    const {userId} = useParams();
+  const [croppedImage, setCropppedImage] = useState({})
+  const [crop, setCrop] = useState({ x: 100, y: 100 })
+  const [refresh, setRefresh] = useState(false)
+  const [preview, setPreview] = useState('')
+  const [zoom, setZoom] = useState(1)
 
-    const [croppedImage, setCropppedImage] = useState({});
-    const [crop, setCrop] = useState({ x: 100, y: 100 });
-    const [refresh, setRefresh] = useState(false);
-    const [preview, setPreview] = useState('');
-    const [zoom, setZoom] = useState(1);
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = userUpdateProfile
 
-    const userUpdateProfile  = useSelector((state) => state.userUpdateProfile );
-    const { 
-        loading: loadingUpdate,
-        error: errorUpdate,
-        success: successUpdate 
-    } = userUpdateProfile;
+  const dispatch = useDispatch()
 
-    const dispatch = useDispatch();
-    
-    const onCropComplete = useCallback( async( croppedArea, croppedAreaPixels) => {
-        try {
-            const cropImage = await getCroppedImg(preview, croppedAreaPixels);
-            setCropppedImage(cropImage)
-        } catch (e) {
-            console.error(e)
-        }
-    }, [preview]);
+  const onCropComplete = useCallback(
+    async (croppedArea, croppedAreaPixels) => {
+      try {
+        const cropImage = await getCroppedImg(preview, croppedAreaPixels)
+        setCropppedImage(cropImage)
+      } catch (e) {
+        console.error(e)
+      }
+    },
+    [preview]
+  )
 
-    const {imageURL} = usePostUpload(refresh, croppedImage);
-    
-    const submitHandler = (event) => {
-        event.preventDefault();
+  const { imageURL } = usePostUpload(refresh, croppedImage)
 
-        setRefresh(true)
-        if (imageURL.data) {
-            dispatch(
-                updateUserProfile({
-                    userId: userId,
-                    images: imageURL.data
-                })
-            );
-        } else {
-            console.error(errorUpdate)
-        }
-        
-    };
+  const submitHandler = (event) => {
+    event.preventDefault()
 
-    const fileSelected = event => {
-        event.preventDefault()
-        const file = event.target.files[0];
-        setPreview( URL.createObjectURL(event.target.files[0]) );
-    };
+    setRefresh(true)
+    if (imageURL.data) {
+      dispatch(
+        updateUserProfile({
+          userId: userId,
+          images: imageURL.data,
+        })
+      )
+    } else {
+      console.error(errorUpdate)
+    }
+  }
 
-    useEffect(() => {
-        if (!props.show) { return null }     
-    }, [])
-    
-    return (
-        <div className="modal image-upload" onClick={props.onClose}>
-            <form className="modal-content" onSubmit={submitHandler} onClick={e => e.stopPropagation()}>
+  const fileSelected = (event) => {
+    event.preventDefault()
+    const file = event.target.files[0]
+    setPreview(URL.createObjectURL(event.target.files[0]))
+  }
 
-                <div>
-                    <h4 className="modal-header">Select profile photo</h4>
-                </div>
+  useEffect(() => {
+    if (!props.show) {
+      return null
+    }
+  }, [])
 
-                {loadingUpdate && <Preloader></Preloader>}
-                {successUpdate && <Alert variant="success">{successUpdate}</Alert>}
-                {errorUpdate && (
-                    <Alert variant="danger">{errorUpdate}</Alert>
-                )}
-
-                <div className="upload-form">
-                    <label htmlFor="imageFile" >Upload Photo</label>
-                    <input
-                        style={{visibility: 'hidden'}}
-                        type="file"
-                        id="imageFile"
-                        label="Upload Photo"
-                        accept=".jpg, .jpeg, .png, .gif"
-                        onChange={fileSelected}
-                    ></input>
-                </div>
-
-                <div className="modal-body image-cropper">
-                    <div  >
-                        <Cropper
-                        cropShape='round'
-                        image={preview}
-                        crop={crop}
-                        zoom={zoom}
-                        aspect={4 / 3}
-                        onCropChange={setCrop}
-                        onCropComplete={onCropComplete}
-                        onZoomChange={setZoom}
-                        />
-                    </div>
-                </div>
-
-                <div className="modal-footer">
-                    <div className="controls">
-                        <Slider
-                            value={zoom}
-                            color="secondary"
-                            min={1}
-                            max={3}
-                            step={0.1}
-                            aria-labelledby="Zoom"
-                            onChange={(e, zoom) => setZoom(zoom)}
-                            classes={{ root: 'slider' }}
-                            />
-                    </div>
-                    <button type="submit" >Set as profile photo</button>
-                    <span>Your profile photo is visiable to everyone, across Crumple products</span>
-                </div>
-
-            </form>
+  return (
+    <div className='modal image-upload' onClick={props.onClose}>
+      <form
+        className='modal-content'
+        onSubmit={submitHandler}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div>
+          <h4 className='modal-header'>Select profile photo</h4>
         </div>
-    )
+
+        {loadingUpdate && <Preloader></Preloader>}
+        {successUpdate && <Alert variant='success'>{successUpdate}</Alert>}
+        {errorUpdate && <Alert variant='danger'>{errorUpdate}</Alert>}
+
+        <div className='upload-form'>
+          <label htmlFor='imageFile'>Upload Photo</label>
+          <input
+            style={{ visibility: 'hidden' }}
+            type='file'
+            id='imageFile'
+            label='Upload Photo'
+            accept='.jpg, .jpeg, .png, .gif'
+            onChange={fileSelected}
+          ></input>
+        </div>
+
+        <div className='modal-body image-cropper'>
+          <div>
+            <Cropper
+              cropShape='round'
+              image={preview}
+              crop={crop}
+              zoom={zoom}
+              aspect={4 / 3}
+              onCropChange={setCrop}
+              onCropComplete={onCropComplete}
+              onZoomChange={setZoom}
+            />
+          </div>
+        </div>
+
+        <div className='modal-footer'>
+          <div className='controls'>
+            <Slider
+              value={zoom}
+              color='secondary'
+              min={1}
+              max={3}
+              step={0.1}
+              aria-labelledby='Zoom'
+              onChange={(e, zoom) => setZoom(zoom)}
+              classes={{ root: 'slider' }}
+            />
+          </div>
+          <button type='submit'>Set as profile photo</button>
+          <span>
+            Your profile photo is visiable to everyone, across Crumple products
+          </span>
+        </div>
+      </form>
+    </div>
+  )
 }
 
 export default UploadModal
