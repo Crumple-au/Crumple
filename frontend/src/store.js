@@ -8,7 +8,10 @@ import {
   userUpdateProfileReducer,
   userDeleteReducer,
 } from './reducers/userReducers'
-import { productListReducer } from './reducers/artworkReducers'
+import {
+  productListReducer,
+  artworkListReducer,
+} from './reducers/artworkReducers'
 import { cartReducer } from './reducers/cartReducers'
 
 const initialState = {
@@ -36,6 +39,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   userDelete: userDeleteReducer,
   artworkList: productListReducer,
+  artworkAll: artworkListReducer,
   cart: cartReducer,
 })
 

@@ -4,6 +4,12 @@ import {
   ARTWORK_DETAILS_FAIL,
 } from '../constants/artworkConstants'
 
+import {
+  ARTWORK_LIST_REQUEST,
+  ARTWORK_LIST_SUCCESS,
+  ARTWORK_LIST_FAIL,
+} from '../constants/artworkConstants'
+
 const productListReducer = (
   state = { loading: true, products: [] },
   action
@@ -20,17 +26,33 @@ const productListReducer = (
   }
 }
 
-const artworkDetailsReducer = (state = { loading: true }, action) => {
+// const artworksAllReducer = (state = { loading: true }, action) => {
+//   switch (action.type) {
+//     case ARTWORK_DETAILS_REQUEST:
+//       return { loading: true }
+//     case ARTWORK_DETAILS_SUCCESS:
+//       return { loading: false, artwork: action.payload }
+//     case ARTWORK_DETAILS_FAIL:
+//       return { loading: false, error: action.payload }
+//     default:
+//       return state
+//   }
+// }
+
+const artworkListReducer = (
+  state = { loading: true, artworks: [] },
+  action
+) => {
   switch (action.type) {
-    case ARTWORK_DETAILS_REQUEST:
+    case ARTWORK_LIST_REQUEST:
       return { loading: true }
-    case ARTWORK_DETAILS_SUCCESS:
-      return { loading: false, artwork: action.payload }
-    case ARTWORK_DETAILS_FAIL:
+    case ARTWORK_LIST_SUCCESS:
+      return { loading: false, artworks: action.payload }
+    case ARTWORK_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state
   }
 }
 
-export { productListReducer }
+export { productListReducer, artworkListReducer }
