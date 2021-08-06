@@ -15,20 +15,21 @@ import { useParams } from 'react-router-dom'
 import { useFetch } from '../utils/helpers'
 import { useStyles } from '../utils/theme'
 import { useDispatch, useSelector } from 'react-redux'
-// import { listArtworksAll } from '../actions/artworkActions'
+import { listArtworksAll } from '../actions/artworkActions'
 
 const Category = () => {
   const { id } = useParams()
   const { categories } = useFetch(`/api/categories/${id}`)
   const classes = useStyles()
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  const artworkList = useSelector((state) => state.artworkList)
-  const { artworks } = artworkList
+  const artworkList = useSelector((state) => state.artworkAll)
+  const { artworks, loading, error } = artworkList
 
-  // useEffect(() => {
-  //   dispatch(listArtworksAll)
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(listArtworksAll())
+    console.log(artworks)
+  }, [dispatch])
 
   return (
     <>
