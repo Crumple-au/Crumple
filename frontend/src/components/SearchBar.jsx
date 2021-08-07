@@ -17,7 +17,8 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(category, search)
+    console.log('category: ', category)
+    console.log('search: ', search)
     setSearch('')
   }
 
@@ -66,7 +67,7 @@ const SearchBar = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </FormControl>
-      <Box>
+      <FormControl>
         <Button
           type='submit'
           id='search-button'
@@ -78,7 +79,7 @@ const SearchBar = () => {
         >
           <FaSearch fontSize='1.4rem' />
         </Button>
-      </Box>
+      </FormControl>
     </Box>
   )
 }
