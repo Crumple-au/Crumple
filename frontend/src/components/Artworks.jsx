@@ -17,12 +17,12 @@ import art from '../images/crumple-artwork.jpg'
 const Artworks = ({ user, artworks }) => {
   const classes = useStyles()
 
-  console.log(artworks)
-  const filteredArtworks = artworks.filter((artwork) => {
-    return artwork.name.toLowerCase().includes('mona')
-  })
+  // console.log(artworks)
+  // const filteredArtworks = artworks.filter((artwork) => {
+  //   return artwork.name.toLowerCase().includes('mona')
+  // })
 
-  console.log(filteredArtworks)
+  // console.log(filteredArtworks)
 
   return (
     <>
