@@ -13,7 +13,7 @@ import {
   Button,
 } from '@material-ui/core'
 import { useStyles } from '../utils/theme'
-import art from '../images/crumple-artwork.jpg'
+import art from '../images/crumple-logo.jpg'
 
 const Artworks = ({ user, artworks }) => {
   const classes = useStyles()
@@ -22,25 +22,29 @@ const Artworks = ({ user, artworks }) => {
   return (
     <>
       <Box m='4rem 2rem 2rem 2rem'>
-        <Grid container spacing={1} justifyContent='center' alignItems='center'>
+        <Grid container spacing={0} justifyContent='center' alignItems='center'>
           {artworks &&
             artworks.map((artwork) => {
               return (
-                <Grid item xs={12} sm={6} md={3} key={artwork._id}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={4}
+                  md={3}
+                  lg={3}
+                  xl={2}
+                  key={artwork._id}
+                >
                   <Card className={classes.card}>
                     <CardActionArea>
                       <CardMedia>
-                        <Box
-                          display='flex'
-                          justifyContent='center'
-                          p='1rem'
-                          border={3}
-                        >
+                        <Box display='flex' justifyContent='center' border={3}>
                           <img
                             src={art}
                             alt={artwork.name}
-                            height='100px'
-                            width='100px'
+                            height='100%'
+                            width='100%'
+                            style={{ objectFit: 'cover' }}
                           />
                         </Box>
                       </CardMedia>
@@ -55,7 +59,7 @@ const Artworks = ({ user, artworks }) => {
                     </CardActionArea>
 
                     <CardActions>
-                      <Button size='small'>${artwork.price}</Button>
+                      <Button size='small'>$ {artwork.price}</Button>
                     </CardActions>
                   </Card>
                 </Grid>
