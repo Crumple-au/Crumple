@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom'
+import '../style/profile.scss'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
@@ -15,9 +16,6 @@ function EditProfilePage(props) {
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
     const [show, setShow] = useState(false)
-
-    const userSignin = useSelector((state) => state.userSignin);
-    const { userInfo } = userSignin;
 
     const userDetails = useSelector((state) => state.userDetails);
     const { user } = userDetails;

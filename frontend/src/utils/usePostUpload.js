@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfile } from '../actions/userActions';
+import { useSelector } from 'react-redux';
 import axios from 'axios'
 import ENV_URL from '../config.js'
 
@@ -14,21 +13,25 @@ const usePostUpload = (refresh, croppedImage) => {
     useEffect(() => {
 
         const uploadHandler = async () => {
-            const formData = new FormData();
-            formData.append("image", croppedImage );
+            try{
+                const formData = new FormData();
+                formData.append("image", croppedImage );
 
-            const {data} = await axios.post(ENV_URL + '/api/images/', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    Authorization: `Bearer ${userInfo.token}`
-                }
-            });
-            setImageURL( await axios.get(`${ENV_URL}/api/images/${data}`) )
+                const {data} = await axios.post(ENV_URL + '/api/images/', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: `Bearer ${userInfo.token}`
+                    }
+                });
+                setImageURL( await axios.get(`${ENV_URL}/api/images/${data}`) )
+            } catch(error) {
+                console.error(error)
+            }
         };
         
         uploadHandler();
 
-    }, [refresh, croppedImage])
+    }, [refresh, croppedImage, userInfo.token])
 
     return { imageURL }
 }

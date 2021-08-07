@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import '../style/profile.scss'
 import {
   useParams,
   NavLink,
@@ -15,7 +16,6 @@ import Payments from '../components/Payments'
 import EditProfilePage from '../components/EditProfilePage'
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
-import UploadProfileImage from './UploadProfileImage'
 
 function ProfilePage() {
   const { userId } = useParams()
@@ -86,7 +86,6 @@ function ProfilePage() {
             <Route path='/profile/:userId'>
               <Profile user={user} />
             </Route>
-            <Route path='/UploadProfileImage' component={UploadProfileImage} />
           </Switch>
         )}
       </div>

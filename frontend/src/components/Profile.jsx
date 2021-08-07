@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/profile.scss'
 import Chip from '@material-ui/core/Chip';
 
 function Profile({ user }) {
@@ -9,7 +10,7 @@ function Profile({ user }) {
             {user ? (
                 <div className="profile-wrapper">
                         <div className="profile-header">
-                            <img  src={user.image} alt="profile picture"></img>
+                            <img  src={user.image} alt="profile"></img>
                             <div className="heading">
                                 <h1>{user.name}</h1>
                                 {user.isAdmin ? 

@@ -31,6 +31,7 @@ artworkRouter.get(
 artworkRouter.get(
     '/',
     expressAsyncHandler(async (req, res) => {
+        // console.log('backend')
         const seller = req.query.seller || '';
         const sellerFilter = seller ? { seller } : {};
         const artworks = await Artwork.find({
