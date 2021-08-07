@@ -25,11 +25,19 @@ const Category = () => {
 
   const artworkList = useSelector((state) => state.artworkAll)
   const { artworks, loading, error } = artworkList
+  const { filter, setFilter } = useState([])
+  console.log(setFilter)
 
   useEffect(() => {
     dispatch(listArtworksAll())
+    const filteredArtworks = artworks.filter((artwork) => {
+      return artwork.name.toLowerCase().includes('mona')
+    })
+    // setFilter(filteredArtworks)
+    console.log(filteredArtworks)
   }, [])
 
+  console.log(filter)
   return (
     <>
       <SearchBar />
