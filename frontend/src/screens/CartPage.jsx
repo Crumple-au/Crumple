@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
+import '../style/order.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import Alert from '../components/Alert'
+import Artworks from '../components/Artworks'
 
 function CartPage(props) {
     const {artworkId} = useParams();
@@ -12,6 +14,7 @@ function CartPage(props) {
 
     const cart = useSelector((state) => state.cart);
     const { cartItems, error } = cart;
+
     const dispatch = useDispatch();
 
     const removeFromCartHandler = (artworkId) => {
@@ -27,44 +30,34 @@ function CartPage(props) {
         if (artworkId) {
             dispatch(addToCart(artworkId, qty));
         }
+
         console.log('CartItems: ', cartItems)
-    }, [dispatch, artworkId, qty]);
+    }, [dispatch, artworkId, qty, cartItems]);
 
     return (
-        <div>
-            <h1>Shopping Cart</h1>
-            {error && <Alert variant="danger">{error}</Alert>}
-            {cartItems.length === 0 ? 
-                <Alert>
-                    Cart is empty. <Link to="/categories">Go Shopping</Link>
-                </Alert>
-            :
-                <>
-                    {cartItems.map((item) => (
-                        <ul key={item._id}>
-                            <li>Artwork: {item.name}</li>
-                            <li>Artist: 
-                                <Link to={`/profile/${item.seller._id}`}> {item.seller.name} </Link>
-                            </li>
-                            <li>${item.price}</li>
-                            <button
-                                type="button"
-                                onClick={() => removeFromCartHandler(item._id)}
-                                > Delete
-                            </button>
-                        </ul>
-                    ))}
-                </>
-            }
+        <div className="cart-container">
+            <div>
+                <h1 className="cart-heading">Shopping Cart</h1>
+                {error && <Alert variant="danger">{error}</Alert>}
+                {cartItems.length === 0 ? 
+                    <Alert>
+                        Cart is empty. <Link to="/categories">Go Shopping</Link>
+                    </Alert>
+                :
+                    <div className="cart-contents">
+                        <Artworks artworks={cartItems} onRemove={() => removeFromCartHandler()} />
+                    </div>
+                }
+            </div>
 
-            <div className="card card-body">
-                <ul>
-                    <li>
+            <div className="card cart-body">
+                <>
+                    <div>
                         <h2>
                             Subtotal ({cartItems.reduce( (acc, artwork) => acc + artwork.qty, 0) } items) 
                             : ${ cartItems.reduce((acc, artwork) => acc + artwork.price * artwork.qty, 0) }
                         </h2>
-                    </li>
+                    </div>
 
                     <button
                         type="button"
@@ -73,7 +66,7 @@ function CartPage(props) {
                     >
                         Proceed to Checkout
                     </button>
-                </ul>
+                </>
             </div>
         </div>
     )

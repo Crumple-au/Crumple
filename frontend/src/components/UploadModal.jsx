@@ -1,11 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react'
+import '../style/profile.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUserProfile } from '../actions/userActions'
 import { useParams } from 'react-router-dom'
-import Axios from 'axios'
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
-import ENV_URL from '../config.js'
 import Cropper from 'react-easy-crop'
 import Slider from '@material-ui/core/Slider'
 import getCroppedImg from '../utils/cropImage'
@@ -61,7 +60,6 @@ function UploadModal(props) {
 
   const fileSelected = (event) => {
     event.preventDefault()
-    const file = event.target.files[0]
     setPreview(URL.createObjectURL(event.target.files[0]))
   }
 
@@ -69,7 +67,7 @@ function UploadModal(props) {
     if (!props.show) {
       return null
     }
-  }, [])
+  }, [props.show])
 
   return (
     <div className='modal image-upload' onClick={props.onClose}>

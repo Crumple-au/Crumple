@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+// Components
+import Alert from '../components/Alert'
+
+// Assets
 import { register } from '../actions/userActions';
 import logo from '../images/crumple-logo.jpg'
+import showPwd from '../images/view.png'
+import hidePwd from '../images/hide.png'
 
 function RegisterPage(props) {
 
@@ -10,22 +17,28 @@ function RegisterPage(props) {
     const { loading, userInfo, error } = userRegister;
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [isRevealPwd, setIsRevealPwd] = useState(false);
     const [password, setPassword] = useState('');
-    // const [rePassword, setRePassword] = useState('');
-
-    const redirect = props.location.search ? props.location.search.split('=')[1] : '/'
+    const [noMatch, setNoMatch] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(register( email, password));
+
+        if (password !== confirmPassword) {
+            setNoMatch('Password and confirm password are not match')
+        } else {
+            dispatch(register(name, email, password));
+        }
     }
     
     useEffect(() => {
         if (userInfo) {
-            props.history.push(redirect);
+            props.history.push(`/profile/${userInfo._id}/settings`);
         }
-    }, [userInfo, props.history, redirect]);
+    }, [userInfo, props.history]);
 
     return (
         <div className='form'>
@@ -38,12 +51,24 @@ function RegisterPage(props) {
                     </div>
 
                     <div className="alert-box">
-                        {loading && <div>Loading...</div>}
-                        {error && <div>{error}</div>}
+                        {noMatch && <Alert variant="alert alert-danger">{noMatch}</Alert>}
+                        {error && <Alert variant="alert alert-danger">{error}</Alert>}
                     </div>
 
                     <div className="form-fields">
-                    <h3>Join a community of creates!</h3>
+                    <h3>Join a community of creators!</h3>
+
+                        <li>
+                            <label htmlFor='name'>Name 
+                            </label>
+                            <input
+                                type='text'
+                                name='name'
+                                id='name'
+                                required
+                                onChange={(e) => setName(e.target.value)}
+                            ></input>
+                        </li>
 
                         <li>
                             <label htmlFor='email'>Email 
@@ -53,32 +78,43 @@ function RegisterPage(props) {
                                 type='email'
                                 name='email'
                                 id='email'
+                                required
                                 onChange={(e) => setEmail(e.target.value)}
                             ></input>
                         </li>
-                        <li>
+
+                        <li className="pwd-container">
                             <label htmlFor='password'>Password </label>
                             <input
-                                type='password'
+                                type={isRevealPwd ? 'text' : 'password'}
                                 id='password'
                                 name='password'
+                                value={password}
+                                required
                                 onChange={(e) => setPassword(e.target.value)}
                             ></input>
+                            <img
+                                title={isRevealPwd ? "Hide password" : "Show password"}
+                                src={isRevealPwd ? hidePwd : showPwd }
+                                alt="show password icon"
+                                onClick={() => setIsRevealPwd(prevState => !prevState)}
+                            />
                         </li>
-                        <li>
+
+                        <li className="pwd-container">
                             <label htmlFor='confirmPassword'>Confirm Password </label>
                             <input
                                 type='password'
                                 id='confirmPassword'
                                 name='confirmPassword'
-                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                             ></input>
                         </li>
-                        <li>
-                            <button type='submit' className='button primary'>
+
+                        <button type='submit' className='button primary'>
                             Sign in
-                            </button>
-                        </li>
+                        </button>
                     </div>
                 </ul>
             </form>
