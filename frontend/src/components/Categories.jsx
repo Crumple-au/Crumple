@@ -54,7 +54,13 @@ const Categories = () => {
                       </Box>
                     </CardMedia>
                     <CardContent>
-                      <Typography align='center'>{category.name}</Typography>
+                      <Typography
+                        id='category'
+                        data-testid='category'
+                        align='center'
+                      >
+                        {category.name}
+                      </Typography>
                       <Typography align='center' color='textSecondary'>
                         {category.description}
                       </Typography>
