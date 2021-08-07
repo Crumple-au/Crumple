@@ -19,7 +19,7 @@ import { listArtworksAll } from '../actions/artworkActions'
 
 const Category = () => {
   const { id } = useParams()
-  const { categories } = useFetch(`/api/categories/${id}`)
+  const { element } = useFetch(`/api/categories/${id}`)
   const classes = useStyles()
   const dispatch = useDispatch()
 
@@ -47,17 +47,17 @@ const Category = () => {
                     border={3}
                   >
                     <img
-                      src={categories.image}
-                      alt={categories.altName}
+                      src={element.image}
+                      alt={element.altName}
                       height='100px'
                       width='100px'
                     />
                   </Box>
                 </CardMedia>
                 <CardContent>
-                  <Typography align='center'>{categories.name}</Typography>
+                  <Typography align='center'>{element.name}</Typography>
                   <Typography align='center' color='textSecondary'>
-                    {categories.description}
+                    {element.description}
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -72,9 +72,7 @@ const Category = () => {
           </Grid>
         </Grid>
       </Box>
-      {/* <Grid item xs={12} sm={6} md={3} align='center'> */}
       <Artworks artworks={artworks} />
-      {/* </Grid> */}
     </>
   )
 }

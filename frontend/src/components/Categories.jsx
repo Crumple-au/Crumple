@@ -17,7 +17,7 @@ import { useStyles } from '../utils/theme'
 import { useFetch } from '../utils/helpers'
 
 const Categories = () => {
-  const { categories } = useFetch('/api/categories')
+  const { element } = useFetch('/api/categories')
   const classes = useStyles()
 
   return (
@@ -26,7 +26,7 @@ const Categories = () => {
 
       <Box m='4rem 2rem 2rem 2rem'>
         <Grid container spacing={1} justifyContent='center' alignItems='center'>
-          {categories.map((category) => {
+          {element.map((category) => {
             return (
               <Grid
                 item
