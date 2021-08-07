@@ -1,18 +1,15 @@
 import express from 'express';
-import { isAuth, generateToken } from '../util/util.js';
-// const AWS = require('aws-sdk')
-import AWS from 'aws-sdk';
-
-import fs from 'fs';
-import util from 'util';
-// const util = require('util')
-const unlinkFile = util.promisify(fs.unlink)
 import dotenv from 'dotenv';
-
 import multer from 'multer';
-const upload = multer({ dest: 'uploads/' })
+import AWS from 'aws-sdk';
+import util from 'util';
+import fs from 'fs';
 
-import { uploadFile, getFileStream } from '../util/s3.js'
+import { uploadFile } from '../util/s3.js'
+import { isAuth } from '../util/util.js';
+
+const unlinkFile = util.promisify(fs.unlink)
+const upload = multer({ dest: 'uploads/' })
 
 dotenv.config()
 
@@ -28,39 +25,40 @@ const s3 = new AWS.S3({
   secretAccessKey: secretAccessKey
 });
 
-const uploadRouter = express.Router();
-
 const EXPIRY_TIME = 604800;
+
+const uploadRouter = express.Router();
 
 uploadRouter.get(
   '/:key',
   (req, res) => {
-    const key = req.params.key
-    const url = s3.getSignedUrl('getObject', {
-        Bucket: bucketName,
-        Key: key,
-        Expires: EXPIRY_TIME
-    })
-    console.log('URL: ', url)
-    res.status(200).send(url)
+    try {
+      const key = req.params.key
+      const url = s3.getSignedUrl('getObject', {
+          Bucket: bucketName,
+          Key: key,
+          Expires: EXPIRY_TIME
+      })
+      console.log('URL: ', url)
+      res.status(200).send(url)
+    } catch(error) {
+      res.status(400).send({message: error})
+    }
 })
 
 uploadRouter.post(
   '/',
   isAuth,
   upload.single('image'), async (req, res) => {
-    // console.log('REQUEST: ', req)
-    // console.log('REQ.FILE: ', req.file)
-    // const file = req.body.image
-    const file = req.file
-    // console.log('FILE: ',  file)
-    // apply filter
-    // resize 
-    
-    const result = await uploadFile(file)
-    await unlinkFile(file.path)
-    // console.log('RESULT.KEY: ', result.Key)
-    res.status(200).send(result.Key)
+    try {
+      const file = req.file
+      const result = await uploadFile(file)
+      await unlinkFile(file.path)
+      res.status(200).send(result.Key)
+
+    } catch(error) {
+      res.status(400).send({message: error})
+    }
 })
 
 export default uploadRouter;
