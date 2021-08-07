@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Box,
   Grid,
@@ -28,8 +28,7 @@ const Category = () => {
 
   useEffect(() => {
     dispatch(listArtworksAll())
-    console.log(artworks)
-  }, [dispatch])
+  }, [])
 
   return (
     <>
@@ -72,9 +71,7 @@ const Category = () => {
           </Grid>
         </Grid>
       </Box>
-      {/* <Grid item xs={12} sm={6} md={3} align='center'> */}
       <Artworks artworks={artworks} />
-      {/* </Grid> */}
     </>
   )
 }

@@ -18,6 +18,12 @@ const Artworks = ({ user, artworks }) => {
   const classes = useStyles()
 
   console.log(artworks)
+  const filteredArtworks = artworks.filter((artwork) => {
+    return artwork.name.toLowerCase().includes('mona')
+  })
+
+  console.log(filteredArtworks)
+
   return (
     <>
       <Box m='4rem 2rem 2rem 2rem'>
