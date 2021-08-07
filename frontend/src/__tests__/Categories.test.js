@@ -10,9 +10,8 @@ describe('Categories Component Tests', () => {
     ReactDOM.render(<Categories />, div)
   })
 
-  xtest('renders categories', () => {
-    const { getByText } = render(<Categories />)
-    const linkElement = getByText(/drawing/i)
-    expect(linkElement).toBeInTheDocument()
+  test('renders categories', () => {
+    const { getAllByRole } = render(<Categories />)
+    getAllByRole('button')
   })
 })
