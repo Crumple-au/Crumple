@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import '../style/order.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../actions/cartActions';
 import StepsUI from '../components/StepsUI';

@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
+import '../style/order.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { listArtworksAll } from '../actions/artworkActions'
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import Alert from '../components/Alert'
 import Artworks from '../components/Artworks'
-import { Button } from '@material-ui/core'
 
 function CartPage(props) {
     const {artworkId} = useParams();
@@ -33,7 +32,7 @@ function CartPage(props) {
         }
 
         console.log('CartItems: ', cartItems)
-    }, [dispatch, artworkId, qty]);
+    }, [dispatch, artworkId, qty, cartItems]);
 
     return (
         <div className="cart-container">

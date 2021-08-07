@@ -23,7 +23,7 @@ userRouter.post(
         const user = await User.findOne({ email: req.body.email });
         if (user) {
             if (bcrypt.compareSync(req.body.password, user.password)) {
-                res.send({
+                res.status(200).send({
                     _id: user._id,
                     name: user.name,
                     email: user.email,
@@ -32,8 +32,9 @@ userRouter.post(
                     token: generateToken(user),
                 });
             }
+        } else {
+            return res.status(401).send({ error: 'Invalid email or password' });
         }
-        res.status(401).send({ message: 'Invalid email or password' });
     })
 );
 
@@ -41,18 +42,29 @@ userRouter.post(
 userRouter.post(
     '/register',
     expressAsyncHandler(async (req, res) => {
-        const user = new User({
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 8),
-        });
-        const createdUser = await user.save();
-        res.send({
-            _id: createdUser._id,
-            email: createdUser.email,
-            isAdmin: createdUser.isAdmin,
-            isSeller: user.isSeller,
-            token: generateToken(createdUser),
-        });
+        const existingUser = User.find({email: req.body.email})
+        if (existingUser){
+            return res.status(400).send({error: 'Email already exists!'})
+        }
+        try {
+            const user = new User({
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 8),
+            });
+            const createdUser = await user.save();
+            res.status(200).send({
+                _id: createdUser._id,
+                name: createdUser.name,
+                email: createdUser.email,
+                isAdmin: createdUser.isAdmin,
+                isSeller: user.isSeller,
+                token: generateToken(createdUser),
+            });
+        } catch(error) {
+            res.status(500).send({error: error})
+        }
+        
     })
 );
 
