@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import {
   Box,
@@ -17,7 +17,9 @@ import art from '../images/crumple-artwork.jpg'
 const ArtworkDetails = () => {
   const { id } = useParams()
   const { element } = useFetch(`/api/artworks/${id}`)
-  console.log(element)
+  const history = useHistory()
+  console.log(history)
+
   return (
     <>
       <Box m='4rem 2rem 2rem 2rem'>
@@ -66,9 +68,8 @@ const ArtworkDetails = () => {
               </CardContent>
               <Button
                 style={{ margin: '1rem' }}
-                component={Link}
-                to='#'
                 variant='contained'
+                onClick={() => history.goBack()}
               >
                 Back
               </Button>
