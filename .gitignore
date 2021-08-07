@@ -1,24 +1,22 @@
 //Frontend
 
 frontend/node_modules
-frontend/package-lock
-frontend/config.js
+frontend/.package-lock
+frontend/.config
 frontend/coverage
 frontend/.env
-frontend/reportWebVitals.js
-frontend/setupTests.js
-frontend/reportWebVitals.json
+frontend/.reportWebVitals
+frontend/.setupTests
+frontend/.reportWebVitals
 frontend/images
 
 //Backend
 
 backend/node_modules
-backend/package-lock.json
+backend/.package-lock.json
 backend/.env
 backend/.babelrc
-backend/Procfile
-backend/coverage
-backend/config.js
-backend/package-lock
-backend/globalConfig.json
+backend/.config
+backend/.package-lock
+backend/.globalConfig.json
 backend/uploads
