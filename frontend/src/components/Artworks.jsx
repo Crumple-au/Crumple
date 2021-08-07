@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import {
   Box,
   Grid,
@@ -8,7 +10,6 @@ import {
   CardContent,
   Typography,
   CardActions,
-  Link,
   Button,
 } from '@material-ui/core'
 import { useStyles } from '../utils/theme'
@@ -44,7 +45,9 @@ const Artworks = ({ user, artworks }) => {
                         </Box>
                       </CardMedia>
                       <CardContent>
-                        <Typography>{artwork.name}</Typography>
+                        <Link to={`/artwork/${artwork._id}`}>
+                          <Typography>{artwork.name}</Typography>
+                        </Link>
                         <Typography color='textSecondary'>
                           By x artist name
                         </Typography>
@@ -52,9 +55,7 @@ const Artworks = ({ user, artworks }) => {
                     </CardActionArea>
 
                     <CardActions>
-                      <Link to='#'>
-                        <Button size='small'>${artwork.price}</Button>
-                      </Link>
+                      <Button size='small'>${artwork.price}</Button>
                     </CardActions>
                   </Card>
                 </Grid>

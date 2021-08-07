@@ -19,6 +19,7 @@ import ListUsersPage from './screens/ListUsersPage'
 import CartPage from './screens/CartPage'
 import ShippingPage from './screens/ShippingPage'
 import PaymentPage from './screens/PaymentPage'
+import ArtworkDetails from './components/ArtworkDetails.jsx'
 
 import { theme } from './utils/theme'
 import store from './store'
@@ -41,6 +42,7 @@ const App = () => {
               <Categories />
             </Route>
             <Route path='/category/:id' children={<Category />} />
+            <Route path='/artwork/:id' children={<ArtworkDetails />} />
             <Route path='/about'>
               <About />
             </Route>
