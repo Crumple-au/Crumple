@@ -7,6 +7,7 @@ import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import Alert from '../components/Alert'
 import Preloader from '../components/Preloader'
 import UploadModal from '../components/UploadModal'
+import { Button } from '@material-ui/core'
 
 
 function EditProfilePage(props) {
@@ -30,9 +31,6 @@ function EditProfilePage(props) {
 
     const submitHandler = async(e) => {
         e.preventDefault();
-        // dispatch update profile
-        // const s3url = await postImage({image: file});
-        // setImages(s3url);
         
         dispatch(
             updateUserProfile({
@@ -68,7 +66,7 @@ function EditProfilePage(props) {
                 <ul className='form-container'>
                     <div className="form-heading">
                         <h2>Edit your details</h2>
-                        <button onClick={() => setShow(true)} >Update Profile Picture</button>
+                        <Button variant="primary" onClick={() => setShow(true)} >Update Profile Picture</Button>
                         {show && <UploadModal onClose={() => setShow(false)}  /> }
                     </div>
 

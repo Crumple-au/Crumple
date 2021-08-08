@@ -34,7 +34,7 @@ function CartPage(props) {
   const checkoutHandler = () => {
     props.history.push('/signin?redirect=shipping')
   }
-
+  
   useEffect(() => {
     if (artworkId) {
       dispatch(addToCart(artworkId, qty))
@@ -58,6 +58,12 @@ function CartPage(props) {
             </Alert>
           ) : (
             <Box>
+              {/* { {cartItems.map(item => (
+                <Artworks
+                  artworks={item}
+                  onRemove={() => removeFromCartHandler(item._id)}
+                />
+               ))} } */}
               <Artworks
                 artworks={cartItems}
                 onRemove={() => removeFromCartHandler()}

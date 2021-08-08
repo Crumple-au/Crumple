@@ -53,41 +53,45 @@ function ProfilePage() {
               <img  src={user.image} alt="profile"></img>
               <div className="user-name">
                 <h1>{user.name}</h1>
-                  {user.isAdmin ? 
-                      <Chip 
-                          label="admin"
-                          color="primary"
-                          className="admin-badge"
-                      /> 
-                      : ''}
+                {user.isAdmin ? 
+                    <Chip 
+                        label="admin"
+                        color="primary"
+                        className="admin-badge"
+                    /> 
+                    : ''}
               </div>
             </>  
           : <Preloader/>}  
         </div>
+        <div className="description">
+          <p>{user && user.description}</p>
+        </div>
+        
         <div className="sidebar-links">
           <div className="ul">
             <div className="li">
-                <CameraAltOutlinedIcon style={{color: 'ivory'}} />
+                {/* <CameraAltOutlinedIcon style={{color: 'ivory'}} /> */}
                 <NavLink className="link" exact activeClassName="selected" to={`/profile/${userId}/`} >
-                Artworks
+                <span><CameraAltOutlinedIcon style={{color: 'ivory'}} /></span>Artworks
               </NavLink>
             </div>
             <div className="li">
-                <PaymentOutlinedIcon style={{color: 'ivory'}}/>
+                {/* <PaymentOutlinedIcon style={{color: 'ivory'}}/> */}
               <NavLink className="link" activeClassName="selected"  to={`/profile/${userId}/payments`} >
-                Payments
+              <span><PaymentOutlinedIcon style={{color: 'ivory'}}/></span>Payments
               </NavLink>
             </div>
             <div className="li">
-              <EditOutlinedIcon style={{color: 'ivory'}}/>
+              {/* <EditOutlinedIcon style={{color: 'ivory'}}/> */}
               <NavLink className="link" activeClassName="selected" to={`/profile/${userId}/settings`} >
-                Edit
+              <span><EditOutlinedIcon style={{color: 'ivory'}}/></span>Edit
               </NavLink>
             </div>
             <div className="li">
-              <LiveHelpOutlinedIcon style={{color: 'ivory'}}/>
+              {/* <LiveHelpOutlinedIcon style={{color: 'ivory'}}/> */}
               <NavLink className="link" activeClassName="selected"  to={`/profile/${userId}/faq`} >
-                FAQ
+              <span><LiveHelpOutlinedIcon style={{color: 'ivory'}}/></span>FAQ
               </NavLink>
             </div>
           </div>
@@ -124,62 +128,6 @@ function ProfilePage() {
 
     </div>
     </BrowserRouter>
-    // <BrowserRouter>
-    //   <div className='profile-container'>
-    //     <aside className='sidebar'>
-
-          
-    //       <NavLink activeClassName='selected' to={`/profile/${userId}`}>
-    //         Profile
-    //       </NavLink>
-    //       <NavLink
-    //         activeClassName='selected'
-    //         to={`/profile/${userId}/artworks`}
-    //       >
-    //         Artworks
-    //       </NavLink>
-    //       <NavLink
-    //         activeClassName='selected'
-    //         to={`/profile/${userId}/payments`}
-    //       >
-    //         Payments
-    //       </NavLink>
-    //       <NavLink
-    //         activeClassName='selected'
-    //         to={`/profile/${userId}/settings`}
-    //       >
-    //         Settings
-    //       </NavLink>
-    //       <NavLink activeClassName='selected' to={`/profile/${userId}/faq`}>
-    //         FAQ
-    //       </NavLink>
-    //     </aside>
-
-    //     {loading ? (
-    //       <>
-    //         <Preloader/>
-    //       </>
-    //     ) : error ? (
-    //         <Alert variant="danger">{error}</Alert>
-    //     ) : (
-          
-    //       <Switch>
-    //         <Route path='/profile/:userId/artworks'>
-    //           <Artworks user={user} artworks={artworks} />
-    //         </Route>
-    //         <Route path='/profile/:userId/payments'>
-    //           <Payments />
-    //         </Route>
-    //         <Route path='/profile/:userId/settings'>
-    //           <EditProfilePage />
-    //         </Route>
-    //         <Route path='/profile/:userId'>
-    //           <Profile user={user} />
-    //         </Route>
-    //       </Switch>
-    //     )}
-    //   </div>
-    // </BrowserRouter>
   )
 }
 

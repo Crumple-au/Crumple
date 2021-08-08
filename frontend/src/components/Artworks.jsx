@@ -62,7 +62,8 @@ const Artworks = ({ user, artworks }) => {
                           <Typography>{artwork.name}</Typography>
                         </Link>
                         <Typography color='textSecondary'>
-                          By x artist name
+                          {/* By x artist name */}
+                          {artwork.seller.name}
                         </Typography>
                       </CardContent>
                     </CardActionArea>
