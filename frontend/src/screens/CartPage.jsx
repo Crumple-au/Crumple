@@ -48,7 +48,7 @@ function CartPage(props) {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12} md={1} align='center'></Grid>
         <Grid item xs={12} sm={12} md={8} align='center'>
-          <Typography variant='h3'>
+          <Typography gutterBottom variant='h3'>
             your <span style={{ color: secondary }}>cart</span>
           </Typography>
           {error && <Alert variant='danger'>{error}</Alert>}
@@ -58,16 +58,21 @@ function CartPage(props) {
             </Alert>
           ) : (
             <Box>
-              {cartItems.map(item => (
-                <Artworks
-                  artwork={item}
-                  onRemove={() => removeFromCartHandler(item._id)}
-                />
-              ))}
-              {/* <Artworks
-                artworks={cartItems}
-                onRemove={() => removeFromCartHandler()}
-              /> */}
+              <Grid
+                container
+                spacing={0}
+                justifyContent='center'
+                alignItems='center'
+              >
+                {cartItems.map((item) => (
+                  <Grid item xs={12} sm={4} md={4} lg={4} xl={3}>
+                    <Artworks
+                      artwork={item}
+                      onRemove={() => removeFromCartHandler(item._id)}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
             </Box>
           )}
         </Grid>

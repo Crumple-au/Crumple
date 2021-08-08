@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 import {
   Box,
-  Grid,
   Card,
   CardActionArea,
   CardMedia,
@@ -17,7 +16,7 @@ import art from '../images/crumple-logo.jpg'
 
 const Artworks = ({ user, artwork, onRemove }) => {
   const classes = useStyles()
-  const [newArtworks, setNewArtworks] = useState([])
+  // const [newArtworks, setNewArtworks] = useState([])
 
   // const filteredArtworks = newArtworks.filter((artwork) => {
   //   return artwork.name.toLowerCase().includes('mona')
@@ -30,10 +29,9 @@ const Artworks = ({ user, artwork, onRemove }) => {
 
   return (
     <>
-      <Box m='4rem 2rem 2rem 2rem'>
-        <Grid container spacing={0} justifyContent='center' alignItems='center'>
-                <>
-                <Grid
+      {/* <Box m='4rem 2rem 2rem 2rem'> */}
+      {/* <Grid container spacing={0} justifyContent='center' alignItems='center'> */}
+      {/* <Grid
                   item
                   xs={12}
                   sm={4}
@@ -41,39 +39,42 @@ const Artworks = ({ user, artwork, onRemove }) => {
                   lg={3}
                   xl={2}
                   key={artwork._id}
-                >
-                  <Card className={classes.card}>
-                    <CardActionArea>
-                      <CardMedia>
-                        <Box display='flex' justifyContent='center' border={3}>
-                          <img
-                            src={art}
-                            alt={artwork.name}
-                            height='100%'
-                            width='100%'
-                            style={{ objectFit: 'cover' }}
-                          />
-                        </Box>
-                      </CardMedia>
-                      <CardContent>
-                        <Link to={`/artwork/${artwork._id}`}>
-                          <Typography>{artwork.name}</Typography>
-                        </Link>
-                        <Typography color='textSecondary'>
-                          <Link to={`profile/${artwork.seller._id}`}>{artwork.seller.name}</Link>
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
+                > */}
+      <Card className={classes.card}>
+        <CardActionArea>
+          <CardMedia>
+            <Box display='flex' justifyContent='center' border={3}>
+              <img
+                src={art}
+                alt={artwork.name}
+                height='100%'
+                width='100%'
+                style={{ objectFit: 'cover' }}
+              />
+            </Box>
+          </CardMedia>
+          <CardContent>
+            <Link to={`/artwork/${artwork._id}`}>
+              <Typography>{artwork.name}</Typography>
+            </Link>
+            <Typography color='textSecondary'>
+              <Link to={`profile/${artwork.seller._id}`}>
+                {artwork.seller.name}
+              </Link>
+            </Typography>
+          </CardContent>
+        </CardActionArea>
 
-                    <CardActions>
-                      <Button size='small'>$ {artwork.price}</Button>
-                      <Button onClick={onRemove} size='small'>delete</Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-            </>
-        </Grid>
-      </Box>
+        <CardActions>
+          <Button size='small'>$ {artwork.price}</Button>
+          <Button variant='contained' onClick={onRemove} size='small'>
+            delete
+          </Button>
+        </CardActions>
+      </Card>
+      {/* </Grid> */}
+      {/* </Grid> */}
+      {/* </Box> */}
     </>
   )
 }
