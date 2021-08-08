@@ -27,18 +27,14 @@ import LiveHelpOutlinedIcon from '@material-ui/icons/LiveHelpOutlined';
 function ProfilePage() {
   const { userId } = useParams()
 
-  const artworkList = useSelector((state) => state.artworkList)
-  const {  artworks } = artworkList
-
   const userDetails = useSelector((state) => state.userDetails)
   const { loading, error, user } = userDetails
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!user) {
+    if (!user ) {
       dispatch(detailsUser(userId))
-      dispatch(listArtworks({ seller: userId }))
     }
   }, [dispatch, user, userId])
 
@@ -102,7 +98,6 @@ function ProfilePage() {
           </div>
         </div>
       </aside>
-
     
       <main>
         {loading ? (
@@ -119,7 +114,7 @@ function ProfilePage() {
               <EditProfilePage />
             </Route>
             <Route path='/profile/:userId/'>
-              <ProfileArtworksPage user={user} artworks={artworks} />
+              <ProfileArtworksPage />
             </Route>
           </Switch>
         )}

@@ -38,7 +38,7 @@ artworkRouter.get(
             ...sellerFilter,
         })
         .populate(populateQuery);
-        res.send({ artworks });
+        res.status(200).send({ artworks });
     })
 );
 
