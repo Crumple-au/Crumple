@@ -11,6 +11,8 @@ import {
 } from '@material-ui/core'
 import SearchBar from './SearchBar'
 import Artworks from './Artworks.jsx'
+import Alert from './Alert'
+import Preloader from './Preloader'
 import { useParams } from 'react-router-dom'
 import { useFetch } from '../utils/helpers'
 import { useStyles } from '../utils/theme'
@@ -79,7 +81,15 @@ const Category = () => {
           </Grid>
         </Grid>
       </Box>
-      <Artworks artworks={artworks} />
+      {loading ? (
+        <>
+          <Preloader />
+        </>
+      ) : error ? (
+        <Alert variant='danger'>{error}</Alert>
+      ) : (
+        <Artworks artworks={artworks} />
+      )}
     </>
   )
 }
