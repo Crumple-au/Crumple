@@ -7,7 +7,6 @@ import {
   Box,
   Button,
 } from '@material-ui/core'
-import { FaSearch } from 'react-icons/fa'
 import { useStyles } from '../utils/theme'
 
 const SearchBar = () => {
@@ -36,7 +35,7 @@ const SearchBar = () => {
           className={classes.formControl}
         >
           <TextField
-            variant='outlined'
+            variant='filled'
             size='small'
             label='DISCOVER'
             role='dropdown'
@@ -61,7 +60,7 @@ const SearchBar = () => {
           <TextField
             variant='outlined'
             id='search'
-            label='Search'
+            label='What are you looking for?'
             size='small'
             className={classes.textForm}
             value={search}
@@ -79,8 +78,7 @@ const SearchBar = () => {
             variant='contained'
             size='large'
           >
-            {/* <FaSearch fontSize='1.4rem' /> */}
-            Submit
+            Search
           </Button>
         </FormControl>
       </FormGroup>

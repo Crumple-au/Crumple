@@ -15,7 +15,7 @@ import {
 import { useStyles } from '../utils/theme'
 import art from '../images/crumple-logo.jpg'
 
-const Artworks = ({ user, artworks }) => {
+const Artworks = ({ user, artwork, onRemove }) => {
   const classes = useStyles()
   const [newArtworks, setNewArtworks] = useState([])
 
@@ -25,16 +25,14 @@ const Artworks = ({ user, artworks }) => {
   // setNewArtworks(filteredArtworks)
   // setNewArtworks(artworks)
 
-  // console.log(artworks)
+  // console.log(artwork)
   // console.log('newArtworks', newArtworks)
 
   return (
     <>
       <Box m='4rem 2rem 2rem 2rem'>
         <Grid container spacing={0} justifyContent='center' alignItems='center'>
-          {artworks &&
-            artworks.map((artwork) => {
-              return (
+                <>
                 <Grid
                   item
                   xs={12}
@@ -62,33 +60,20 @@ const Artworks = ({ user, artworks }) => {
                           <Typography>{artwork.name}</Typography>
                         </Link>
                         <Typography color='textSecondary'>
-                          By x artist name
+                          <Link to={`profile/${artwork.seller._id}`}>{artwork.seller.name}</Link>
                         </Typography>
                       </CardContent>
                     </CardActionArea>
 
                     <CardActions>
                       <Button size='small'>$ {artwork.price}</Button>
+                      <Button onClick={onRemove} size='small'>delete</Button>
                     </CardActions>
                   </Card>
                 </Grid>
-              )
-            })}
+            </>
         </Grid>
       </Box>
-
-      {/* <main className='main'>
-      {user.name}'s Artworks
-      {artworks.map((artwork) => (
-        <ul key={artwork._id}>
-          <li>{artwork.name}</li>
-          <li>Category: {artwork.category}</li>
-          <li>{artwork.description}</li>
-          <li>${artwork.price}</li>
-          <br></br>
-        </ul>
-      ))}
-    </main> */}
     </>
   )
 }
