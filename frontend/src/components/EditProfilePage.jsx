@@ -64,14 +64,13 @@ function EditProfilePage(props) {
     return (
         <div className='main'>
 
-
-            <form onSubmit={submitHandler}>
+            <form className="profile-form" onSubmit={submitHandler}>
                 <ul className='form-container'>
-                <div className="form-heading">
-                    <h2>Edit your details</h2>
-                    <button onClick={() => setShow(true)} >Update Profile Picture</button>
-                    {show && <UploadModal onClose={() => setShow(false)}  /> }
-                </div>
+                    <div className="form-heading">
+                        <h2>Edit your details</h2>
+                        <button onClick={() => setShow(true)} >Update Profile Picture</button>
+                        {show && <UploadModal onClose={() => setShow(false)}  /> }
+                    </div>
 
 
                     {loadingUpdate && <Preloader/>}
