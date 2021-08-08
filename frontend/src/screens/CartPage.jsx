@@ -58,10 +58,16 @@ function CartPage(props) {
             </Alert>
           ) : (
             <Box>
-              <Artworks
+              {cartItems.map(item => (
+                <Artworks
+                  artwork={item}
+                  onRemove={() => removeFromCartHandler(item._id)}
+                />
+              ))}
+              {/* <Artworks
                 artworks={cartItems}
                 onRemove={() => removeFromCartHandler()}
-              />
+              /> */}
             </Box>
           )}
         </Grid>
