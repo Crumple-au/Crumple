@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Box,
   Grid,
@@ -24,13 +24,20 @@ const Category = () => {
   const dispatch = useDispatch()
 
   const artworkList = useSelector((state) => state.artworkAll)
-  const { artworks, loading } = artworkList
+  const { artworks, loading, error } = artworkList
+  const { filter, setFilter } = useState([])
+  console.log(setFilter)
 
   useEffect(() => {
     dispatch(listArtworksAll())
-    console.log(artworks)
-  }, [dispatch])
+    const filteredArtworks = artworks.filter((artwork) => {
+      return artwork.name.toLowerCase().includes('mona')
+    })
+    // setFilter(filteredArtworks)
+    console.log(filteredArtworks)
+  }, [])
 
+  console.log(filter)
   return (
     <>
       <SearchBar />

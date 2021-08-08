@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import {
@@ -17,8 +17,17 @@ import art from '../images/crumple-logo.jpg'
 
 const Artworks = ({ user, artworks }) => {
   const classes = useStyles()
+  const [newArtworks, setNewArtworks] = useState([])
 
-  console.log(artworks)
+  // const filteredArtworks = newArtworks.filter((artwork) => {
+  //   return artwork.name.toLowerCase().includes('mona')
+  // })
+  // setNewArtworks(filteredArtworks)
+  // setNewArtworks(artworks)
+
+  // console.log(artworks)
+  // console.log('newArtworks', newArtworks)
+
   return (
     <>
       <Box m='4rem 2rem 2rem 2rem'>

@@ -49,7 +49,7 @@ const MobileNavBar = () => {
         </Box>
 
         <Grid container justifyContent='flex-end'>
-          <Box p='2rem'>
+          <Box p='2rem 1rem'>
             <Link className='link' to={'/cart'}>
               <FaShoppingCart fontSize='1.4rem' className={classes.navlink} />
               {cartItems.length > 0 && (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {
   FormControl,
+  FormGroup,
   MenuItem,
   TextField,
   Box,
@@ -28,57 +29,61 @@ const SearchBar = () => {
       justifyContent='center'
       margin='2rem'
     >
-      <FormControl
-        variant='outlined'
-        size='small'
-        className={classes.formControl}
-      >
-        <TextField
+      <FormGroup>
+        <FormControl
           variant='outlined'
           size='small'
-          label='DISCOVER'
-          role='dropdown'
-          id='discover'
-          inputProps={{ id: 'discover', 'data-testid': 'listbox' }}
-          select
-          defaultValue=''
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          className={classes.formControl}
         >
-          <MenuItem value='drawing'>DRAWING</MenuItem>
-          <MenuItem value='design'>DESIGN</MenuItem>
-          <MenuItem value='merch'>MERCH</MenuItem>
-          <MenuItem value='books'>BOOKS</MenuItem>
-          <MenuItem value='photos'>PHOTOS</MenuItem>
-          <MenuItem value='film'>FILM</MenuItem>
-          <MenuItem value='music'>MUSIC</MenuItem>
-          <MenuItem value='crafts'>CRAFTS</MenuItem>
-        </TextField>
-      </FormControl>
-      <FormControl variant='filled' size='small'>
-        <TextField
-          variant='outlined'
-          id='search'
-          label='Search'
-          size='small'
-          className={classes.textForm}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </FormControl>
-      <Box>
-        <Button
-          type='submit'
-          id='search-button'
-          data-testid='search-button'
-          onClick={handleSubmit}
-          className={classes.textForm}
-          variant='contained'
-          size='large'
-        >
-          <FaSearch fontSize='1.4rem' />
-        </Button>
-      </Box>
+          <TextField
+            variant='outlined'
+            size='small'
+            label='DISCOVER'
+            role='dropdown'
+            id='discover'
+            inputProps={{ id: 'discover', 'data-testid': 'listbox' }}
+            select
+            defaultValue=''
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <MenuItem value='drawing'>DRAWING</MenuItem>
+            <MenuItem value='design'>DESIGN</MenuItem>
+            <MenuItem value='merch'>MERCH</MenuItem>
+            <MenuItem value='books'>BOOKS</MenuItem>
+            <MenuItem value='photos'>PHOTOS</MenuItem>
+            <MenuItem value='film'>FILM</MenuItem>
+            <MenuItem value='music'>MUSIC</MenuItem>
+            <MenuItem value='crafts'>CRAFTS</MenuItem>
+          </TextField>
+        </FormControl>
+        <FormControl variant='filled' size='small'>
+          <TextField
+            variant='outlined'
+            id='search'
+            label='Search'
+            size='small'
+            className={classes.textForm}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </FormControl>
+
+        <FormControl>
+          <Button
+            type='submit'
+            id='search-button'
+            data-testid='search-button'
+            onClick={handleSubmit}
+            className={classes.textForm}
+            variant='contained'
+            size='large'
+          >
+            {/* <FaSearch fontSize='1.4rem' /> */}
+            Submit
+          </Button>
+        </FormControl>
+      </FormGroup>
     </Box>
   )
 }
