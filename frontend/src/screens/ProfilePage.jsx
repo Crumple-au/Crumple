@@ -9,9 +9,6 @@ import {
 } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { detailsUser } from '../actions/userActions'
-import { listArtworks } from '../actions/artworkActions'
-// import Profile from '../components/Profile'
-import Artworks from '../components/Artworks'
 import Payments from '../components/Payments'
 import EditProfilePage from '../components/EditProfilePage'
 import Alert from '../components/Alert'
@@ -22,6 +19,7 @@ import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined'
 import PaymentOutlinedIcon from '@material-ui/icons/PaymentOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import LiveHelpOutlinedIcon from '@material-ui/icons/LiveHelpOutlined'
+import ArtworkEditPage from './ArtworkEditPage'
 
 function ProfilePage() {
   const { userId } = useParams()
@@ -130,13 +128,16 @@ function ProfilePage() {
           </div>
         </aside>
 
-        <div>
+        <main style={{height: '100%'}} >
           {loading ? (
             <Preloader />
           ) : error ? (
             <Alert variant='danger'>{error}</Alert>
           ) : (
             <Switch>
+              <Route path='/profile/:userId/createArtwork'>
+                <ArtworkEditPage />
+              </Route>
               <Route path='/profile/:userId/payments'>
                 <Payments />
               </Route>
@@ -148,7 +149,7 @@ function ProfilePage() {
               </Route>
             </Switch>
           )}
-        </div>
+        </main>
       </div>
     </BrowserRouter>
   )

@@ -34,7 +34,7 @@ export const useStyles = makeStyles({
   },
   formControl: {
     minWidth: 120,
-    marginTop: '1rem',
+    marginTop: '1rem'
   },
   textForm: {
     marginTop: '1rem',

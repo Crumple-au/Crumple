@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   Box,
@@ -11,17 +12,61 @@ import {
   CardContent,
 } from '@material-ui/core'
 import { useParams } from 'react-router-dom'
-import { useFetch } from '../utils/helpers'
+// import { useFetch } from '../utils/helpers'
 import art from '../images/crumple-artwork.jpg'
+import { deleteArtwork, detailsArtwork } from '../actions/artworkActions';
+// import { ARTWORK_CREATE_RESET, ARTWORK_DELETE_RESET, } from '../constants/artworkConstants';
+import { addToCart } from '../actions/cartActions';
+import Alert from './Alert'
+import Preloader from './Preloader'
 
 const ArtworkDetails = () => {
   const { id } = useParams()
-  const { element } = useFetch(`/api/artworks/${id}`)
+  // const { element } = useFetch(`/api/artworks/${id}`)
   const history = useHistory()
-  console.log(history)
+
+  // const cart = useSelector((state) => state.cart);
+  // const { cartItems, error } = cart;
+
+  const artworkDetails = useSelector((state) => state.artworkDetails)
+  const { artwork } = artworkDetails
+
+  const artworkDelete = useSelector((state) => state.artworkDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete } = artworkDelete;
+  
+  const userSignin = useSelector((state) => state.userSignin)
+  const { userInfo } = userSignin
+
+  const dispatch = useDispatch()
+
+  const deleteHandler = (artwork) => {
+    if (window.confirm('Are you sure to delete?')) {
+      dispatch(deleteArtwork(artwork._id));
+    }   
+  };
+
+  const addToCartHandler = (artworkId) => {
+    dispatch(addToCart(artworkId));
+  }
+
+  useEffect(() => {
+    if (!artwork) {
+      dispatch(detailsArtwork(id))
+      console.log(artwork)
+    }
+  }, [dispatch, artwork, id])
 
   return (
     <>
+    {artwork && (
+      <>
+      { loadingDelete && <Preloader></Preloader> }
+      { successDelete && <Alert variant="alert alert-success">{successDelete}</Alert> }
+      { errorDelete && <Alert variant="alert alert-danger">{errorDelete}</Alert> }
+
       <Box m='4rem 2rem 2rem 2rem'>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={12} md={2} align='center'></Grid>
@@ -29,8 +74,8 @@ const ArtworkDetails = () => {
             <Card>
               <CardMedia>
                 <img
-                  src={art}
-                  alt={element.altName}
+                  src={artwork.image || art}
+                  alt={artwork.name}
                   height='100%'
                   width='100%'
                   style={{ objectFit: 'cover' }}
@@ -46,10 +91,10 @@ const ArtworkDetails = () => {
                   justifyContent='space-between'
                   style={{ margin: '1rem' }}
                 >
-                  <Button variant='outlined'>$ {element.price}</Button>
+                  <Button variant='outlined'>$ {artwork.price}</Button>
                   <Button
                     component={Link}
-                    to='#'
+                    onClick={() => addToCartHandler(artwork._id)}
                     variant='contained'
                     color='primary'
                   >
@@ -57,13 +102,13 @@ const ArtworkDetails = () => {
                   </Button>
                 </Box>
                 <Typography gutterBottom align='center' variant='h5'>
-                  {element.name}
+                  {artwork.name}
                 </Typography>
                 <Typography gutterBottom color='textSecondary'>
-                  x artist name
+                  {artwork.seller.name}
                 </Typography>
                 <Typography align='center' color='textSecondary'>
-                  {element.description}
+                  {artwork.description}
                 </Typography>
               </CardContent>
               <Button
@@ -73,12 +118,19 @@ const ArtworkDetails = () => {
               >
                 Back
               </Button>
+              {userInfo._id === artwork.seller._id && (
+                <Button onClick={() => deleteHandler(artwork)}>
+                    Delete Artwork
+                </Button>
+              )}
             </Card>
           </Grid>
 
           <Grid item xs={12} sm={12} md={2} align='center'></Grid>
         </Grid>
       </Box>
+      </>
+      )}
     </>
   )
 }

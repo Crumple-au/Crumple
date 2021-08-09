@@ -61,13 +61,13 @@ function EditProfilePage(props) {
 
     return (
         <div className='main'>
+            <Button onClick={() => setShow(true)} >Update Profile Picture</Button>
+            {show && <UploadModal onClose={() => setShow(false)}  /> }
 
             <form className="profile-form" onSubmit={submitHandler}>
                 <ul className='form-container'>
                     <div className="form-heading">
                         <h2>Edit your details</h2>
-                        <Button variant="primary" onClick={() => setShow(true)} >Update Profile Picture</Button>
-                        {show && <UploadModal onClose={() => setShow(false)}  /> }
                     </div>
 
 

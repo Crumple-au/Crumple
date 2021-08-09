@@ -8,7 +8,7 @@ const artworkSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     inStock: { type: Number, required: true },
     seller: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
-    category: { type: String, ref: 'Category', required: true },
+    category: { type: String, required: true },
   },
   {
     timestamps: true,

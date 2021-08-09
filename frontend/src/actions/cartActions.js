@@ -7,7 +7,7 @@ import {
     CART_SAVE_PAYMENT_METHOD
 } from '../constants/cartConstants';
 
-const addToCart = (artworkId, qty) => async (dispatch, getState) => {
+const addToCart = (artworkId, qty = 1) => async (dispatch, getState) => {
     const { data } = await Axios.get(`/api/artworks/${artworkId}`);
     const { cart: { cartItems } } = getState();
     if (cartItems.length > 0 && data.seller._id !== cartItems[0].seller._id) {

@@ -42,6 +42,27 @@ artworkRouter.get(
     })
 );
 
+artworkRouter.post(
+    '/',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+        try {
+            const artwork = new Artwork({
+                name: req.body.artwork.name,
+                seller: req.user._id,
+                image: req.body.artwork.image,
+                price: req.body.artwork.price,
+                category: req.body.artwork.category,
+                description: req.body.artwork.description,
+                inStock: req.body.artwork.inStock
+            });
+            const createdArtwork = await artwork.save();
+            res.status(200).send({message: 'Artwork Created!', artwork: createdArtwork});
+        } catch(error) {
+            res.status(500).send({error: error})
+        }
+    })
+);
 
 artworkRouter.get(
     '/:id',
@@ -50,6 +71,44 @@ artworkRouter.get(
         const artwork = await Artwork.findById(req.params.id).populate(populateQuery);
         if (artwork) {
             res.status(200).send(artwork);
+        } else {
+            res.status(404).send({ message: 'Artwork Not Found' });
+        }
+    })
+);
+
+artworkRouter.put(
+    '/:id',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+        try {
+            const artwork = await Artwork.findById(req.params.id);
+
+            artwork.name = req.body.name;
+            artwork.price = req.body.price;
+            artwork.image = req.body.image;
+            artwork.category = req.body.category;
+            artwork.brand = req.body.brand;
+            artwork.countInStock = req.body.countInStock;
+            artwork.description = req.body.description;
+
+            const updatedArtwork = await artwork.save();
+            res.send({ message: 'Artwork Updated', artwork: updatedArtwork });
+
+        } catch(e) {
+            res.status(404).send({ error: 'Artwork Not Found' });
+        }
+    })
+);
+
+artworkRouter.delete(
+    '/:id',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const artwork = await Artwork.findById(req.params.id);
+        if (artwork) {
+            const deleteArtwork = await artwork.remove();
+            res.send({ message: 'Artwork Deleted', artwork: deleteArtwork });
         } else {
             res.status(404).send({ message: 'Artwork Not Found' });
         }

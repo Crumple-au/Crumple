@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 import {
   Box,
@@ -15,7 +15,8 @@ import { useStyles } from '../utils/theme'
 import art from '../images/crumple-logo.jpg'
 
 const Artworks = ({ user, artwork, onRemove }) => {
-  const classes = useStyles()
+  const classes = useStyles();
+  const location = useLocation();
   // const [newArtworks, setNewArtworks] = useState([])
 
   // const filteredArtworks = newArtworks.filter((artwork) => {
@@ -45,10 +46,10 @@ const Artworks = ({ user, artwork, onRemove }) => {
           <CardMedia>
             <Box display='flex' justifyContent='center' border={3}>
               <img
-                src={art}
+                src={artwork.image || art}
                 alt={artwork.name}
-                height='100%'
-                width='100%'
+                height='300px'
+                width='300px'
                 style={{ objectFit: 'cover' }}
               />
             </Box>
@@ -67,9 +68,14 @@ const Artworks = ({ user, artwork, onRemove }) => {
 
         <CardActions>
           <Button size='small'>$ {artwork.price}</Button>
+          {location.pathname === '/cart'
+          ?
           <Button variant='contained' onClick={onRemove} size='small'>
             delete
           </Button>
+          : ''
+        }
+          
         </CardActions>
       </Card>
       {/* </Grid> */}

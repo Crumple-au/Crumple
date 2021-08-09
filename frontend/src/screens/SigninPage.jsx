@@ -13,7 +13,7 @@ import logo from '../images/crumple-logo.jpg'
 
 function SigninPage(props) {
   const userSignin = useSelector((state) => state.userSignin)
-  const { loading, userInfo, error } = userSignin
+  const { userInfo, error } = userSignin
 
   const dispatch = useDispatch()
 

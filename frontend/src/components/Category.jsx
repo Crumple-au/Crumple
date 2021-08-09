@@ -39,7 +39,7 @@ const Category = () => {
     console.log(filteredArtworks)
   }, [])
 
-  console.log(filter)
+  // console.log(artworks)
   return (
     <>
       <SearchBar />
@@ -88,7 +88,11 @@ const Category = () => {
       ) : error ? (
         <Alert variant='danger'>{error}</Alert>
       ) : (
-        <Artworks artworks={artworks} />
+        <>
+        {artworks && artworks.map(item => (
+          <Artworks artwork={item} />
+        ))}
+        </>
       )}
     </>
   )
