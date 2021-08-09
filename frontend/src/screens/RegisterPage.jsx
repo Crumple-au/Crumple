@@ -14,7 +14,7 @@ import hidePwd from '../images/hide.png'
 function RegisterPage(props) {
 
     const userRegister = useSelector(state => state.userRegister);
-    const { loading, userInfo, error } = userRegister;
+    const { userInfo, error } = userRegister;
     const dispatch = useDispatch();
 
     const [confirmPassword, setConfirmPassword] = useState('');

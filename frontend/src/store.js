@@ -11,6 +11,10 @@ import {
 import {
   productListReducer,
   artworkListReducer,
+  artworkCreateReducer,
+  artworkUpdateReducer,
+  artworkDeleteReducer,
+  artworksDetailsReducer
 } from './reducers/artworkReducers'
 import { cartReducer } from './reducers/cartReducers'
 
@@ -40,6 +44,10 @@ const reducer = combineReducers({
   userDelete: userDeleteReducer,
   artworkList: productListReducer,
   artworkAll: artworkListReducer,
+  artworkCreate: artworkCreateReducer,
+  artworkUpdate: artworkUpdateReducer,
+  artworkDelete: artworkDeleteReducer,
+  artworkDetails: artworksDetailsReducer,
   cart: cartReducer,
 })
 

@@ -1,52 +1,41 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { listArtworks } from '../actions/artworkActions'
-import { signin } from '../actions/userActions.js'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Artworks from '../components/Artworks'
-import UploadModal from '../components/UploadModal'
 import { Button, Box, Grid } from '@material-ui/core'
 
 function ProfileArtworksPage(props) {
-  const { userId } = useParams()
+    const { userId } = useParams()
 
-  const artworkList = useSelector((state) => state.artworkList)
-  const { artworks } = artworkList
-  const userSignin = useSelector((state) => state.userSignin)
-  const { userInfo } = userSignin
-  console.log(userInfo)
-  const dispatch = useDispatch()
+    const artworkList = useSelector((state) => state.artworkList)
+    const { artworks } = artworkList
+    const userSignin = useSelector((state) => state.userSignin)
+    const { userInfo } = userSignin
 
-  const [show, setShow] = useState(false)
+    const dispatch = useDispatch()
 
-  useEffect(() => {
+    useEffect(() => {
     if (!artworks) {
-      dispatch(listArtworks({ seller: userId }))
+        dispatch(listArtworks({ seller: userId }))
     }
-  }, [dispatch, artworks])
-  return (
+    }, [dispatch, artworks, userId])
+    return (
     <Box m='2rem'>
-      <Box display='flex' justifyContent='center' marginBottom='1rem'>
+        <Box display='flex' justifyContent='center' marginBottom='1rem'>
         {userInfo._id === userId && (
-          <>
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={() => setShow(true)}
-            >
-              Upload Artwork
+            <Button component={Link} to={`/profile/${userId}/createArtwork`}>
+                Upload Artwork
             </Button>
-            {show && <UploadModal onClose={() => setShow(false)} />}
-          </>
         )}
-      </Box>
+        </Box>
 
-      <Grid container spacing={3} justifyContent='center' alignItems='center'>
+        <Grid container spacing={3} justifyContent='center' alignItems='center'>
         {artworks &&
-          artworks.map((item) => <Artworks key={item._id} artwork={item} />)}
-      </Grid>
+            artworks.map((item) => <Artworks key={item._id} artwork={item} />)}
+        </Grid>
     </Box>
-  )
+    )
 }
 
 export default ProfileArtworksPage

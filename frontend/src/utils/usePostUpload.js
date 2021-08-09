@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios'
 import ENV_URL from '../config.js'
 
-const usePostUpload = (refresh, croppedImage) => {
+const usePostUpload = (refresh, croppedImage ) => {
 
     const [imageURL, setImageURL] = useState('');
 
@@ -31,7 +31,7 @@ const usePostUpload = (refresh, croppedImage) => {
         
         uploadHandler();
 
-    }, [refresh, croppedImage, userInfo.token])
+    }, [refresh,  userInfo.token, croppedImage])
 
     return { imageURL }
 }
