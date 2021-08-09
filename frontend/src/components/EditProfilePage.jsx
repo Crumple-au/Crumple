@@ -60,7 +60,7 @@ function EditProfilePage(props) {
 
 
     return (
-        <div className='main'>
+        <div className='main' style={{height: '100vh'}}>
             <Button onClick={() => setShow(true)} >Update Profile Picture</Button>
             {show && <UploadModal onClose={() => setShow(false)}  /> }
 

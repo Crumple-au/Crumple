@@ -33,7 +33,7 @@ artworkRouter.get(
     expressAsyncHandler(async (req, res) => {
         const seller = req.query.seller || '';
         const sellerFilter = seller ? { seller } : {};
-        const populateQuery = { path:'seller', select: ['name', 'email'] };
+        const populateQuery = { path:'seller', select: ['name', 'email', 'image'] };
         const artworks = await Artwork.find({
             ...sellerFilter,
         })
@@ -67,7 +67,7 @@ artworkRouter.post(
 artworkRouter.get(
     '/:id',
     expressAsyncHandler(async (req, res) => {
-        const populateQuery = { path:'seller', select: 'name' };
+        const populateQuery = { path:'seller', select: ['name', 'image'] };
         const artwork = await Artwork.findById(req.params.id).populate(populateQuery);
         if (artwork) {
             res.status(200).send(artwork);

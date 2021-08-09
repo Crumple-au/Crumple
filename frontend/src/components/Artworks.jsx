@@ -25,7 +25,7 @@ const Artworks = ({ user, artwork, onRemove }) => {
   // setNewArtworks(filteredArtworks)
   // setNewArtworks(artworks)
 
-  // console.log(artwork)
+  console.log(artwork)
   // console.log('newArtworks', newArtworks)
 
   return (
@@ -62,6 +62,7 @@ const Artworks = ({ user, artwork, onRemove }) => {
               <Link to={`profile/${artwork.seller._id}`}>
                 {artwork.seller.name}
               </Link>
+              <img src={artwork.seller.image} alt={artwork.name} width="40px" height="40px" style={{borderRadius: '50%'}}></img>
             </Typography>
           </CardContent>
         </CardActionArea>
