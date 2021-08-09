@@ -88,11 +88,11 @@ const Category = () => {
       ) : error ? (
         <Alert variant='danger'>{error}</Alert>
       ) : (
-        <>
-        {artworks && artworks.map(item => (
-          <Artworks artwork={item} />
-        ))}
-        </>
+        <Box>
+          {artworks && artworks.map(item => (
+            <Artworks artwork={item} />
+          ))}
+        </Box>
       )}
     </>
   )
