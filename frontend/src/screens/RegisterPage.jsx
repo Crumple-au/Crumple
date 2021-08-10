@@ -6,25 +6,26 @@ import { Link, useHistory } from 'react-router-dom';
 import Alert from '../components/Alert'
 
 // Assets
-import { register } from '../actions/userActions';
+import { register } from '../actions/userActions'
 import logo from '../images/crumple-logo.jpg'
 import showPwd from '../images/view.png'
 import hidePwd from '../images/hide.png'
 
 function RegisterPage(props) {
 
-    const history = useHistory()
+  const history = useHistory()
+  
+  const userRegister = useSelector((state) => state.userRegister)
+  const { userInfo, error } = userRegister
+  const dispatch = useDispatch()
 
-    const userRegister = useSelector(state => state.userRegister);
-    const { userInfo, error } = userRegister;
-    const dispatch = useDispatch();
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [isRevealPwd, setIsRevealPwd] = useState(false)
+  const [password, setPassword] = useState('')
+  const [noMatch, setNoMatch] = useState('')
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
 
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [isRevealPwd, setIsRevealPwd] = useState(false);
-    const [password, setPassword] = useState('');
-    const [noMatch, setNoMatch] = useState('');
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
 
     const submitHandler = (e) => {
         e.preventDefault();

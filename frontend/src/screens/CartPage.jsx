@@ -54,7 +54,12 @@ function CartPage(props) {
           {error && <Alert variant='danger'>{error}</Alert>}
           {cartItems.length === 0 ? (
             <Alert>
-              Cart is empty. <Link to='/categories'>Go Shopping</Link>
+              <Typography>
+                Cart is empty.{' '}
+                <Link to='/categories' className='link'>
+                  Go Shopping
+                </Link>
+              </Typography>
             </Alert>
           ) : (
             <Box>

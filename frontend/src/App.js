@@ -35,7 +35,6 @@ const App = () => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Router>
-          {/* <NavBar /> */}
           {isSmallScreen ? <MobileNavBar /> : <NavBar />}
           <Switch>
             <Route exact path='/'>
