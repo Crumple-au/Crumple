@@ -6,11 +6,11 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <CssBaseline>
-      <App />
-    </CssBaseline>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <CssBaseline>
+    <App />
+  </CssBaseline>,
+  // </React.StrictMode>,
   document.getElementById('root')
 )
 
