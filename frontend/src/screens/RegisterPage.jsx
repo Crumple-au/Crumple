@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 // Components
 import Alert from '../components/Alert'
@@ -12,6 +12,8 @@ import showPwd from '../images/view.png'
 import hidePwd from '../images/hide.png'
 
 function RegisterPage(props) {
+
+    const history = useHistory()
 
     const userRegister = useSelector(state => state.userRegister);
     const { userInfo, error } = userRegister;
@@ -36,9 +38,9 @@ function RegisterPage(props) {
     
     useEffect(() => {
         if (userInfo) {
-            props.history.push(`/profile/${userInfo._id}/settings`);
+            history.push(`/profile/${userInfo._id}/settings`);
         }
-    }, [userInfo, props.history]);
+    }, [userInfo, history]);
 
     return (
         <div className='form'>

@@ -7,7 +7,7 @@ import {
   userListReducer,
   userUpdateProfileReducer,
   userDeleteReducer,
-} from './reducers/userReducers'
+} from './reducers/userReducers';
 import {
   productListReducer,
   artworkListReducer,
@@ -15,8 +15,9 @@ import {
   artworkUpdateReducer,
   artworkDeleteReducer,
   artworksDetailsReducer
-} from './reducers/artworkReducers'
-import { cartReducer } from './reducers/cartReducers'
+} from './reducers/artworkReducers';
+import {orderCreateReducer} from './reducers/orderReducers'
+import { cartReducer } from './reducers/cartReducers';
 
 const initialState = {
   userSignin: {
@@ -49,6 +50,7 @@ const reducer = combineReducers({
   artworkDelete: artworkDeleteReducer,
   artworkDetails: artworksDetailsReducer,
   cart: cartReducer,
+  orderCreate: orderCreateReducer
 })
 
 // Below code to be able to use Redux browser extention
