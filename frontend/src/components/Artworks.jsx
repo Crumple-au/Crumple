@@ -15,8 +15,8 @@ import { useStyles } from '../utils/theme'
 import art from '../images/crumple-logo.jpg'
 
 const Artworks = ({ user, artwork, onRemove }) => {
-  const classes = useStyles();
-  const location = useLocation();
+  const classes = useStyles()
+  const location = useLocation()
   // const [newArtworks, setNewArtworks] = useState([])
 
   // const filteredArtworks = newArtworks.filter((artwork) => {
@@ -30,17 +30,6 @@ const Artworks = ({ user, artwork, onRemove }) => {
 
   return (
     <>
-      {/* <Box m='4rem 2rem 2rem 2rem'> */}
-      {/* <Grid container spacing={0} justifyContent='center' alignItems='center'> */}
-      {/* <Grid
-                  item
-                  xs={12}
-                  sm={4}
-                  md={3}
-                  lg={3}
-                  xl={2}
-                  key={artwork._id}
-                > */}
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia>
@@ -48,8 +37,8 @@ const Artworks = ({ user, artwork, onRemove }) => {
               <img
                 src={artwork.image || art}
                 alt={artwork.name}
-                height='300px'
-                width='300px'
+                height='100%'
+                width='100%'
                 style={{ objectFit: 'cover' }}
               />
             </Box>
@@ -58,30 +47,32 @@ const Artworks = ({ user, artwork, onRemove }) => {
             <Link to={`/artwork/${artwork._id}`}>
               <Typography>{artwork.name}</Typography>
             </Link>
-            <Typography color='textSecondary'>
-              <Link to={`profile/${artwork.seller._id}`}>
+            <Link to={`profile/${artwork.seller._id}`}>
+              <Typography color='textSecondary'>
                 {artwork.seller.name}
-              </Link>
-              <img src={artwork.seller.image} alt={artwork.name} width="40px" height="40px" style={{borderRadius: '50%'}}></img>
-            </Typography>
+              </Typography>
+              <img
+                src={artwork.seller.image}
+                alt={artwork.seller.name}
+                width='40px'
+                height='40px'
+                style={{ borderRadius: '50%' }}
+              ></img>
+            </Link>
           </CardContent>
         </CardActionArea>
 
         <CardActions>
           <Button size='small'>$ {artwork.price}</Button>
-          {location.pathname === '/cart'
-          ?
-          <Button variant='contained' onClick={onRemove} size='small'>
-            delete
-          </Button>
-          : ''
-        }
-          
+          {location.pathname === '/cart' ? (
+            <Button variant='contained' onClick={onRemove} size='small'>
+              remove
+            </Button>
+          ) : (
+            ''
+          )}
         </CardActions>
       </Card>
-      {/* </Grid> */}
-      {/* </Grid> */}
-      {/* </Box> */}
     </>
   )
 }
