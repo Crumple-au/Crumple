@@ -5,6 +5,7 @@ import userRouter from './routes/userRouter.js'
 import artworkRouter from './routes/artworkRoutes.js'
 import categoryRouter from './routes/categoryRoutes.js'
 import uploadRouter from './routes/uploadRoutes.js'
+import orderRouter from './routes/orderRoutes.js'
 import cors from 'cors'
 import mongodb_database from './config.js'
 
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRouter)
 app.use('/api/artworks', artworkRouter)
 app.use('/api/categories', categoryRouter)
+app.use('/api/order', orderRouter)
 app.use('/api/images', uploadRouter)
 
 app.use((err, req, res, next) => {

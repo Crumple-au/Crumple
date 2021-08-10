@@ -68,10 +68,13 @@ artworkRouter.get(
     '/:id',
     expressAsyncHandler(async (req, res) => {
         const populateQuery = { path:'seller', select: ['name', 'image'] };
-        const artwork = await Artwork.findById(req.params.id).populate(populateQuery);
-        if (artwork) {
-            res.status(200).send(artwork);
-        } else {
+        console.log(req.params.id)
+        try{
+            const artwork = await Artwork.findById(req.params.id).populate(populateQuery);
+            if (artwork) {
+                res.status(200).send(artwork);
+            }
+        } catch(error) {
             res.status(404).send({ message: 'Artwork Not Found' });
         }
     })

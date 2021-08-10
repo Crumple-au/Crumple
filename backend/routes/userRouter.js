@@ -3,7 +3,11 @@ import expressAsyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
 import seed from '../util/seed.js';
 import User from '../models/userModel.js';
-import {generateToken, isAuth, isAdmin} from '../util/util.js';
+import {generateToken,
+        isAuth, 
+        isAdmin,
+        mailgun,
+        registerEmailTemplate} from '../util/util.js';
 
 const userRouter = express.Router();
 
@@ -42,11 +46,11 @@ userRouter.post(
 userRouter.post(
     '/register',
     expressAsyncHandler(async (req, res) => {
-        const existingUser = User.find({email: req.body.email})
-        if (existingUser){
-            return res.status(400).send({error: 'Email already exists!'})
-        }
         try {
+            const existingUser = await User.findOne({email: req.body.email})
+            if (existingUser){
+                res.status(400).send({error: 'Email already exists!'})
+            }
             const user = new User({
                 name: req.body.name,
                 email: req.body.email,

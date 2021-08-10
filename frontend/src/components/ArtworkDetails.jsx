@@ -20,7 +20,7 @@ import { addToCart } from '../actions/cartActions';
 import Alert from './Alert'
 import Preloader from './Preloader'
 
-const ArtworkDetails = () => {
+const ArtworkDetails = (props) => {
   const { id } = useParams()
   // const { element } = useFetch(`/api/artworks/${id}`)
   const history = useHistory()
@@ -29,8 +29,7 @@ const ArtworkDetails = () => {
   // const { cartItems, error } = cart;
 
   const artworkDetails = useSelector((state) => state.artworkDetails)
-  const { artwork } = artworkDetails
-
+  const { loading, error,  artwork } = artworkDetails
   const artworkDelete = useSelector((state) => state.artworkDelete);
   const {
     loading: loadingDelete,
@@ -53,19 +52,23 @@ const ArtworkDetails = () => {
   }
 
   useEffect(() => {
-    if (!artwork) {
-      dispatch(detailsArtwork(id))
-      console.log(artwork)
+    if (successDelete) {
+      history.push(`/profile/${userInfo._id}`)
     }
-  }, [dispatch, artwork, id])
-
+    if (artwork === undefined) {
+      dispatch(detailsArtwork(id))
+    }
+  }, [dispatch, artwork, id, successDelete])
+  
   return (
     <>
+      { loading && <Preloader></Preloader> }
+      { error && <Alert variant="alert alert-danger">{error}</Alert> }
+
+      { loadingDelete && <Preloader></Preloader> }
+      { errorDelete && <Alert variant="alert alert-danger">{errorDelete}</Alert> }
     {artwork && (
       <>
-      { loadingDelete && <Preloader></Preloader> }
-      { successDelete && <Alert variant="alert alert-success">{successDelete}</Alert> }
-      { errorDelete && <Alert variant="alert alert-danger">{errorDelete}</Alert> }
 
       <Box m='4rem 2rem 2rem 2rem'>
         <Grid container spacing={4}>

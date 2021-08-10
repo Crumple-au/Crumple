@@ -116,6 +116,19 @@ const Category = () => {
           </Box>
         )}
       </Box>
+      {loading ? (
+        <>
+          <Preloader />
+        </>
+      ) : error ? (
+        <Alert variant='danger'>{error}</Alert>
+      ) : (
+        <Box>
+          {artworks && artworks.map(item => (
+            <Artworks key={item._id} artwork={item} />
+          ))}
+        </Box>
+      )}
     </>
   )
 }

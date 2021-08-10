@@ -21,14 +21,14 @@ import ENV_URL from '../config.js'
 const listArtworks =
   ({ seller = '' }) =>
   async (dispatch) => {
-    dispatch({ type: ARTWORK_DETAILS_REQUEST })
+    dispatch({ type: ARTWORK_LIST_REQUEST })
     try {
       const { data } = await Axios.get(
         `${ENV_URL}/api/artworks?seller=${seller}`
       )
-      dispatch({ type: ARTWORK_DETAILS_SUCCESS, payload: data })
+      dispatch({ type: ARTWORK_LIST_SUCCESS, payload: data })
     } catch (error) {
-      dispatch({ type: ARTWORK_DETAILS_FAIL, payload: error.message })
+      dispatch({ type: ARTWORK_LIST_FAIL, payload: error.message })
     }
 };
 
@@ -103,8 +103,8 @@ const deleteArtwork = (artworkId) => async (dispatch, getState) => {
 const detailsArtwork = (artworkId) => async (dispatch) => {
     dispatch({ type: ARTWORK_DETAILS_REQUEST, payload: artworkId });
     try {
+      console.log('artworkId:', artworkId)
         const { data } = await Axios.get(`${ENV_URL}/api/artworks/${artworkId}`);
-        console.log(data)
         dispatch({ type: ARTWORK_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
