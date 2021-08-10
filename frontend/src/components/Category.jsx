@@ -90,7 +90,7 @@ const Category = () => {
       ) : (
         <Box>
           {artworks && artworks.map(item => (
-            <Artworks artwork={item} />
+            <Artworks key={item._id} artwork={item} />
           ))}
         </Box>
       )}

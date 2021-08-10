@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import '../style/profile.scss'
 import {
   useParams,
+  useLocation,
   NavLink,
   BrowserRouter,
   Switch,
@@ -21,8 +22,10 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import LiveHelpOutlinedIcon from '@material-ui/icons/LiveHelpOutlined'
 import ArtworkEditPage from './ArtworkEditPage'
 
-function ProfilePage() {
-  const { userId } = useParams()
+
+function ProfilePage(props) {
+  const { userId } = useParams();
+  const { pathname } = useLocation();
 
   const userDetails = useSelector((state) => state.userDetails)
   const { loading, error, user } = userDetails
@@ -33,12 +36,15 @@ function ProfilePage() {
     if (!user) {
       dispatch(detailsUser(userId))
     }
-  }, [dispatch, user, userId])
+
+  }, [dispatch, user, userId, pathname])
+
 
   return (
     <BrowserRouter>
       <div className='profile-container'>
         <aside className='sidebar'>
+
           <div className='heading'>
             {user ? (
               <>
@@ -49,17 +55,19 @@ function ProfilePage() {
                     <Chip
                       label='admin'
                       color='primary'
-                      className='admin-badge'
-                    />
-                  ) : (
-                    ''
+                      className='admin-badge' />
+                    ) : (
+                    <Chip
+                      label='newbie'
+                      color='default'
+                      className='admin-badge' />
                   )}
                 </div>
               </>
-            ) : (
-              <Preloader />
-            )}
+              ) : <Preloader />
+            }
           </div>
+
           <div className='description'>
             <p>{user && user.description}</p>
           </div>
@@ -67,12 +75,11 @@ function ProfilePage() {
           <div className='sidebar-links'>
             <div className='ul'>
               <div className='li'>
-                {/* <CameraAltOutlinedIcon style={{color: 'ivory'}} /> */}
                 <NavLink
                   className='link'
                   exact
                   activeClassName='selected'
-                  to={`/profile/${userId}/`}
+                  to={`/profile/${userId}`}
                 >
                   <span>
                     <CameraAltOutlinedIcon style={{ color: 'ivory' }} />
@@ -81,7 +88,6 @@ function ProfilePage() {
                 </NavLink>
               </div>
               <div className='li'>
-                {/* <PaymentOutlinedIcon style={{color: 'ivory'}}/> */}
                 <NavLink
                   className='link'
                   activeClassName='selected'
@@ -94,7 +100,6 @@ function ProfilePage() {
                 </NavLink>
               </div>
               <div className='li'>
-                {/* <EditOutlinedIcon style={{color: 'ivory'}}/> */}
                 <NavLink
                   className='link'
                   activeClassName='selected'
@@ -107,7 +112,6 @@ function ProfilePage() {
                 </NavLink>
               </div>
               <div className='li'>
-                {/* <LiveHelpOutlinedIcon style={{color: 'ivory'}}/> */}
                 <NavLink
                   className='link'
                   activeClassName='selected'
@@ -128,7 +132,7 @@ function ProfilePage() {
           </div>
         </aside>
 
-        <main style={{height: '100%'}} >
+        <main>
           {loading ? (
             <Preloader />
           ) : error ? (

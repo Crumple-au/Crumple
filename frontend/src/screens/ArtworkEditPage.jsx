@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { createArtwork } from '../actions/artworkActions';
 import { ARTWORK_CREATE_RESET } from '../constants/artworkConstants';
 import Preloader from '../components/Preloader';
@@ -13,6 +13,7 @@ import UploadArtworkImage from '../components/UploadArtworkImage';
 function ArtworkEditPage(props) {
 
     const {userId} = useParams();
+    const history = useHistory();
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
@@ -49,10 +50,11 @@ function ArtworkEditPage(props) {
     };
 
     useEffect(() => {
-
+        console.log(history)
         if (successCreate) {
             dispatch({ type: ARTWORK_CREATE_RESET });
-            props.history.push(`/profile/${userId}/`);
+            // props.history.push(`/profile/${userId}`);
+            history.replace(`/profile/${userId}`)
         } 
         if (createdArtwork) {
             setName(createdArtwork.name);

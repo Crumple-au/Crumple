@@ -1,15 +1,16 @@
 /* Profile Page */
 
 .profile-container {
-    // border: 1px solid red;
-    width: 100%;
-    height: 100%;
+    // border: 4px solid red;
+    // width: 100%;
+    // height: 100%;
+    min-height: 90vh;
     display: flex;
 
     .sidebar {
         // border: 1px solid blue;
         background-color: #323232;
-        // height: 100%;
+        height: auto;
         width: 25vw;
 
         .heading {
@@ -40,7 +41,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            // height: 140vh;
+            // height: 85%;
 
             
             .ul {
@@ -59,6 +60,7 @@
                     display: flex;
                 
                     .link {
+                        // border: 1px solid pink;
                         display: flex;
                         align-items: center;
                         justify-content: space-around;
@@ -68,7 +70,6 @@
                         width: 100%;
                         font-size: 18px;
                         margin-left: 1.5rem;
-                        // border: 1px solid pink;
                     }
 
                     .selected {
@@ -104,9 +105,9 @@
     }
 
     main {
-        // border: 1px solid rgb(225, 11, 111);
+        // border: 3px solid rgb(225, 11, 111);
         width: 100%;
-        height: 100vh;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -206,6 +207,7 @@
         }
     }
 }
+
 
 .modal {
     z-index: 99;

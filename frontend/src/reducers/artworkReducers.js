@@ -24,11 +24,11 @@ const productListReducer = (
   action
 ) => {
   switch (action.type) {
-    case ARTWORK_DETAILS_REQUEST:
+    case ARTWORK_LIST_REQUEST:
       return { loading: true }
-    case ARTWORK_DETAILS_SUCCESS:
+    case ARTWORK_LIST_SUCCESS:
       return { loading: false, artworks: action.payload.artworks }
-    case ARTWORK_DETAILS_FAIL:
+    case ARTWORK_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state
