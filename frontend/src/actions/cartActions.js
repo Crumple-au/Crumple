@@ -19,6 +19,7 @@ const addToCart = (artworkId, qty = 1) => async (dispatch, getState) => {
         dispatch({
             type: CART_ADD_ITEM,
             payload: {
+            image: data.image,
             name: data.name,
             price: data.price,
             countInStock: data.countInStock,

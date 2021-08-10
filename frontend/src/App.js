@@ -25,6 +25,7 @@ import AdminRoute from './components/AdminRoute'
 
 import { theme } from './utils/theme'
 import store from './store'
+import PlaceOrderPage from './screens/PlaceOrderPage'
 
 const App = () => {
   // for mobile devices
@@ -69,6 +70,10 @@ const App = () => {
 
             <PrivateRoute
               path='/payment' component={PaymentPage}>
+            </PrivateRoute>
+
+            <PrivateRoute
+              path='/placeorder' component={PlaceOrderPage}>
             </PrivateRoute>
 
             <Route path='*'>
