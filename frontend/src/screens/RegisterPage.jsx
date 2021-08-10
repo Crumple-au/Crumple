@@ -1,6 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
+import {
+  Box,
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  Button,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  InputLabel,
+} from '@material-ui/core'
+import { Visibility, VisibilityOff } from '@material-ui/icons'
 
 // Components
 import Alert from '../components/Alert'
@@ -8,121 +21,225 @@ import Alert from '../components/Alert'
 // Assets
 import { register } from '../actions/userActions'
 import logo from '../images/crumple-logo.jpg'
-import showPwd from '../images/view.png'
-import hidePwd from '../images/hide.png'
 
 function RegisterPage(props) {
-
   const history = useHistory()
-  
+
   const userRegister = useSelector((state) => state.userRegister)
   const { userInfo, error } = userRegister
   const dispatch = useDispatch()
 
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [isRevealPwd, setIsRevealPwd] = useState(false)
-  const [password, setPassword] = useState('')
   const [noMatch, setNoMatch] = useState('')
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
 
+  const [values, setValues] = useState({
+    password: '',
+    showPassword: false,
+  })
 
-    const submitHandler = (e) => {
-        e.preventDefault();
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value })
+  }
 
-        if (password !== confirmPassword) {
-            setNoMatch('Password and confirm password are not match')
-        } else {
-            dispatch(register(name, email, password));
-        }
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword })
+  }
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault()
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+
+    if (values.password !== confirmPassword) {
+      setNoMatch('Password and confirm password are not match')
+    } else {
+      dispatch(register(name, email, values.password))
     }
-    
-    useEffect(() => {
-        if (userInfo) {
-            history.push(`/profile/${userInfo._id}/settings`);
-        }
-    }, [userInfo, history]);
+  }
 
-    return (
-        <div className='form'>
-            <form onSubmit={submitHandler}>
-                <ul className='form-container'>
+  useEffect(() => {
+    if (userInfo) {
+      history.push(`/profile/${userInfo._id}/settings`)
+    }
+  }, [userInfo, history])
 
-                    <div className="form-heading">
-                        <img className="logo" src={logo} alt="Crumple logo"></img>
-                        <span>Crumple</span>
-                    </div>
-
-                    <div className="alert-box">
-                        {noMatch && <Alert variant="alert alert-danger">{noMatch}</Alert>}
-                        {error && <Alert variant="alert alert-danger">{error}</Alert>}
-                    </div>
-
-                    <div className="form-fields">
-                    <h3>Join a community of creators!</h3>
-
-                        <li>
-                            <label htmlFor='name'>Name 
-                            </label>
-                            <input
-                                type='text'
-                                name='name'
-                                id='name'
-                                required
-                                onChange={(e) => setName(e.target.value)}
-                            ></input>
-                        </li>
-
-                        <li>
-                            <label htmlFor='email'>Email 
-                                <Link to="#" className="link">Already have an account?</Link>
-                            </label>
-                            <input
-                                type='email'
-                                name='email'
-                                id='email'
-                                required
-                                onChange={(e) => setEmail(e.target.value)}
-                            ></input>
-                        </li>
-
-                        <li className="pwd-container">
-                            <label htmlFor='password'>Password </label>
-                            <input
-                                type={isRevealPwd ? 'text' : 'password'}
-                                id='password'
-                                name='password'
-                                value={password}
-                                required
-                                onChange={(e) => setPassword(e.target.value)}
-                            ></input>
-                            <img
-                                title={isRevealPwd ? "Hide password" : "Show password"}
-                                src={isRevealPwd ? hidePwd : showPwd }
-                                alt="show password icon"
-                                onClick={() => setIsRevealPwd(prevState => !prevState)}
-                            />
-                        </li>
-
-                        <li className="pwd-container">
-                            <label htmlFor='confirmPassword'>Confirm Password </label>
-                            <input
-                                type='password'
-                                id='confirmPassword'
-                                name='confirmPassword'
-                                required
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                            ></input>
-                        </li>
-
-                        <button type='submit' className='button primary'>
-                            Sign in
-                        </button>
-                    </div>
-                </ul>
-            </form>
-        </div>
-    )
+  return (
+    <Box
+      m='4rem 2rem 2rem 2rem'
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+      height='70vh'
+    >
+      <Grid container spacing={0} justifyContent='center' alignItems='center'>
+        <Grid item xs={12} sm={6} md={3} lg={3} xl={2}>
+          <Card>
+            <CardContent>
+              <Box display='flex' justifyContent='center'>
+                <Box paddingTop='2rem' display='flex'>
+                  <img src={logo} alt='crumple logo' width='60' />
+                  <Box display='flex' p='1rem'>
+                    <Typography variant='h6' component='span'>
+                      crumple
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
+              <Box
+                paddingTop='2rem'
+                padding='2rem 1rem 0 1rem'
+                display='flex'
+                justifyContent='center'
+              >
+                <form fullWidth onSubmit={submitHandler}>
+                  <div className='alert-box'>
+                    {noMatch && (
+                      <Alert variant='alert alert-danger'>{noMatch}</Alert>
+                    )}
+                    {error && (
+                      <Alert variant='alert alert-danger'>{error}</Alert>
+                    )}
+                  </div>
+                  <Typography gutterBottom>
+                    Join a community of creators!
+                  </Typography>
+                  <Box
+                    display='flex'
+                    justifyContent='space-between'
+                    paddingTop='1rem'
+                  >
+                    <InputLabel htmlFor='name'>Name</InputLabel>
+                  </Box>
+                  <OutlinedInput
+                    type='text'
+                    name='name'
+                    id='name'
+                    required
+                    onChange={(e) => setName(e.target.value)}
+                    variant='outlined'
+                    margin='dense'
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                  <Box
+                    display='flex'
+                    justifyContent='space-between'
+                    paddingTop='1rem'
+                  >
+                    <InputLabel htmlFor='email'>Email</InputLabel>
+                    <Link className='link' to='/signin'>
+                      <Typography style={{ fontSize: '13px' }} align='right'>
+                        Already have an account?
+                      </Typography>
+                    </Link>
+                  </Box>
+                  <OutlinedInput
+                    type='email'
+                    name='email'
+                    id='email'
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                    variant='outlined'
+                    margin='dense'
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                  <Box
+                    display='flex'
+                    justifyContent='space-between'
+                    paddingTop='1rem'
+                  >
+                    <InputLabel htmlFor='password'>Password</InputLabel>
+                  </Box>
+                  <OutlinedInput
+                    id='password'
+                    name='password'
+                    required
+                    variant='outlined'
+                    margin='dense'
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    type={values.showPassword ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={handleChange('password')}
+                    endAdornment={
+                      <InputAdornment position='end'>
+                        <IconButton
+                          aria-label='toggle password visibility'
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge='end'
+                        >
+                          {values.showPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                  <Box
+                    display='flex'
+                    justifyContent='space-between'
+                    paddingTop='1rem'
+                  >
+                    <InputLabel htmlFor='confirmPassword'>
+                      Confirm Password
+                    </InputLabel>
+                  </Box>
+                  <OutlinedInput
+                    id='confirmPassword'
+                    name='confirmPassword'
+                    variant='outlined'
+                    required
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    margin='dense'
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    type={values.showPassword ? 'text' : 'password'}
+                    endAdornment={
+                      <InputAdornment position='end'>
+                        <IconButton
+                          aria-label='toggle password visibility'
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge='end'
+                        >
+                          {values.showPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                  <Box paddingTop='1rem' display='flex' justifyContent='center'>
+                    <Button type='submit' variant='contained' color='primary'>
+                      Sign up
+                    </Button>
+                  </Box>
+                </form>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
+  )
 }
 
 export default RegisterPage
