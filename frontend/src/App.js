@@ -20,6 +20,8 @@ import CartPage from './screens/CartPage'
 import ShippingPage from './screens/ShippingPage'
 import PaymentPage from './screens/PaymentPage'
 import ArtworkDetails from './components/ArtworkDetails.jsx'
+import PrivateRoute from './components/PrivateRoute'
+import AdminRoute from './components/AdminRoute'
 
 import { theme } from './utils/theme'
 import store from './store'
@@ -53,10 +55,23 @@ const App = () => {
             <Route path='/signin' component={SigninPage} />
             <Route path='/signup' component={RegisterPage} />
             <Route path='/profile/:userId' component={ProfilePage} />
-            <Route path='/allusers' component={ListUsersPage} />
-            <Route path='/cart/:artworkId?' component={CartPage} />
-            <Route path='/shipping' component={ShippingPage} />
-            <Route path='/payment' component={PaymentPage} />
+
+            <AdminRoute 
+              path='/allusers' component={ListUsersPage} >
+            </AdminRoute>
+
+            <PrivateRoute
+              path='/cart/:artworkId?' component={CartPage}
+            ></PrivateRoute>
+
+            <PrivateRoute 
+              path='/shipping' component={ShippingPage}>
+            </PrivateRoute>
+
+            <PrivateRoute
+              path='/payment' component={PaymentPage}>
+            </PrivateRoute>
+
             <Route path='*'>
               <Error />
             </Route>
