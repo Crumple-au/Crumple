@@ -28,7 +28,7 @@ const Category = () => {
   const artworkList = useSelector((state) => state.artworkAll)
   const { artworks, loading, error } = artworkList
   const { filter, setFilter } = useState([])
-  console.log(setFilter)
+  console.log(filter, setFilter)
 
   useEffect(() => {
     dispatch(listArtworksAll())
@@ -80,20 +80,42 @@ const Category = () => {
             </Card>
           </Grid>
         </Grid>
+        {loading ? (
+          <>
+            <Preloader />
+          </>
+        ) : error ? (
+          <Alert variant='danger'>{error}</Alert>
+        ) : (
+          <Box>
+            <Grid
+              container
+              spacing={0}
+              justifyContent='center'
+              alignItems='center'
+            >
+              {artworks &&
+                artworks.map((item) => {
+                  return (
+                    <>
+                      <Grid
+                        item
+                        xs={12}
+                        sm={4}
+                        md={3}
+                        lg={3}
+                        xl={2}
+                        key={item._id}
+                      >
+                        <Artworks artwork={item} />
+                      </Grid>
+                    </>
+                  )
+                })}
+            </Grid>
+          </Box>
+        )}
       </Box>
-      {loading ? (
-        <>
-          <Preloader />
-        </>
-      ) : error ? (
-        <Alert variant='danger'>{error}</Alert>
-      ) : (
-        <Box>
-          {artworks && artworks.map(item => (
-            <Artworks artwork={item} />
-          ))}
-        </Box>
-      )}
     </>
   )
 }

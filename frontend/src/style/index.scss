@@ -25,12 +25,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #323232;
-  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Select anchor tags */
+.link {
+  text-decoration: none;
+  color: #6184c4;
+  &:visited {
+    color: #6184c4;
+  }
 }
 
 /* Alert */
@@ -50,8 +58,8 @@ code {
   border-radius: 0.5rem;
 }
 .alert-info {
-  color: #2020a0;
-  background-color: #e0e0ff;
+  color: #323232;
+  background-color: #e5e5e5;
 }
 .alert-danger {
   color: #a02020;
@@ -295,8 +303,6 @@ code {
     }
   }
 }
-
-
 
 /* Laptop */
 @media (min-width: 1250px) and (max-width: 1400px) {
