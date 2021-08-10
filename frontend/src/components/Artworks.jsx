@@ -44,10 +44,10 @@ const Artworks = ({ user, artwork, onRemove }) => {
             </Box>
           </CardMedia>
           <CardContent>
-            <Link to={`/artwork/${artwork._id}`}>
+            <Link to={`/artwork/${artwork._id}`} className='link'>
               <Typography>{artwork.name}</Typography>
             </Link>
-            <Link to={`profile/${artwork.seller._id}`}>
+            <Link to={`profile/${artwork.seller._id}`} className='link'>
               <Typography color='textSecondary'>
                 {artwork.seller.name}
               </Typography>
