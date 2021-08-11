@@ -20,7 +20,8 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
   orderPayReducer,
-  orderDeliverReducer
+  orderDeliverReducer,
+  orderMineListReducer
 } from './reducers/orderReducers'
 import { cartReducer } from './reducers/cartReducers';
 
@@ -58,7 +59,8 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
-  orderDeliver: orderDeliverReducer
+  orderDeliver: orderDeliverReducer,
+  orderMineList: orderMineListReducer
 })
 
 // Below code to be able to use Redux browser extention

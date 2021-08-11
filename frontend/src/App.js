@@ -28,6 +28,7 @@ import store from './store'
 import PlaceOrderPage from './screens/PlaceOrderPage'
 import OrderPage from './screens/OrderPage'
 import ReceiptPage from './screens/ReceiptPage'
+import OrderHistoryPage from './screens/OrderHistoryPage'
 
 const App = () => {
   // for mobile devices
@@ -80,6 +81,10 @@ const App = () => {
 
             <PrivateRoute
               path='/order/:orderId' component={OrderPage}>
+            </PrivateRoute>
+
+            <PrivateRoute
+              path='/orderHistory' component={OrderHistoryPage}>
             </PrivateRoute>
 
             <PrivateRoute

@@ -75,6 +75,11 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link className='link' to={'/orderHistory'}>
+                    Order history
+                  </Link>
+                </li>
+                <li>
                   <Link className='link' to='/allusers'>
                     All users
                   </Link>
@@ -95,6 +100,11 @@ const NavBar = () => {
                 <li>
                   <Link className='link' to={`/profile/${userInfo._id}`}>
                     Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link className='link' to={'/orderHistory'}>
+                    Order history
                   </Link>
                 </li>
                 <li>

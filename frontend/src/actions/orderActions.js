@@ -12,7 +12,10 @@ import {
     ORDER_DELIVER_FAIL,
     ORDER_PAY_REQUEST,
     ORDER_PAY_FAIL,
-    ORDER_PAY_SUCCESS
+    ORDER_PAY_SUCCESS,
+    ORDER_MINE_LIST_REQUEST,
+    ORDER_MINE_LIST_FAIL,
+    ORDER_MINE_LIST_SUCCESS
 } from '../constants/orderConstants';
 import ENV_URL from '../config.js'
 
@@ -49,7 +52,6 @@ const detailsOrder = (orderId) => async (dispatch, getState) => {
         const { data } = await Axios.get(`${ENV_URL}/api/orders/${orderId}`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        console.log(data)
         dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         const message =
@@ -81,7 +83,7 @@ const deliverOrder = (orderId) => async (dispatch, getState) => {
     dispatch({ type: ORDER_DELIVER_REQUEST, payload: orderId });
     const { userSignin: { userInfo } } = getState();
     try {
-        const { data } = Axios.put(`${ENV_URL}/api/orders/${orderId}/deliver`, {},
+        const { data } = await Axios.put(`${ENV_URL}/api/orders/${orderId}/deliver`, {},
             { headers: { Authorization: `Bearer ${userInfo.token}` } }
         );
         dispatch({ type: ORDER_DELIVER_SUCCESS, payload: data });
@@ -92,6 +94,23 @@ const deliverOrder = (orderId) => async (dispatch, getState) => {
             : error.message;
         dispatch({ type: ORDER_DELIVER_FAIL, payload: message });
     }
-  };
+};
 
-export {createOrder, detailsOrder, payOrder, deliverOrder}
+const listOrderMine = () => async (dispatch, getState) => {
+    dispatch({ type: ORDER_MINE_LIST_REQUEST });
+    const { userSignin: { userInfo } } = getState();
+    try {
+        const { data } = await Axios.get(`${ENV_URL}/api/orders/mine`, 
+            { headers: { Authorization: `Bearer ${userInfo.token}` } }
+        );
+        dispatch({ type: ORDER_MINE_LIST_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        dispatch({ type: ORDER_MINE_LIST_FAIL, payload: message });
+    }
+};
+
+export {createOrder, detailsOrder, payOrder, deliverOrder, listOrderMine}
