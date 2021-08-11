@@ -1,5 +1,15 @@
 import mongoose from 'mongoose'
 
+const reviewSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    comment: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const artworkSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -9,6 +19,7 @@ const artworkSchema = new mongoose.Schema(
     inStock: { type: Number, required: true },
     seller: { type: mongoose.Schema.Types.ObjectID, ref: 'User' },
     category: { type: String, required: true },
+    reviews: [reviewSchema]
   },
   {
     timestamps: true,

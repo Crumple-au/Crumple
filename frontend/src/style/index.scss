@@ -92,7 +92,7 @@ code {
 }
 .alert-info {
   color: #323232;
-  background-color: #e5e5e5;
+  background-color: #6184c469;
 }
 .alert-danger {
   color: #a02020;
@@ -149,13 +149,34 @@ code {
 /* Proceed to Checkout */
 
 .card {
-  border: 0.1rem #c0c0c0 solid;
-  background-color: #f8f8f8;
-  border-radius: 0.5rem;
+  // border: 0.1rem #c0c0c0 solid;
+  background-color: #E5E5E5;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  border-radius: 4px;
   margin: 1rem;
+  font-family: Prompt;
 }
+
+.card-title{
+  font-weight: 400;
+  span{
+      color: #F62D01;
+  }
+}
+
 .card-body {
   padding: 1rem;
+  strong{
+      // color: rgba(0, 0, 0, 0.54);
+      color: #F62D01;
+      font-weight: 500;
+  }
+  ul{
+      list-style: none;
+      li{
+          margin: .5rem;
+      }
+  }
 }
 .card-body > * {
   margin-bottom: 0.5rem;

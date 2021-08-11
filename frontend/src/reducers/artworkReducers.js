@@ -17,6 +17,10 @@ import {
   ARTWORK_DELETE_SUCCESS,
   ARTWORK_DELETE_FAIL,
   ARTWORK_DELETE_RESET,
+  ARTWORK_REVIEW_CREATE_REQUEST,
+  ARTWORK_REVIEW_CREATE_SUCCESS,
+  ARTWORK_REVIEW_CREATE_FAIL,
+  ARTWORK_REVIEW_CREATE_RESET,
 } from '../constants/artworkConstants'
 
 const productListReducer = (
@@ -99,7 +103,7 @@ const artworkDeleteReducer = (state = {}, action) => {
     case ARTWORK_DELETE_REQUEST:
       return { loading: true };
     case ARTWORK_DELETE_SUCCESS:
-      return { loading: false, success: true };
+      return { loading: false, success: action.payload };
     case ARTWORK_DELETE_FAIL:
       return { loading: false, error: action.payload };
     case ARTWORK_DELETE_RESET:
@@ -109,4 +113,19 @@ const artworkDeleteReducer = (state = {}, action) => {
   }
 };
 
-export { productListReducer, artworkListReducer, artworkCreateReducer, artworkUpdateReducer, artworkDeleteReducer, artworksDetailsReducer }
+const artworkReviewCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ARTWORK_REVIEW_CREATE_REQUEST:
+      return { loading: true };
+    case ARTWORK_REVIEW_CREATE_SUCCESS:
+      return { loading: false, success: true, review: action.payload };
+    case ARTWORK_REVIEW_CREATE_FAIL:
+      return { loading: false, error: action.payload };
+    case ARTWORK_REVIEW_CREATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export { productListReducer, artworkListReducer, artworkCreateReducer, artworkUpdateReducer, artworkDeleteReducer, artworksDetailsReducer, artworkReviewCreateReducer }

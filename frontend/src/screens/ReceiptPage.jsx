@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { detailsOrder } from '../actions/orderActions';
 import Preloader from '../components/Preloader';
 import Alert from '../components/Alert';
-import { ORDER_DETAILS_REQUEST } from '../constants/orderConstants';
 
 function ReceiptPage() {
 
     const {orderId} = useParams();
-    const history = useHistory()
 
     const orderDetails = useSelector((state) => state.orderDetails);
     const { order, loading, error } = orderDetails;
@@ -20,7 +18,7 @@ function ReceiptPage() {
         if (!order || (order && order._id !== orderId)) {
             dispatch(detailsOrder(orderId));
         } 
-    }, [dispatch, order])
+    }, [dispatch, order, orderId])
 
     return (
         loading ? (

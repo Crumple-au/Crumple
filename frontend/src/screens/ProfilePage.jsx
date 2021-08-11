@@ -4,7 +4,6 @@ import {
   useParams,
   useLocation,
   NavLink,
-  BrowserRouter,
   Switch,
   Route,
 } from 'react-router-dom'
@@ -20,8 +19,7 @@ import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined'
 import PaymentOutlinedIcon from '@material-ui/icons/PaymentOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import LiveHelpOutlinedIcon from '@material-ui/icons/LiveHelpOutlined'
-import ArtworkEditPage from './ArtworkEditPage'
-
+import ArtworkCreatePage from '../components/ArtworkCreatePage'
 
 function ProfilePage(props) {
   const { userId } = useParams();
@@ -41,8 +39,7 @@ function ProfilePage(props) {
 
 
   return (
-    <BrowserRouter>
-      <div className='profile-container'>
+    <div className='profile-container'>
         <aside className='sidebar'>
 
           <div className='heading'>
@@ -53,11 +50,11 @@ function ProfilePage(props) {
                   <h1>{user.name}</h1>
                   {user.isAdmin ? (
                     <Chip
-                      label='admin'
-                      color='primary'
-                      className='admin-badge' />
+                    label='admin'
+                    color='primary'
+                    className='admin-badge' />
                     ) : (
-                    <Chip
+                      <Chip
                       label='newbie'
                       color='default'
                       className='admin-badge' />
@@ -80,7 +77,7 @@ function ProfilePage(props) {
                   exact
                   activeClassName='selected'
                   to={`/profile/${userId}`}
-                >
+                  >
                   <span>
                     <CameraAltOutlinedIcon style={{ color: 'ivory' }} />
                   </span>
@@ -140,7 +137,7 @@ function ProfilePage(props) {
           ) : (
             <Switch>
               <Route path='/profile/:userId/createArtwork'>
-                <ArtworkEditPage />
+                <ArtworkCreatePage />
               </Route>
               <Route path='/profile/:userId/payments'>
                 <Payments />
@@ -149,13 +146,12 @@ function ProfilePage(props) {
                 <EditProfilePage />
               </Route>
               <Route path='/profile/:userId/'>
-                <ProfileArtworksPage />
+                <ProfileArtworksPage user={user.name} />
               </Route>
             </Switch>
           )}
         </main>
       </div>
-    </BrowserRouter>
   )
 }
 

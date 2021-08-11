@@ -108,6 +108,7 @@ const data = {
       price: 700,
       inStock: 10,
       description: 'My version of the Mona Lisa.',
+      reviews: []
     },
     {
       name: '3D Map of Sydney',
@@ -115,6 +116,7 @@ const data = {
       price: 500,
       inStock: 10,
       description: 'This map is a customised rendering of Sydney.',
+      reviews: []
     },
     {
       name: 'Melbourne SkyLine',
@@ -122,6 +124,7 @@ const data = {
       price: 150,
       inStock: 10,
       description: 'Photograph of the Melbourne city skyline.',
+      reviews: []
     },
     {
       name: 'Wedding Singer',
@@ -130,6 +133,7 @@ const data = {
       inStock: 10,
       description:
         'Chislic corned beef pork chop venison brisket salami pastrami short loin porchetta.',
+        reviews: []
     },
     {
       name: 'The Legend of Ishbris',
@@ -138,6 +142,7 @@ const data = {
       inStock: 10,
       description:
         'Bacon ipsum dolor amet rump sausage short loin tongue tenderloin turducken. Burgdoggen leberkas capicola drumstick filet mignon cupim landjaeger biltong flank pig pancetta jerky ribeye meatball. ',
+        reviews: []
     },
     {
       name: 'Budget App',
@@ -146,6 +151,7 @@ const data = {
       inStock: 10,
       description:
         'Pancetta porchetta picanha, pork jowl biltong ground round ribeye fatback turducken frankfurter pork loin. Ground round landjaeger turducken leberkas capicola ribeye. Pastrami pork loin andouille kevin tongue meatball picanha.',
+        reviews: []
     },
   ],
   categories: [

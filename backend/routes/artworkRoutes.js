@@ -68,7 +68,6 @@ artworkRouter.get(
     '/:id',
     expressAsyncHandler(async (req, res) => {
         const populateQuery = { path:'seller', select: ['name', 'image'] };
-        console.log(req.params.id)
         try{
             const artwork = await Artwork.findById(req.params.id).populate(populateQuery);
             if (artwork) {
@@ -111,10 +110,37 @@ artworkRouter.delete(
         const artwork = await Artwork.findById(req.params.id);
         if (artwork) {
             const deleteArtwork = await artwork.remove();
-            res.send({ message: 'Artwork Deleted', artwork: deleteArtwork });
+            res.status(200).send({ message: 'Artwork Deleted', artwork: deleteArtwork });
         } else {
             res.status(404).send({ message: 'Artwork Not Found' });
         }
+    })
+);
+
+artworkRouter.post(
+    '/:id/reviews',
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+      const artworkId = req.params.id;
+      const artwork = await Artwork.findById(artworkId);
+      if (artwork) {
+        if (artwork.reviews.find((x) => x.name === req.user.name)) {
+            return res.status(400).send({ message: 'You already submitted a review' });
+        }
+
+        const review = {
+            name: req.user.name,
+            comment: req.body.comment,
+        };
+        artwork.reviews.push(review);
+        const updatedArtwork = await artwork.save();
+        res.status(201).send({
+          message: 'Review Created',
+          review: updatedArtwork.reviews[updatedArtwork.reviews.length - 1],
+        });
+      } else {
+            res.status(404).send({ message: 'Artwork Not Found' });
+      }
     })
 );
 

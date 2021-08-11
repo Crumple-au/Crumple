@@ -23,21 +23,14 @@ function OrderPage() {
     const orderDetails = useSelector((state) => state.orderDetails);
     const { order, loading, error } = orderDetails;
 
-    const userSignin = useSelector((state) => state.userSignin);
-    const { userInfo } = userSignin;
-
+    // const userSignin = useSelector((state) => state.userSignin);
+    // const { userInfo } = userSignin;
 
     const orderPay = useSelector((state) => state.orderPay);
     const {
         loading: loadingPay,
         error: errorPay,
         success: successPay } = orderPay;
-
-    // const orderDeliver = useSelector((state) => state.orderDeliver);
-    // const {
-    //     loading: loadingDeliver,
-    //     error: errorDeliver,
-    //     success: successDeliver } = orderDeliver;
 
     const dispatch = useDispatch();
 

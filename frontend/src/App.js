@@ -63,9 +63,7 @@ const App = () => {
               path='/allusers' component={ListUsersPage} >
             </AdminRoute>
 
-            <PrivateRoute
-              path='/cart/:artworkId?' component={CartPage}
-            ></PrivateRoute>
+            <Route path='/cart/:artworkId?' component={CartPage} />
 
             <PrivateRoute 
               path='/shipping' component={ShippingPage}>

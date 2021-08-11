@@ -14,7 +14,8 @@ import {
   artworkCreateReducer,
   artworkUpdateReducer,
   artworkDeleteReducer,
-  artworksDetailsReducer
+  artworksDetailsReducer,
+  artworkReviewCreateReducer
 } from './reducers/artworkReducers';
 import {
   orderCreateReducer,
@@ -55,6 +56,7 @@ const reducer = combineReducers({
   artworkUpdate: artworkUpdateReducer,
   artworkDelete: artworkDeleteReducer,
   artworkDetails: artworksDetailsReducer,
+  artworkReviewCreate: artworkReviewCreateReducer,
   cart: cartReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,

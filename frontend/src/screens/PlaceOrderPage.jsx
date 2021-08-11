@@ -7,7 +7,7 @@ import StepsUI from '../components/StepsUI';
 import Preloader from '../components/Preloader';
 import Alert from '../components/Alert';
 import art from '../images/crumple-logo.jpg'
-import { Button, Typography } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
 
 const shippingSteps = {

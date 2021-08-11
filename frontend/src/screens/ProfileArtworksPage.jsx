@@ -8,18 +8,17 @@ import { Button, Box, Grid } from '@material-ui/core'
 function ProfileArtworksPage(props) {
   const { userId } = useParams()
   const { pathname } = useLocation()
+
   const artworkList = useSelector((state) => state.artworkList)
-  const { artworks } = artworkList
+  const { loading, artworks } = artworkList
+
   const userSignin = useSelector((state) => state.userSignin)
   const { userInfo } = userSignin
+
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(listArtworks({ seller: userId }))
-  }, [])
-  useEffect(() => {
-    // console.log(pathname)
-    if (artworks === undefined) {
+    if (!artworks) {
       dispatch(listArtworks({ seller: userId }))
     }
   }, [dispatch, artworks, userId, pathname])
@@ -37,10 +36,11 @@ function ProfileArtworksPage(props) {
           </Button>
         )}
       </Box>
-
       <Grid container spacing={3} justifyContent='center' alignItems='center'>
-        {artworks &&
-          artworks.map((item) => <Artworks key={item._id} artwork={item} />)}
+        {!loading && artworks.length > 0 ?
+          artworks.map((item) => <Artworks key={item._id} artwork={item} />)
+        : <h2 className="card-title">{props.user} has no artworks</h2>
+        }
       </Grid>
     </Box>
   )
