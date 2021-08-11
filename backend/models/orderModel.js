@@ -7,8 +7,8 @@ const orderSchema = new mongoose.Schema(
                 name: { type: String, required: true },
                 qty: { type: Number, required: true },
                 price: { type: Number, required: true },
-                image: { type: String, required: true },
-                artwork: { type: mongoose.Schema.Types.ObjectId, ref: 'Artwork', required: true },
+                image: { type: String },
+                artwork: { type: mongoose.Schema.Types.ObjectId, ref: 'Artwork' },
             },
         ],
         shippingAddress: {
