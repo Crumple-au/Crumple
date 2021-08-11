@@ -37,7 +37,8 @@ orderRouter.get(
     '/:id',
     isAuth,
     expressAsyncHandler(async (req, res) => {
-        const order = await Order.findById(req.params.id);
+        const populateQuery = { path:'seller', select: ['email', 'name'] };
+        const order = await Order.findById(req.params.id).populate(populateQuery);
         if (order) {
             res.status(200).send(order);
         } else {
