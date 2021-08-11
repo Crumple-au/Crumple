@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import { render } from '@testing-library/react'
-import App from '../App'
+import MobileNavBar from '../components/MobileNavBar.jsx'
 import configureStore from 'redux-mock-store'
 
-describe('App Component Tests', () => {
+describe('MobileNavBar Component Tests', () => {
   const initialState = {
     userSignin: {},
     cart: {
@@ -16,30 +16,16 @@ describe('App Component Tests', () => {
     },
   }
   const mockStore = configureStore()
-
-  test('renders main page without crashing', () => {
+  test('renders page without crashing', () => {
     const store = mockStore(initialState)
-
     const div = document.createElement('div')
     ReactDOM.render(
       <Provider store={store}>
-        <App />
+        <Router>
+          <MobileNavBar />
+        </Router>
       </Provider>,
       div
     )
   })
-
-  test('renders headline', () => {
-    const store = mockStore(initialState)
-
-    const { getByText } = render(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    )
-    const linkElement = getByText(/made for makers/i)
-    expect(linkElement).toBeInTheDocument()
-  })
 })
-
-// button test
