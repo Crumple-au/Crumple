@@ -56,25 +56,27 @@ const SearchBar = () => {
             <MenuItem value='crafts'>CRAFTS</MenuItem>
           </TextField>
         </FormControl>
-        <FormControl variant='filled' size='small'>
+        <FormControl
+          variant='filled'
+          size='small'
+          className={classes.formControl}
+        >
           <TextField
             variant='outlined'
             id='search'
             label='What are you looking for?'
             size='small'
-            className={classes.textForm}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
         </FormControl>
 
-        <FormControl>
+        <FormControl className={classes.formControl}>
           <Button
             type='submit'
             id='search-button'
             data-testid='search-button'
             onClick={handleSubmit}
-            className={classes.textForm}
             variant='contained'
             size='large'
           >

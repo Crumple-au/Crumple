@@ -14,9 +14,9 @@ describe('Categories Component Tests', () => {
   })
 
   test('renders categories', () => {
-    const { getAllByRole } = render(<Categories />)
+    const { queryAllByRole } = render(<Categories />)
     act(() => {
-      getAllByRole('button')
+      queryAllByRole('button')
     })
   })
 })

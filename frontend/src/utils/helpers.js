@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import ENV_URL from '../config.js'
 
+// function to fetch data and can be reused given the api url
 export const useFetch = (url) => {
   const [element, setElement] = useState([])
   const [loading, setLoading] = useState(true)

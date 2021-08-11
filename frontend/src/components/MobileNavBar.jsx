@@ -35,6 +35,7 @@ const MobileNavBar = () => {
     <AppBar
       style={{ height: '5rem', backgroundColor: black }}
       position='sticky'
+      className={classes.appBar}
     >
       <Toolbar>
         <Box py='1.5rem'>
