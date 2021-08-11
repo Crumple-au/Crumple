@@ -12,7 +12,7 @@ describe('SearchBar Component Tests', () => {
 
   test('takes user search input', () => {
     const utils = render(<SearchBar />)
-    const input = utils.getByLabelText('Search')
+    const input = utils.getByLabelText(/looking/i)
     fireEvent.change(input, { target: { value: 'asdf' } })
     expect(input.value).toBe('asdf')
   })
@@ -25,7 +25,7 @@ describe('SearchBar Component Tests', () => {
     expect(list.value).toBe('crafts')
   })
 
-  test('accepts user click on submit', () => {
+  test('accepts user click on submit', async () => {
     const mockSubmit = jest.fn()
     const button = shallow(<SearchBar onClick={mockSubmit}></SearchBar>)
     const fakeEvent = { preventDefault: jest.fn() }
