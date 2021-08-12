@@ -109,8 +109,7 @@ artworkRouter.put(
             artwork.price = req.body.price;
             artwork.image = req.body.image;
             artwork.category = req.body.category;
-            artwork.brand = req.body.brand;
-            artwork.countInStock = req.body.countInStock;
+            artwork.inStock = req.body.inStock;
             artwork.description = req.body.description;
 
             const updatedArtwork = await artwork.save();

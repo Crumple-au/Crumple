@@ -14,6 +14,8 @@ import PaymentOutlinedIcon from '@material-ui/icons/PaymentOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import MenuIcon from '@material-ui/icons/Menu'
 import ArtworkCreatePage from '../components/ArtworkCreatePage'
+import ListUsersPage from './ListUsersPage';
+import OrderHistoryPage from './OrderHistoryPage';
 import {
   Box,
   Drawer,
@@ -29,6 +31,7 @@ import {
   Grid,
 } from '@material-ui/core'
 import { useStyles } from '../utils/theme'
+import EditArtwork from '../components/EditArtwork'
 
 function ProfilePage(props) {
   const { window } = props

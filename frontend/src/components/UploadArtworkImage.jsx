@@ -45,17 +45,17 @@ function UploadArtworkImage(props) {
     }
 
     useEffect(() => {
-        
         if (!props.show) {
             return null
         }
     }, [props.show])
 
     return (
-        <div className='modal image-upload' onClick={props.onClose}>
+        <div className='modal image-upload'>
             <form
             className='modal-content'
             onSubmit={submitHandler}
+            onClick={props.onClose}
             onClick={(e) => e.stopPropagation()}
             >
             <div>
