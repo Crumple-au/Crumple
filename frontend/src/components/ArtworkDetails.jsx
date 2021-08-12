@@ -154,32 +154,38 @@ const ArtworkDetails = (props) => {
                       {artwork.description}
                     </Typography>
                   </CardContent>
-                  <Button
-                    // component={Link}
-                    onClick={() => addToCartHandler(artwork._id)}
-                    style={{ margin: '1rem' }}
-                    variant='contained'
-                    onClick={() => history.goBack()}
-                  >
-                    Back
-                  </Button>
-                  {userInfo._id === artwork.seller._id && (
-                    <>
-                      <Button
+                  <Box>
+                    <Button
+                      component={Link}
+                      style={{ margin: '1rem' }}
                       variant='contained'
-                      color='secondary'
-                      onClick={() => deleteHandler(artwork)}
+                      onClick={() => history.goBack()}
                     >
-                      Delete Artwork
+                      Back
                     </Button>
-                      <Button
-                        component={Link}
-                        to={`/profile/${artwork._id}/editArtwork`}
-                      >
-                        Edit Artwork
-                      </Button>
-                    </>
-                  )}
+
+                    {userInfo._id === artwork.seller._id && (
+                      <>
+                        <Button
+                          variant='contained'
+                          color='secondary'
+                          style={{ margin: '1rem' }}
+                          onClick={() => deleteHandler(artwork)}
+                        >
+                          Delete
+                        </Button>
+
+                        <Button
+                          variant='contained'
+                          component={Link}
+                          style={{ margin: '1rem' }}
+                          to={`/profile/${artwork._id}/editArtwork`}
+                        >
+                          Edit
+                        </Button>
+                      </>
+                    )}
+                  </Box>
                 </Card>
               </Grid>
 

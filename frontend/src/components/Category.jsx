@@ -85,9 +85,12 @@ const Category = () => {
               </CardActionArea>
               <CardContent>
                 <Typography align='center' color='textSecondary'>
-                  <span style={{ color: primary }}>{count}</span> artworks found
+                  <span style={{ color: primary, fontWeight: '600' }}>
+                    {count}
+                  </span>{' '}
+                  artworks found
                 </Typography>
-                <Box marginTop='2rem'>
+                <Box marginTop='1.5rem'>
                   <Typography>Sort By</Typography>
                   <SortBy label='PRICE' sort={sortPrice} set={setSortPrice} />
                   <SortBy label='CREATED' sort={sortOrder} set={setSortOrder} />

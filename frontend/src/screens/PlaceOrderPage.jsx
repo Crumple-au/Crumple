@@ -7,7 +7,15 @@ import StepsUI from '../components/StepsUI'
 import Preloader from '../components/Preloader'
 import Alert from '../components/Alert'
 import art from '../images/crumple-logo.jpg'
-import { Button, Box } from '@material-ui/core'
+import {
+  Button,
+  Box,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+} from '@material-ui/core'
+import { secondary } from '../utils/theme'
 
 const shippingSteps = {
   text1: 'Signin',
@@ -50,106 +58,149 @@ function PlaceOrderPage() {
   }, [dispatch, order, history, success])
 
   return (
-    <div>
+    <>
       <StepsUI step1 step2 step3 step4 text={shippingSteps}></StepsUI>
-      <Box margin='1rem 2rem 1rem 2rem'>
-        <div className='row top'>
-          <div className='col-2'>
-            <div className='card card-body'>
-              <h1 className='card-title'>Shipping</h1>
-              <p>
-                <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-                <strong>Address: </strong> {cart.shippingAddress.address},
-                {cart.shippingAddress.city},{cart.shippingAddress.postalCode},
-                {cart.shippingAddress.country}
-              </p>
-            </div>
+      <Box margin='2rem 2rem 2rem 2rem'>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={12} md={1}></Grid>
 
-            <div className='card card-body'>
-              <h1 className='card-title'>Payment</h1>
-              <p>
-                <strong>Method:</strong> {cart.paymentMethod}
-              </p>
-            </div>
+          <Grid item xs={12} sm={12} md={6}>
+            <Box m='1rem'>
+              <Card>
+                <CardContent>
+                  <Typography gutterBottom variant='h4'>
+                    shipping
+                  </Typography>
+                  <Typography>
+                    <span style={{ fontWeight: '500' }}>Name:</span>{' '}
+                    {cart.shippingAddress.fullName}
+                  </Typography>
+                  <Typography>
+                    <span style={{ fontWeight: '500' }}>Address:</span>{' '}
+                    {cart.shippingAddress.address}, {cart.shippingAddress.city},{' '}
+                    {cart.shippingAddress.postalCode},{' '}
+                    {cart.shippingAddress.country}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
 
-            <div className='card card-body'>
-              <h1 className='card-title'>
-                Order <span>Items</span>
-              </h1>
-              {/* <Typography gutterBottom variant='h4'>
-                            Order<span style={{ color: 'rgb(146, 45, 1)' }}> Items</span>
-                        </Typography> */}
-              <ul>
-                {cart.cartItems.map((item) => (
-                  <li key={item.product}>
-                    <div className='row'>
-                      <img
-                        src={item.image || art}
-                        alt={item.name}
-                        width='200px'
-                        height='200px'
-                      ></img>
-                      <div className='min-30'>
-                        <Link to={`/product/${item.product}`}>{item.name}</Link>
-                      </div>
-                      <div>
-                        {item.qty} x ${item.price} = ${item.qty * item.price}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className='col-1'>
-            <div className='card card-body'>
-              <ul>
-                <div>
-                  <h1 className='card-title'>
-                    Order{' '}
-                    <span style={{ color: 'rgb(246, 45, 1)' }}>Summary</span>
-                  </h1>
-                </div>
-                <li>
-                  <div className='row'>
-                    <div>Items</div>
-                    <div>${cart.itemsPrice.toFixed(2)}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className='row'>
-                    <div>Tax</div>
-                    <div>${cart.taxPrice.toFixed(2)}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className='row'>
-                    <div>
-                      <strong> Order Total</strong>
-                    </div>
-                    <div>
-                      <strong>${cart.totalPrice.toFixed(2)}</strong>
-                    </div>
-                  </div>
-                </li>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  onClick={placeOrderHandler}
-                  style={{ width: '100%' }}
-                  disabled={cart.cartItems.length === 0}
-                >
-                  Place Order
-                </Button>
+            <Box m='1rem'>
+              <Card>
+                <CardContent>
+                  <Typography gutterBottom variant='h4'>
+                    payment
+                  </Typography>
+                  <Typography>
+                    <span style={{ fontWeight: '500' }}>Method:</span>{' '}
+                    {cart.paymentMethod}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
 
-                {loading && <Preloader></Preloader>}
-                {error && <Alert variant='danger'>{error}</Alert>}
-              </ul>
-            </div>
-          </div>
-        </div>
+            <Box m='1rem'>
+              <Card>
+                <CardContent>
+                  <Typography gutterBottom variant='h4'>
+                    order <span style={{ color: secondary }}>items</span>
+                  </Typography>
+
+                  {cart.cartItems.map((item) => (
+                    <Box
+                      display='flex'
+                      justifyContent='space-between'
+                      alignItems='center'
+                      key={item.product}
+                    >
+                      <Box m='0.2rem'>
+                        <img
+                          src={item.image || art}
+                          alt={item.name}
+                          width='130px'
+                          height='130px'
+                        />
+                      </Box>
+                      <Box m='0.5rem'>
+                        <Typography>
+                          <Link
+                            className='link'
+                            to={`/product/${item.product}`}
+                          >
+                            {item.name}
+                          </Link>
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Typography>
+                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  ))}
+                </CardContent>
+              </Card>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={4}>
+            <Box m='1rem'>
+              <Card>
+                <CardContent>
+                  <Typography gutterBottom variant='h4'>
+                    order <span style={{ color: secondary }}>summary</span>
+                  </Typography>
+                  <div className='row'>
+                    <Box>
+                      <Typography>Items</Typography>
+                    </Box>
+                    <Box>
+                      <Typography>${cart.itemsPrice.toFixed(2)}</Typography>
+                    </Box>
+                  </div>
+                  <div className='row'>
+                    <Box>
+                      <Typography>Tax</Typography>
+                    </Box>
+                    <Box>
+                      <Typography>${cart.taxPrice.toFixed(2)}</Typography>
+                    </Box>
+                  </div>
+                  <div className='row'>
+                    <Box>
+                      <Typography>
+                        <span style={{ fontWeight: '500' }}>Order Total</span>
+                      </Typography>
+                    </Box>
+                    <Box paddingTop='1rem'>
+                      <Typography>
+                        <span style={{ fontWeight: '500' }}>
+                          ${cart.totalPrice.toFixed(2)}
+                        </span>
+                      </Typography>
+                    </Box>
+                  </div>
+                  <Box paddingTop='1rem'>
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      onClick={placeOrderHandler}
+                      style={{ width: '100%' }}
+                      disabled={cart.cartItems.length === 0}
+                    >
+                      Place Order
+                    </Button>
+                  </Box>
+                  {loading && <Preloader></Preloader>}
+                  {error && <Alert variant='danger'>{error}</Alert>}
+                </CardContent>
+              </Card>
+            </Box>
+          </Grid>
+          <Grid it em xs={12} sm={12} md={1} align='center'></Grid>
+        </Grid>
       </Box>
-    </div>
+    </>
   )
 }
 
