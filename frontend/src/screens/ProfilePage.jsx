@@ -21,6 +21,8 @@ import PaymentOutlinedIcon from '@material-ui/icons/PaymentOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import MenuIcon from '@material-ui/icons/Menu'
 import ArtworkCreatePage from '../components/ArtworkCreatePage'
+import ListUsersPage from './ListUsersPage';
+import OrderHistoryPage from './OrderHistoryPage';
 import {
   Box,
   Drawer,
@@ -36,6 +38,7 @@ import {
   Grid,
 } from '@material-ui/core'
 import { useStyles } from '../utils/theme'
+import EditArtwork from '../components/EditArtwork'
 
 function ProfilePage(props) {
   const { window } = props
@@ -160,7 +163,7 @@ function ProfilePage(props) {
                 edge='start'
                 onClick={handleDrawerToggle}
                 className={classes.menuButton}
-                style={{ float: 'left' }}
+                style={{ float: 'left',}}
               >
                 <MenuIcon />
               </IconButton>
@@ -204,7 +207,7 @@ function ProfilePage(props) {
               justifyContent='center'
               alignItems='center'
             >
-              <Grid item xs={12} sm={12} md={2} lg={3} xl={2}></Grid>
+              <Grid item xs={12} sm={12} md={2} lg={2} xl={2}></Grid>
 
               <Grid item xs={12} sm={12} md={10} lg={9} xl={10}>
                 {loading ? (
@@ -216,6 +219,9 @@ function ProfilePage(props) {
                     <Route path='/profile/:userId/createArtwork'>
                       <ArtworkCreatePage />
                     </Route>
+                    <Route path='/profile/:artworkId/editArtwork'>
+                      <EditArtwork />
+                    </Route>
                     <Route path='/profile/:userId/payments'>
                       <Payments />
                     </Route>
@@ -224,6 +230,12 @@ function ProfilePage(props) {
                     </Route>
                     <Route path='/profile/:userId/'>
                       <ProfileArtworksPage />
+                    </Route>
+                    <Route path='/orderHistory'>
+                      <OrderHistoryPage/>
+                    </Route>
+                    <Route path='/allusers'>
+                      <ListUsersPage/>
                     </Route>
                   </Switch>
                 )}

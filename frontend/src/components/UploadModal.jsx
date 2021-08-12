@@ -42,9 +42,7 @@ function UploadModal(props) {
 
   const submitHandler = (event) => {
     event.preventDefault()
-
       setRefresh(true)
-
       if (imageURL.data) {
         dispatch(updateUserProfile({
             userId: userId,
@@ -53,7 +51,6 @@ function UploadModal(props) {
       } else {
         console.error(errorUpdate)
       }
-
   };
 
   const fileSelected = (event) => {
@@ -68,10 +65,11 @@ function UploadModal(props) {
   }, [props.show])
 
   return (
-    <div className='modal image-upload' onClick={props.onClose}>
+    <div className='modal image-upload'>
       <form
         className='modal-content'
         onSubmit={submitHandler}
+        onClick={props.onClose}
         onClick={(e) => e.stopPropagation()}
       >
         <div>
