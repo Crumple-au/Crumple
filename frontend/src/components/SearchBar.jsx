@@ -4,6 +4,7 @@ import {
   FormGroup,
   MenuItem,
   TextField,
+  OutlinedInput,
   Box,
   Button,
 } from '@material-ui/core'
@@ -61,13 +62,14 @@ const SearchBar = () => {
           size='small'
           className={classes.formControl}
         >
-          <TextField
-            variant='outlined'
+          <OutlinedInput
+            type='text'
             id='search'
-            label='What are you looking for?'
-            size='small'
+            placeholder='What are you looking for?'
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            name='search'
+            margin='dense'
           />
         </FormControl>
 

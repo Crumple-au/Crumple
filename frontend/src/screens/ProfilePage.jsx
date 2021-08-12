@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../style/profile.scss'
-import {
-  useParams,
-  useLocation,
-  Link,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom'
+import { useParams, useLocation, Link, Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { detailsUser } from '../actions/userActions'
 import Payments from '../components/Payments'
@@ -143,7 +136,11 @@ function ProfilePage(props) {
         <Divider className={classes.dividerColor} />
         <Box margin='1rem 0'>
           <Typography className={classes.fontColor}>Having trouble?</Typography>
-          <Typography className={classes.fontColor}>Contact us.</Typography>
+          <Typography className={classes.fontColor}>
+            <a className='link' href={`mailto:crumple.au@gmail.com`}>
+              Contact us
+            </a>
+          </Typography>
         </Box>
       </Box>
     </Box>
