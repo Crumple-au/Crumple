@@ -87,3 +87,4 @@ export const useStyles = makeStyles({
 export const primary = '#6184C4'
 export const secondary = '#F62D01'
 export const black = '#323232'
+export const grey = '#E5E5E5'
