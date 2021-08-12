@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom'
 import { createArtwork } from '../actions/artworkActions';
 import { ARTWORK_CREATE_RESET } from '../constants/artworkConstants';
-import Preloader from '../components/Preloader';
-import Alert from '../components/Alert';
+import Preloader from './Preloader';
+import Alert from './Alert';
 import { Button } from '@material-ui/core'
 
 import '../style/profile.scss'
-import UploadArtworkImage from '../components/UploadArtworkImage';
+import UploadArtworkImage from './UploadArtworkImage';
 
-function ArtworkEditPage(props) {
+function ArtworkCreatePage(props) {
 
     const {userId} = useParams();
     const history = useHistory();
@@ -63,7 +63,7 @@ function ArtworkEditPage(props) {
             setDescription(createdArtwork.description);
             setInStock(createdArtwork.inStock)
         }
-    }, [dispatch, createdArtwork, successCreate, artworkImage, props.history, userId]);
+    }, [dispatch, createdArtwork, successCreate, artworkImage, history, userId]);
 
 
     return (
@@ -167,4 +167,4 @@ function ArtworkEditPage(props) {
     )
 }
 
-export default ArtworkEditPage
+export default ArtworkCreatePage

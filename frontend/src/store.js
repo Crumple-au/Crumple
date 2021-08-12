@@ -14,9 +14,16 @@ import {
   artworkCreateReducer,
   artworkUpdateReducer,
   artworkDeleteReducer,
-  artworksDetailsReducer
+  artworksDetailsReducer,
+  artworkReviewCreateReducer
 } from './reducers/artworkReducers';
-import {orderCreateReducer} from './reducers/orderReducers'
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+  orderDeliverReducer,
+  orderMineListReducer
+} from './reducers/orderReducers'
 import { cartReducer } from './reducers/cartReducers';
 
 const initialState = {
@@ -49,8 +56,13 @@ const reducer = combineReducers({
   artworkUpdate: artworkUpdateReducer,
   artworkDelete: artworkDeleteReducer,
   artworkDetails: artworksDetailsReducer,
+  artworkReviewCreate: artworkReviewCreateReducer,
   cart: cartReducer,
-  orderCreate: orderCreateReducer
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
+  orderDeliver: orderDeliverReducer,
+  orderMineList: orderMineListReducer
 })
 
 // Below code to be able to use Redux browser extention

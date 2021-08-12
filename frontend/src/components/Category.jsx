@@ -37,7 +37,7 @@ const Category = () => {
     })
     // setFilter(filteredArtworks)
     console.log(filteredArtworks)
-  }, [])
+  }, [dispatch])
 
   // console.log(artworks)
   return (

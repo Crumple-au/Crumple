@@ -71,7 +71,11 @@ const MobileNavBar = () => {
                     Profile
                   </Link>
                 </li>
-
+                <li>
+                  <Link className='link' to={'/orderHistory'}>
+                    Order history
+                  </Link>
+                </li>
                 <li>
                   <Link className='link' to='/allusers'>
                     All users
@@ -96,7 +100,11 @@ const MobileNavBar = () => {
                     Profile
                   </Link>
                 </li>
-
+                <li>
+                  <Link className='link' to={'/orderHistory'}>
+                    Order history
+                  </Link>
+                </li>
                 <li>
                   <Link className='link' to='#signout' onClick={signoutHandler}>
                     Sign Out

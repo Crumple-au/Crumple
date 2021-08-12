@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 import {
   Box,
@@ -14,10 +14,9 @@ import {
 import { useStyles } from '../utils/theme'
 import art from '../images/crumple-logo.jpg'
 
-const Artworks = ({ user, artwork, onRemove }) => {
+const Artworks = ({ artwork, onRemove }) => {
   const classes = useStyles();
   const location = useLocation();
-  const history = useHistory();
   // const [newArtworks, setNewArtworks] = useState([])
 
   // const filteredArtworks = newArtworks.filter((artwork) => {

@@ -32,9 +32,9 @@ function ListUsersPage(props) {
   }, [dispatch, successDelete])
 
   return (
-    <>
+    <div className="card">
       <Box m='4rem 2rem 2rem 2rem'>
-        <h1>List of all users</h1>
+        <h1 className="card-title">List of all <span>users</span></h1>
 
         {loadingDelete && <Preloader />}
         {errorDelete && <Alert variant='danger'>{errorDelete}</Alert>}
@@ -93,7 +93,7 @@ function ListUsersPage(props) {
           </>
         )}
       </Box>
-    </>
+    </div>
   )
 }
 
