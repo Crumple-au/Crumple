@@ -164,13 +164,21 @@ const ArtworkDetails = (props) => {
                     Back
                   </Button>
                   {userInfo._id === artwork.seller._id && (
-                    <Button
+                    <>
+                      <Button
                       variant='contained'
                       color='secondary'
                       onClick={() => deleteHandler(artwork)}
                     >
                       Delete Artwork
                     </Button>
+                      <Button
+                        component={Link}
+                        to={`/profile/${artwork._id}/editArtwork`}
+                      >
+                        Edit Artwork
+                      </Button>
+                    </>
                   )}
                 </Card>
               </Grid>

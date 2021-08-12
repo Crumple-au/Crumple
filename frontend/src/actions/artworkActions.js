@@ -54,7 +54,7 @@ const createArtwork = (artwork) => async (dispatch, getState) => {
   try {
     console.log(artwork)
     const { data } = await Axios.post(
-      '/api/artworks/', {artwork},
+      '${ENV_URL}/api/artworks/', {artwork},
       { headers: { Authorization: `Bearer ${userInfo.token}` } }
     );
     dispatch({ type: ARTWORK_CREATE_SUCCESS, payload: data.artwork });
@@ -73,7 +73,7 @@ const updateArtwork = (artwork) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.put(`/api/artworks/${artwork._id}`, artwork, {
+    const { data } = await Axios.put(`${ENV_URL}/api/artworks/${artwork._id}`, artwork, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ARTWORK_UPDATE_SUCCESS, payload: data });
@@ -92,7 +92,7 @@ const deleteArtwork = (artworkId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-      const { data } = await Axios.delete(`/api/artworks/${artworkId}`, {
+      const { data } = await Axios.delete(`${ENV_URL}/api/artworks/${artworkId}`, {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
       console.log(data)

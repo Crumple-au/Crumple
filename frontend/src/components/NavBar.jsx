@@ -69,7 +69,7 @@ const NavBar = () => {
 
           {userInfo && userInfo.isAdmin ? (
             <Box py='1.5rem' pr='5rem' className='dropdown'>
-              <Button variant='contained' to='/profile'>
+              <Button variant='contained' component={Link} to={`/profile/${userInfo._id}`}>
                 {userInfo.name}
               </Button>
               <ul className='dropdown-content'>

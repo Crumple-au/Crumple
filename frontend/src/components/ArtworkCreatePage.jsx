@@ -50,7 +50,6 @@ function ArtworkCreatePage(props) {
     };
 
     useEffect(() => {
-        console.log(history)
         if (successCreate) {
             dispatch({ type: ARTWORK_CREATE_RESET });
             // props.history.push(`/profile/${userId}`);
