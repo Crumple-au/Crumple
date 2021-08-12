@@ -38,13 +38,14 @@ function Payments() {
           <form onSubmit={submitHandler}>
             <Typography gutterBottom color='textSecondary'>
               {' '}
-              Turn things on by saving your bank details.
+              Turn things on by saving your personal information and bank
+              details.
             </Typography>
 
             <Box
               display='flex'
               justifyContent='space-between'
-              paddingTop='1rem'
+              paddingTop='3rem'
             >
               <Box>
                 <Typography gutterBottom>Personal Information</Typography>

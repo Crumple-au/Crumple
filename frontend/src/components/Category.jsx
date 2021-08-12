@@ -19,6 +19,7 @@ import { useFetch } from '../utils/helpers'
 import { useStyles } from '../utils/theme'
 import { useDispatch, useSelector } from 'react-redux'
 import { listArtworksAll, listArtworks } from '../actions/artworkActions'
+import { primary } from '../utils/theme'
 
 const Category = () => {
   const { id } = useParams()
@@ -31,7 +32,7 @@ const Category = () => {
 
   const [sortOrder, setSortOrder] = useState('')
   const [sortPrice, setSortPrice] = useState('')
-  const [filter, setFilter] = useState([])
+  const [search, setSearch] = useState([])
   // console.log(count)
 
   useEffect(() => {
@@ -48,11 +49,10 @@ const Category = () => {
     // const filteredArtworks = artworks.filter((artwork) => {
     //   return artwork.name.toLowerCase().includes('mona')
     // })
-    // setFilter(filteredArtworks)
+    // setSearch(filteredArtworks)
     // console.log(filteredArtworks)
   }, [dispatch, element, sortOrder, sortPrice])
 
-  // console.log(artworks)
   return (
     <>
       <SearchBar />
@@ -81,14 +81,17 @@ const Category = () => {
                   <Typography align='center' color='textSecondary'>
                     {element.description}
                   </Typography>
-                  <Typography align='center' color='textSecondary'>
-                    {count} artworks found
-                  </Typography>
                 </CardContent>
               </CardActionArea>
               <CardContent>
-                <SortBy label='price' sort={sortPrice} set={setSortPrice} />
-                <SortBy label='sort by' sort={sortOrder} set={setSortOrder} />
+                <Typography align='center' color='textSecondary'>
+                  <span style={{ color: primary }}>{count}</span> artworks found
+                </Typography>
+                <Box marginTop='2rem'>
+                  <Typography>Sort By</Typography>
+                  <SortBy label='PRICE' sort={sortPrice} set={setSortPrice} />
+                  <SortBy label='CREATED' sort={sortOrder} set={setSortOrder} />
+                </Box>
               </CardContent>
               <CardActions>
                 <Box></Box>
