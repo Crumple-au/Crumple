@@ -6,6 +6,9 @@ import {
   ARTWORK_LIST_REQUEST,
   ARTWORK_LIST_SUCCESS,
   ARTWORK_LIST_FAIL,
+  ARTWORK_LISTALL_REQUEST,
+  ARTWORK_LISTALL_SUCCESS,
+  ARTWORK_LISTALL_FAIL,
   ARTWORK_CREATE_REQUEST,
   ARTWORK_CREATE_SUCCESS,
   ARTWORK_CREATE_FAIL,
@@ -21,14 +24,14 @@ import {
 } from '../constants/artworkConstants'
 import ENV_URL from '../config.js'
 
-const listArtworks =
-  ({ seller = '' }) =>
-  async (dispatch) => {
+const listArtworks = ({ seller = '', category = '', order = '', price = '' }) => async (dispatch) => {
     dispatch({ type: ARTWORK_LIST_REQUEST })
     try {
+      // console.log('price:', price) 
       const { data } = await Axios.get(
-        `${ENV_URL}/api/artworks?seller=${seller}`
+        `${ENV_URL}/api/artworks?seller=${seller}&category=${category}&order=${order}&price=${price}`
       )
+      console.log(data)
       dispatch({ type: ARTWORK_LIST_SUCCESS, payload: data })
     } catch (error) {
       dispatch({ type: ARTWORK_LIST_FAIL, payload: error.message })
@@ -36,12 +39,12 @@ const listArtworks =
 };
 
 const listArtworksAll = () => async (dispatch) => {
-  dispatch({ type: ARTWORK_LIST_REQUEST })
+  dispatch({ type: ARTWORK_LISTALL_REQUEST })
   try {
     const { data } = await Axios.get(`${ENV_URL}/api/artworks/`)
-    dispatch({ type: ARTWORK_LIST_SUCCESS, payload: data })
+    dispatch({ type: ARTWORK_LISTALL_SUCCESS, payload: data })
   } catch (error) {
-    dispatch({ type: ARTWORK_LIST_FAIL, payload: error.message })
+    dispatch({ type: ARTWORK_LISTALL_FAIL, payload: error.message })
   }
 };
 

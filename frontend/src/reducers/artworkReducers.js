@@ -5,6 +5,9 @@ import {
   ARTWORK_LIST_REQUEST,
   ARTWORK_LIST_SUCCESS,
   ARTWORK_LIST_FAIL,
+  ARTWORK_LISTALL_REQUEST,
+  ARTWORK_LISTALL_SUCCESS,
+  ARTWORK_LISTALL_FAIL,
   ARTWORK_CREATE_REQUEST,
   ARTWORK_CREATE_SUCCESS,
   ARTWORK_CREATE_FAIL,
@@ -31,7 +34,7 @@ const productListReducer = (
     case ARTWORK_LIST_REQUEST:
       return { loading: true }
     case ARTWORK_LIST_SUCCESS:
-      return { loading: false, artworks: action.payload.artworks }
+      return { loading: false, artworks: action.payload.artworks, count: action.payload.count }
     case ARTWORK_LIST_FAIL:
       return { loading: false, error: action.payload }
     default:
@@ -57,11 +60,11 @@ const artworkListReducer = (
   action
 ) => {
   switch (action.type) {
-    case ARTWORK_LIST_REQUEST:
+    case ARTWORK_LISTALL_REQUEST:
       return { loading: true }
-    case ARTWORK_LIST_SUCCESS:
+    case ARTWORK_LISTALL_SUCCESS:
       return { loading: false, artworks: action.payload.artworks }
-    case ARTWORK_LIST_FAIL:
+    case ARTWORK_LISTALL_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

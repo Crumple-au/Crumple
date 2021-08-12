@@ -1,27 +1,38 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { listArtworks } from '../actions/artworkActions'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import Artworks from '../components/Artworks'
 import { Button, Box, Grid } from '@material-ui/core'
+import SortBy from '../components/SortBy'
 
 function ProfileArtworksPage(props) {
   const { userId } = useParams()
   const { pathname } = useLocation()
 
   const artworkList = useSelector((state) => state.artworkList)
-  const { loading, artworks } = artworkList
+  const { loading, artworks, error } = artworkList
 
   const userSignin = useSelector((state) => state.userSignin)
   const { userInfo } = userSignin
 
   const dispatch = useDispatch()
 
+  const [sortOrder, setSortOrder] = useState('')
+  // const [sortPrice, setSortPrice] = useState('')
+
+  // console.log(artworks)
+
   useEffect(() => {
-    if (!artworks) {
-      dispatch(listArtworks({ seller: userId }))
+    if (!artworks || sortOrder) {
+      dispatch(
+        listArtworks({ 
+          seller: userId,
+          order: sortOrder
+        })
+      )
     }
-  }, [dispatch, artworks, userId, pathname])
+  }, [dispatch, userId, pathname, sortOrder])
 
   return (
     <Box m='2rem'>
@@ -36,11 +47,20 @@ function ProfileArtworksPage(props) {
           </Button>
         )}
       </Box>
+
+      <Box display='flex' justifyContent='center' marginBottom='1rem'>
+        {/* <SortBy label="price" sort={sortPrice} set={setSortPrice}/> */}
+        <SortBy label="sort by" sort={sortOrder} set={setSortOrder}/>
+      </Box>
+
       <Grid container spacing={3} justifyContent='center' alignItems='center'>
-        {!loading && artworks.length > 0 ?
-          artworks.map((item) => <Artworks key={item._id} artwork={item} />)
-        : <h2 className="card-title">{props.user} has no artworks</h2>
-        }
+      {artworks && artworks.map((item) => {
+        return (
+          <div key={item._id}>
+            <Artworks artwork={item}  height={'300px'} />
+          </div>
+        )
+      })}
       </Grid>
     </Box>
   )
