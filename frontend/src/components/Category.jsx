@@ -18,6 +18,8 @@ import { useFetch } from '../utils/helpers'
 import { useStyles } from '../utils/theme'
 import { useDispatch, useSelector } from 'react-redux'
 import { listArtworksAll, listArtworks } from '../actions/artworkActions'
+import SortBy from '../components/SortBy'
+
 
 const Category = () => {
   const { id } = useParams()
@@ -31,7 +33,7 @@ const Category = () => {
   const [sortOrder, setSortOrder] = useState('')
   const [sortPrice, setSortPrice] = useState('')
   const [ filter, setFilter ] = useState([])
-  console.log(count)
+  // console.log(count)
 
   useEffect(() => {
     if (element || sortOrder) {
@@ -80,12 +82,13 @@ const Category = () => {
                   <Typography align='center' color='textSecondary'>
                     {element.description}
                   </Typography>
+                <Typography align='center' color='textSecondary'>{count} artworks found</Typography>
                 </CardContent>
               </CardActionArea>
               <CardContent>
-                <Typography align='center'>Price</Typography>
-                <Typography>{count} artworks</Typography>
-                <label htmlFor="price">Price</label>
+              <SortBy label="price" sort={sortPrice} set={setSortPrice}/>
+              <SortBy label="sort by" sort={sortOrder} set={setSortOrder}/>
+                {/* <label htmlFor="price">Price</label>
                   <select
                       id="price"
                       value={sortPrice}
@@ -105,7 +108,7 @@ const Category = () => {
                   >
                       <option value="newest">newest</option>
                       <option value="oldest">oldest</option>
-                  </select>
+                  </select> */}
               </CardContent>
               <CardActions>
                 <Box></Box>

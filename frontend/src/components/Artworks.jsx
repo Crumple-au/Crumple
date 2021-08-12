@@ -14,7 +14,7 @@ import {
 import { useStyles } from '../utils/theme'
 import art from '../images/crumple-logo.jpg'
 
-const Artworks = ({ artwork, onRemove }) => {
+const Artworks = ({ artwork, onRemove, height }) => {
   const classes = useStyles();
   const location = useLocation();
   // const [newArtworks, setNewArtworks] = useState([])
@@ -25,7 +25,7 @@ const Artworks = ({ artwork, onRemove }) => {
   // setNewArtworks(filteredArtworks)
   // setNewArtworks(artworks)
 
-  // console.log(artwork._id)
+  // console.log(artwork)
   // console.log('newArtworks', newArtworks)
 
   return (
@@ -37,8 +37,8 @@ const Artworks = ({ artwork, onRemove }) => {
               <img
                 src={artwork.image || art}
                 alt={artwork.name}
-                height='100%'
-                width='100%'
+                height={height || '100%'}
+                width={height || '100%'}
                 style={{ objectFit: 'cover' }}
               />
             </Box>

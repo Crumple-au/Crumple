@@ -151,7 +151,7 @@ function ProfilePage(props) {
 
   return (
       <>
-        <div className={classes.drawerRoot}>
+        <div className={classes.drawerRoot }>
           <Box>
             <Toolbar>
               <IconButton

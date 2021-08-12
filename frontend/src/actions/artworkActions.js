@@ -24,7 +24,7 @@ import {
 } from '../constants/artworkConstants'
 import ENV_URL from '../config.js'
 
-const listArtworks = ({ seller = '', category, order, price }) => async (dispatch) => {
+const listArtworks = ({ seller = '', category = '', order = '', price = '' }) => async (dispatch) => {
     dispatch({ type: ARTWORK_LIST_REQUEST })
     try {
       // console.log('price:', price) 

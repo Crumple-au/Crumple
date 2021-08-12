@@ -55,11 +55,11 @@ artworkRouter.get(
         // : {_id: -1};
     
         const populateQuery = { path:'seller', select: ['name', 'email', 'image'] };
-        const artworks = await Artwork.find({
+        const count = await Artwork.countDocuments({
             ...sellerFilter,
             ...categoryFilter,
         })
-        const count = await Artwork.count({
+        const artworks = await Artwork.find({
             ...sellerFilter,
             ...categoryFilter,
         })
