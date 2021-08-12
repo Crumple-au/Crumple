@@ -10,13 +10,13 @@ function ProfileArtworksPage(props) {
   const { pathname } = useLocation()
 
   const artworkList = useSelector((state) => state.artworkList)
-  const { loading, artworks } = artworkList
+  const { loading, artworks, error } = artworkList
 
   const userSignin = useSelector((state) => state.userSignin)
   const { userInfo } = userSignin
 
   const dispatch = useDispatch()
-
+console.log(artworks)
   useEffect(() => {
     if (!artworks) {
       dispatch(listArtworks({ seller: userId }))
@@ -37,9 +37,9 @@ function ProfileArtworksPage(props) {
         )}
       </Box>
       <Grid container spacing={3} justifyContent='center' alignItems='center'>
-        {!loading && artworks.length > 0 ?
+        {artworks && artworks.length > 0 ?
           artworks.map((item) => <Artworks key={item._id} artwork={item} />)
-        : <h2 className="card-title">{props.user} has no artworks</h2>
+        : <h2 className="card-title">{error}</h2>
         }
       </Grid>
     </Box>

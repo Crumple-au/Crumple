@@ -32,13 +32,40 @@ artworkRouter.get(
     '/',
     expressAsyncHandler(async (req, res) => {
         const seller = req.query.seller || '';
+        const category = req.query.category || '';
+        const order = req.query.order || '';
+        const price = req.query.price || '';
+
         const sellerFilter = seller ? { seller } : {};
+        const categoryFilter = category ? { category } : {};
+        // const priceFilter = price ? { price: { $gte: 500, $lte: 100 } } : {}
+
+        const sortOrder = 
+        order === 'oldest' 
+        ? {createdAt: 1}
+        : order === 'newest'
+        ? {createdAt: -1}
+        : {_id: -1};
+
+        // const sortPrice = 
+        // price === 'highest' 
+        // ? {price: -1}
+        // : price === 'lowest'
+        // ? {price: 1}
+        // : {_id: -1};
+    
         const populateQuery = { path:'seller', select: ['name', 'email', 'image'] };
         const artworks = await Artwork.find({
             ...sellerFilter,
+            ...categoryFilter,
         })
-        .populate(populateQuery);
-        res.status(200).send({ artworks });
+        const count = await Artwork.count({
+            ...sellerFilter,
+            ...categoryFilter,
+        })
+        .populate(populateQuery)
+        .sort(sortOrder)
+        res.status(200).send({ artworks, count });
     })
 );
 

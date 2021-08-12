@@ -104,15 +104,31 @@ const data = {
   artworks: [
     {
       name: 'Painting of Mona Lisa',
-      category: 'Drawing & Painting',
+      category: 'Drawing and Painting',
       price: 700,
       inStock: 10,
       description: 'My version of the Mona Lisa.',
       reviews: []
     },
     {
+      name: 'Painting of a croissant',
+      category: 'Drawing and Painting',
+      price: 35,
+      inStock: 10,
+      description: 'My version of a croissant.',
+      reviews: []
+    },
+    {
+      name: 'Painting of plants',
+      category: 'Drawing and Painting',
+      price: 100,
+      inStock: 10,
+      description: 'An oil Painting of plants.',
+      reviews: []
+    },
+    {
       name: '3D Map of Sydney',
-      category: 'Crafts & DIY',
+      category: 'Crafts and DIY',
       price: 500,
       inStock: 10,
       description: 'This map is a customised rendering of Sydney.',
@@ -128,7 +144,7 @@ const data = {
     },
     {
       name: 'Wedding Singer',
-      category: 'Music & Sound Design',
+      category: 'Music and Sound Design',
       price: 300,
       inStock: 10,
       description:
@@ -137,7 +153,7 @@ const data = {
     },
     {
       name: 'The Legend of Ishbris',
-      category: 'Books & Writing',
+      category: 'Books and Writing',
       price: 50,
       inStock: 10,
       description:
@@ -146,7 +162,7 @@ const data = {
     },
     {
       name: 'Budget App',
-      category: 'Design & Tech',
+      category: 'Design and Tech',
       price: 100,
       inStock: 10,
       description:
@@ -156,13 +172,13 @@ const data = {
   ],
   categories: [
     {
-      name: 'Drawing & Painting',
+      name: 'Drawing and Painting',
       altName: 'drawing',
       description: 'Art finds',
       image: '/images/drawing.svg',
     },
     {
-      name: 'Design & Tech',
+      name: 'Design and Tech',
       altName: 'design',
       description: 'UI, Coding and more',
       image: '/images/design.svg',
@@ -174,7 +190,7 @@ const data = {
       image: '/images/merch.svg',
     },
     {
-      name: 'Books & Writing',
+      name: 'Books and Writing',
       altName: 'books',
       description: 'Stories, comics and guides',
       image: '/images/books.svg',
@@ -186,19 +202,19 @@ const data = {
       image: '/images/photos.svg',
     },
     {
-      name: 'Film & Video',
+      name: 'Film and Video',
       altName: 'film',
       description: 'Videos and workshops',
       image: '/images/film.svg',
     },
     {
-      name: 'Music & Sound Design',
+      name: 'Music and Sound Design',
       altName: 'music',
       description: 'Albums and sound effects',
       image: '/images/music.svg',
     },
     {
-      name: 'Crafts & DIY',
+      name: 'Crafts and DIY',
       altName: 'crafts',
       description: 'Personalised items',
       image: '/images/crafts.svg',
