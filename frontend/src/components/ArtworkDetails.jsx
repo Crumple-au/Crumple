@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -14,9 +14,16 @@ import {
 import { useParams } from 'react-router-dom'
 // import { useFetch } from '../utils/helpers'
 import art from '../images/crumple-artwork.jpg'
-import { deleteArtwork, detailsArtwork, createReview } from '../actions/artworkActions';
-import { ARTWORK_REVIEW_CREATE_RESET, ARTWORK_DELETE_RESET } from '../constants/artworkConstants';
-import { addToCart } from '../actions/cartActions';
+import {
+  deleteArtwork,
+  detailsArtwork,
+  createReview,
+} from '../actions/artworkActions'
+import {
+  ARTWORK_REVIEW_CREATE_RESET,
+  ARTWORK_DELETE_RESET,
+} from '../constants/artworkConstants'
+import { addToCart } from '../actions/cartActions'
 import Alert from './Alert'
 import Preloader from './Preloader'
 import '../style/index.scss'
@@ -28,23 +35,25 @@ const ArtworkDetails = (props) => {
 
   // const cart = useSelector((state) => state.cart);
   // const { cartItems, error } = cart;
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState('')
 
   const artworkDetails = useSelector((state) => state.artworkDetails)
-  const { loading, error,  artwork } = artworkDetails
+  const { loading, error, artwork } = artworkDetails
 
-  const artworkDelete = useSelector((state) => state.artworkDelete);
+  const artworkDelete = useSelector((state) => state.artworkDelete)
   const {
     loading: loadingDelete,
     error: errorDelete,
-    success: successDelete } = artworkDelete;
+    success: successDelete,
+  } = artworkDelete
 
-  const artworkReviewCreate = useSelector((state) => state.artworkReviewCreate);
+  const artworkReviewCreate = useSelector((state) => state.artworkReviewCreate)
   const {
     loading: loadingReviewCreate,
     error: errorReviewCreate,
-    success: successReviewCreate } = artworkReviewCreate;
-  
+    success: successReviewCreate,
+  } = artworkReviewCreate
+
   const userSignin = useSelector((state) => state.userSignin)
   const { userInfo } = userSignin
 
@@ -57,44 +66,44 @@ const ArtworkDetails = (props) => {
   }
 
   const submitReviewHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (comment) {
-      dispatch(
-        createReview(id, { comment, name: userInfo.name })
-      );
+      dispatch(createReview(id, { comment, name: userInfo.name }))
     } else {
-      alert('Please enter comment');
+      alert('Please enter comment')
     }
-  };
+  }
 
   const addToCartHandler = (artworkId) => {
-    dispatch(addToCart(artworkId));
-  };
+    dispatch(addToCart(artworkId))
+  }
 
   useEffect(() => {
     if (successDelete) {
       dispatch({ type: ARTWORK_DELETE_RESET })
     }
     if (successReviewCreate) {
-      setComment('');
-      dispatch({ type: ARTWORK_REVIEW_CREATE_RESET });
+      setComment('')
+      dispatch({ type: ARTWORK_REVIEW_CREATE_RESET })
     }
     if (!artwork) {
       dispatch(detailsArtwork(id))
     }
   }, [dispatch, artwork, id, successDelete, history, successReviewCreate])
-  
+
   return (
     <>
-      { loading && <Preloader></Preloader> }
-      { error && <Alert variant="alert alert-danger">{error}</Alert> }
-      { successDelete && <Alert variant="alert alert-success"> 
-        <h3 className="row center">{successDelete.message}</h3> 
-      </Alert>}
-      { loadingDelete && <Preloader></Preloader> }
-      { errorDelete && <Alert variant="alert alert-danger">{errorDelete}</Alert> }
-    {/* {artwork && ( */}
+      {loading && <Preloader></Preloader>}
+      {error && <Alert variant='alert alert-danger'>{error}</Alert>}
+      {successDelete && (
+        <Alert variant='alert alert-success'>
+          <h3 className='row center'>{successDelete.message}</h3>
+        </Alert>
+      )}
+      {loadingDelete && <Preloader></Preloader>}
+      {errorDelete && <Alert variant='alert alert-danger'>{errorDelete}</Alert>}
+      {/* {artwork && ( */}
       {/* <> */}
 
       {/* {loadingDelete && <Preloader></Preloader>}
@@ -155,7 +164,11 @@ const ArtworkDetails = (props) => {
                     Back
                   </Button>
                   {userInfo._id === artwork.seller._id && (
-                    <Button onClick={() => deleteHandler(artwork)}>
+                    <Button
+                      variant='contained'
+                      color='secondary'
+                      onClick={() => deleteHandler(artwork)}
+                    >
                       Delete Artwork
                     </Button>
                   )}
@@ -167,31 +180,32 @@ const ArtworkDetails = (props) => {
           </Box>
         </>
       )}
-      <div className="card card-body">
-        <h1 className="card-title">Reviews</h1>
+      <div className='card card-body'>
+        <h1 className='card-title'>Reviews</h1>
         {artwork && artwork.reviews.length === 0 && (
           <Alert>There is no reviews</Alert>
         )}
         <ul>
-        <li>
+          <li>
             {userInfo ? (
-              <form className="card-body" onSubmit={submitReviewHandler}>
-
+              <form className='card-body' onSubmit={submitReviewHandler}>
                 <div>
-                  <label className="card-title" htmlFor="comment">Write a <span>review!</span></label>
+                  <label className='card-title' htmlFor='comment'>
+                    Write a <span>review!</span>
+                  </label>
                   <textarea
-                    id="comment"
+                    id='comment'
                     value={comment}
-                    maxLength="2000"
+                    maxLength='2000'
                     required
-                    style={{"resize": "none", "width": "100%", "height": "10rem"}}
+                    style={{ resize: 'none', width: '100%', height: '10rem' }}
                     onChange={(e) => setComment(e.target.value)}
                   ></textarea>
                 </div>
 
                 <div>
                   <label />
-                  <button className="primary" type="submit">
+                  <button className='primary' type='submit'>
                     Submit
                   </button>
                 </div>
@@ -201,27 +215,27 @@ const ArtworkDetails = (props) => {
                 <div>
                   {loadingReviewCreate && <Preloader></Preloader>}
                   {errorReviewCreate && (
-                    <Alert variant="alert alert-danger">
+                    <Alert variant='alert alert-danger'>
                       {errorReviewCreate}
                     </Alert>
                   )}
                 </div>
-
               </form>
             ) : (
-              <Alert variant="alert alert-danger">
-                Please <Link to="/signin">Sign In</Link> to write a review.
+              <Alert variant='alert alert-danger'>
+                Please <Link to='/signin'>Sign In</Link> to write a review.
               </Alert>
             )}
           </li>
 
-          {artwork && artwork.reviews.map((review) => (
-            <li key={review._id}>
-              <strong>{review.name}</strong>
-              <p>{review.createdAt.substring(0, 10)}</p>
-              <p>{review.comment}</p>
-            </li>
-          ))}
+          {artwork &&
+            artwork.reviews.map((review) => (
+              <li key={review._id}>
+                <strong>{review.name}</strong>
+                <p>{review.createdAt.substring(0, 10)}</p>
+                <p>{review.comment}</p>
+              </li>
+            ))}
         </ul>
       </div>
     </>
