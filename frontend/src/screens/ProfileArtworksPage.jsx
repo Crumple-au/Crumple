@@ -26,9 +26,9 @@ function ProfileArtworksPage(props) {
   useEffect(() => {
     if (!artworks || sortOrder) {
       dispatch(
-        listArtworks({ 
+        listArtworks({
           seller: userId,
-          order: sortOrder
+          order: sortOrder,
         })
       )
     }
@@ -40,27 +40,29 @@ function ProfileArtworksPage(props) {
         {userInfo._id === userId && (
           <Button
             variant='contained'
+            color='primary'
             component={Link}
             to={`/profile/${userId}/createArtwork`}
           >
-            Upload Artwork
+            New Artwork
           </Button>
         )}
       </Box>
 
       <Box display='flex' justifyContent='center' marginBottom='1rem'>
         {/* <SortBy label="price" sort={sortPrice} set={setSortPrice}/> */}
-        <SortBy label="sort by" sort={sortOrder} set={setSortOrder}/>
+        <SortBy label='sort by' sort={sortOrder} set={setSortOrder} />
       </Box>
 
       <Grid container spacing={3} justifyContent='center' alignItems='center'>
-      {artworks && artworks.map((item) => {
-        return (
-          <div key={item._id}>
-            <Artworks artwork={item}  height={'300px'} />
-          </div>
-        )
-      })}
+        {artworks &&
+          artworks.map((item) => {
+            return (
+              <div key={item._id}>
+                <Artworks artwork={item} height={'300px'} />
+              </div>
+            )
+          })}
       </Grid>
     </Box>
   )

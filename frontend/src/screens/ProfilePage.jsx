@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../style/profile.scss'
-import {
-  useParams,
-  useLocation,
-  Link,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom'
+import { useParams, useLocation, Link, Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { detailsUser } from '../actions/userActions'
 import Payments from '../components/Payments'
@@ -70,12 +63,12 @@ function ProfilePage(props) {
       path: `/profile/${userId}`,
     },
     {
-      text: 'Payments',
+      text: 'Bank Details',
       icon: <PaymentOutlinedIcon />,
       path: `/profile/${userId}/payments`,
     },
     {
-      text: 'Edit',
+      text: 'Edit Profile',
       icon: <EditOutlinedIcon />,
       path: `/profile/${userId}/settings`,
     },
@@ -146,104 +139,99 @@ function ProfilePage(props) {
         <Divider className={classes.dividerColor} />
         <Box margin='1rem 0'>
           <Typography className={classes.fontColor}>Having trouble?</Typography>
-          <Typography className={classes.fontColor}>Contact us.</Typography>
+          <Typography className={classes.fontColor}>
+            <a className='link' href={`mailto:crumple.au@gmail.com`}>
+              Contact us
+            </a>
+          </Typography>
         </Box>
       </Box>
     </Box>
   )
 
   return (
-      <>
-        <div className={classes.drawerRoot }>
-          <Box>
-            <Toolbar>
-              <IconButton
-                color='inherit'
-                aria-label='open drawer'
-                edge='start'
-                onClick={handleDrawerToggle}
-                className={classes.menuButton}
-                style={{ float: 'left',}}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Toolbar>
-          </Box>
-
-          <nav className={classes.drawer}>
-            <Hidden mdUp implementation='css'>
-              <Drawer
-                container={container}
-                variant='temporary'
-                anchor='left'
-                classes={{ paper: classes.drawerPaper }}
-                open={mobileOpen}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                  keepMounted: true,
-                }}
-              >
-                {drawer}
-              </Drawer>
-            </Hidden>
-            <Hidden smDown implementation='css'>
-              <Drawer
-                className={classes.drawer}
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-                variant='permanent'
-                open
-              >
-                {drawer}
-              </Drawer>
-            </Hidden>
-          </nav>
-
-          <main className={classes.content}>
-            <Grid
-              container
-              spacing={0}
-              justifyContent='center'
-              alignItems='center'
+    <>
+      <div className={classes.drawerRoot}>
+        <Box>
+          <Toolbar>
+            <IconButton
+              color='inherit'
+              aria-label='open drawer'
+              edge='start'
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+              style={{ float: 'left' }}
             >
-              <Grid item xs={12} sm={12} md={2} lg={2} xl={2}></Grid>
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </Box>
 
-              <Grid item xs={12} sm={12} md={10} lg={9} xl={10}>
-                {loading ? (
-                  <Preloader />
-                ) : error ? (
-                  <Alert variant='danger'>{error}</Alert>
-                ) : (
-                  <Switch>
-                    <Route path='/profile/:userId/createArtwork'>
-                      <ArtworkCreatePage />
-                    </Route>
-                    <Route path='/profile/:artworkId/editArtwork'>
-                      <EditArtwork />
-                    </Route>
-                    <Route path='/profile/:userId/payments'>
-                      <Payments />
-                    </Route>
-                    <Route path='/profile/:userId/settings'>
-                      <EditProfilePage />
-                    </Route>
-                    <Route path='/profile/:userId/'>
-                      <ProfileArtworksPage />
-                    </Route>
-                    <Route path='/orderHistory'>
-                      <OrderHistoryPage/>
-                    </Route>
-                    <Route path='/allusers'>
-                      <ListUsersPage/>
-                    </Route>
-                  </Switch>
-                )}
-              </Grid>
+        <nav className={classes.drawer}>
+          <Hidden mdUp implementation='css'>
+            <Drawer
+              container={container}
+              variant='temporary'
+              anchor='left'
+              classes={{ paper: classes.drawerPaper }}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true,
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+          <Hidden smDown implementation='css'>
+            <Drawer
+              className={classes.drawer}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              variant='permanent'
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+        </nav>
+
+        <main className={classes.content}>
+          <Grid
+            container
+            spacing={0}
+            justifyContent='center'
+            alignItems='center'
+          >
+            <Grid item xs={12} sm={12} md={2} lg={3} xl={2}></Grid>
+
+            <Grid item xs={12} sm={12} md={10} lg={9} xl={10}>
+              {loading ? (
+                <Preloader />
+              ) : error ? (
+                <Alert variant='danger'>{error}</Alert>
+              ) : (
+                <Switch>
+                  <Route path='/profile/:userId/createArtwork'>
+                    <ArtworkCreatePage />
+                  </Route>
+                  <Route path='/profile/:userId/payments'>
+                    <Payments />
+                  </Route>
+                  <Route path='/profile/:userId/settings'>
+                    <EditProfilePage />
+                  </Route>
+                  <Route path='/profile/:userId/'>
+                    <ProfileArtworksPage />
+                  </Route>
+                </Switch>
+              )}
             </Grid>
-          </main>
-        </div>
-      </>
+          </Grid>
+        </main>
+      </div>
+    </>
   )
 }
 

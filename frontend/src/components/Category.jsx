@@ -13,12 +13,12 @@ import SearchBar from './SearchBar'
 import Artworks from './Artworks.jsx'
 import Alert from './Alert'
 import Preloader from './Preloader'
+import SortBy from '../components/SortBy'
 import { useParams } from 'react-router-dom'
 import { useFetch } from '../utils/helpers'
 import { useStyles } from '../utils/theme'
 import { useDispatch, useSelector } from 'react-redux'
 import { listArtworksAll, listArtworks } from '../actions/artworkActions'
-import SortBy from '../components/SortBy'
 
 const Category = () => {
   const { id } = useParams()
@@ -27,11 +27,11 @@ const Category = () => {
   const dispatch = useDispatch()
 
   const artworkList = useSelector((state) => state.artworkList)
-  const { artworks, loading, error, count } = artworkList;
+  const { artworks, loading, error, count } = artworkList
 
   const [sortOrder, setSortOrder] = useState('')
   const [sortPrice, setSortPrice] = useState('')
-  const [ filter, setFilter ] = useState([])
+  const [filter, setFilter] = useState([])
   // console.log(count)
 
   useEffect(() => {
@@ -40,9 +40,9 @@ const Category = () => {
         listArtworks({
           category: element.name,
           order: sortOrder,
-          price: sortPrice
+          price: sortPrice,
         })
-      );
+      )
     }
 
     // const filteredArtworks = artworks.filter((artwork) => {
@@ -81,12 +81,14 @@ const Category = () => {
                   <Typography align='center' color='textSecondary'>
                     {element.description}
                   </Typography>
-                <Typography align='center' color='textSecondary'>{count} artworks found</Typography>
+                  <Typography align='center' color='textSecondary'>
+                    {count} artworks found
+                  </Typography>
                 </CardContent>
               </CardActionArea>
               <CardContent>
-                <SortBy label="price" sort={sortPrice} set={setSortPrice}/>
-                <SortBy label="sort by" sort={sortOrder} set={setSortOrder}/>
+                <SortBy label='price' sort={sortPrice} set={setSortPrice} />
+                <SortBy label='sort by' sort={sortOrder} set={setSortOrder} />
               </CardContent>
               <CardActions>
                 <Box></Box>
@@ -112,8 +114,16 @@ const Category = () => {
                 artworks.map((item) => {
                   return (
                     <>
-                      <Grid item key={item._id} xs={12} sm={4} md={3} lg={3} xl={2}>
-                        <Artworks artwork={item} height="400px" />
+                      <Grid
+                        item
+                        key={item._id}
+                        xs={12}
+                        sm={4}
+                        md={3}
+                        lg={3}
+                        xl={2}
+                      >
+                        <Artworks artwork={item} />
                       </Grid>
                     </>
                   )
