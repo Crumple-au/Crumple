@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listArtworks } from '../actions/artworkActions'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import Artworks from '../components/Artworks'
-import { Button, Box, Grid } from '@material-ui/core'
+import { Button, Box, Grid, Typography } from '@material-ui/core'
 import SortBy from '../components/SortBy'
+import { secondary } from '../utils/theme'
 
 function ProfileArtworksPage(props) {
   const { userId } = useParams()
@@ -35,8 +36,16 @@ function ProfileArtworksPage(props) {
   }, [dispatch, userId, pathname, sortOrder])
 
   return (
-    <Box m='2rem'>
-      <Box display='flex' justifyContent='center' marginBottom='1rem'>
+    <Box>
+      <Typography align='center' gutterBottom variant='h3'>
+        your <span style={{ color: secondary }}>creations</span>
+      </Typography>
+      <Box
+        display='flex'
+        justifyContent='center'
+        marginBottom='3rem'
+        marginTop='3rem'
+      >
         {userInfo._id === userId && (
           <Button
             variant='contained'
@@ -50,8 +59,11 @@ function ProfileArtworksPage(props) {
       </Box>
 
       <Box display='flex' justifyContent='center' marginBottom='1rem'>
-        {/* <SortBy label="price" sort={sortPrice} set={setSortPrice}/> */}
-        <SortBy label='sort by' sort={sortOrder} set={setSortOrder} />
+        <Box>
+          <Typography align='center'>Sort By</Typography>
+          {/* <SortBy label="PRICE" sort={sortPrice} set={setSortPrice}/> */}
+          <SortBy label='CREATED' sort={sortOrder} set={setSortOrder} />
+        </Box>
       </Box>
 
       <Grid container spacing={3} justifyContent='center' alignItems='center'>
@@ -59,7 +71,7 @@ function ProfileArtworksPage(props) {
           artworks.map((item) => {
             return (
               <div key={item._id}>
-                <Artworks artwork={item} height={'300px'} />
+                <Artworks artwork={item} />
               </div>
             )
           })}
