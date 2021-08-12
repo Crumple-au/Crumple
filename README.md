@@ -1,4 +1,4 @@
-# <img src="./docs/crumple-logo.jpg" alt="Trello Screenshot" width="50"/> crumple
+# <img src="./docs/crumple-logo.jpg" alt="Trello Screenshot" width="100"/> crumple
 
 MERN stack e-commerce website created by **Irah Rosete** & **Ryan Tavcar**
 
