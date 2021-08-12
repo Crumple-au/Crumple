@@ -19,17 +19,16 @@ function ProfileArtworksPage(props) {
   const dispatch = useDispatch()
 
   const [sortOrder, setSortOrder] = useState('')
-  const [sortPrice, setSortPrice] = useState('')
+  // const [sortPrice, setSortPrice] = useState('')
 
   // console.log(artworks)
 
   useEffect(() => {
-    if (!artworks || sortOrder || sortPrice) {
+    if (!artworks || sortOrder) {
       dispatch(
         listArtworks({ 
           seller: userId,
-          order: sortOrder,
-          price: sortPrice
+          order: sortOrder
         })
       )
     }
@@ -50,7 +49,7 @@ function ProfileArtworksPage(props) {
       </Box>
 
       <Box display='flex' justifyContent='center' marginBottom='1rem'>
-        <SortBy label="price" sort={sortPrice} set={setSortPrice}/>
+        {/* <SortBy label="price" sort={sortPrice} set={setSortPrice}/> */}
         <SortBy label="sort by" sort={sortOrder} set={setSortOrder}/>
       </Box>
 

@@ -38,7 +38,6 @@ artworkRouter.get(
 
         const sellerFilter = seller ? { seller } : {};
         const categoryFilter = category ? { category } : {};
-        // const priceFilter = price ? { price: { $gte: 500, $lte: 100 } } : {}
 
         const sortOrder = 
         order === 'oldest' 
@@ -46,13 +45,6 @@ artworkRouter.get(
         : order === 'newest'
         ? {createdAt: -1}
         : {_id: -1};
-
-        // const sortPrice = 
-        // price === 'highest' 
-        // ? {price: -1}
-        // : price === 'lowest'
-        // ? {price: 1}
-        // : {_id: -1};
     
         const populateQuery = { path:'seller', select: ['name', 'email', 'image'] };
         const count = await Artwork.countDocuments({

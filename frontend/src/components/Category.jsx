@@ -20,7 +20,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listArtworksAll, listArtworks } from '../actions/artworkActions'
 import SortBy from '../components/SortBy'
 
-
 const Category = () => {
   const { id } = useParams()
   const { element } = useFetch(`/api/categories/${id}`)
@@ -86,29 +85,8 @@ const Category = () => {
                 </CardContent>
               </CardActionArea>
               <CardContent>
-              <SortBy label="price" sort={sortPrice} set={setSortPrice}/>
-              <SortBy label="sort by" sort={sortOrder} set={setSortOrder}/>
-                {/* <label htmlFor="price">Price</label>
-                  <select
-                      id="price"
-                      value={sortPrice}
-                      onChange={(e) => setSortPrice(e.target.value)}
-                  >
-                    
-                      <option value="">select</option> 
-                      <option value="highest">highest</option> 
-                      <option value="lowest">lowest</option>
-                  </select>
-
-                <label htmlFor="order">Sort by</label>
-                  <select
-                      id="order"
-                      value={sortOrder}
-                      onChange={(e) => setSortOrder(e.target.value)}
-                  >
-                      <option value="newest">newest</option>
-                      <option value="oldest">oldest</option>
-                  </select> */}
+                <SortBy label="price" sort={sortPrice} set={setSortPrice}/>
+                <SortBy label="sort by" sort={sortOrder} set={setSortOrder}/>
               </CardContent>
               <CardActions>
                 <Box></Box>
