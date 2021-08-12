@@ -24,6 +24,8 @@ export const theme = createTheme({
   },
 })
 
+const drawerWidth = 260
+
 export const useStyles = makeStyles({
   navlink: {
     color: '#ffffff',
@@ -34,13 +36,51 @@ export const useStyles = makeStyles({
   },
   formControl: {
     minWidth: 120,
-    marginTop: '1rem'
-  },
-  textForm: {
     marginTop: '1rem',
   },
   card: {
     margin: '1rem',
+  },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    background: '#323232',
+  },
+  drawerRoot: {
+    display: 'flex',
+    flexDirection: 'column',
+    toolbar: theme.mixins.toolbar,
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  bottomPush: {
+    position: 'fixed',
+    bottom: 0,
+    paddingBottom: 10,
+  },
+  fontColor: {
+    color: '#ffffff',
+  },
+  dividerColor: {
+    backgroundColor: '#ffffff',
+  },
+  active: {
+    background: '#6184C4',
+  },
+  menuButton: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
   },
 })
 

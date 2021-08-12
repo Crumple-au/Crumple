@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/core'
-import { Provider } from 'react-redux'
 import { useMediaQuery } from 'react-responsive'
 
 import NavBar from './components/NavBar'
@@ -24,7 +23,6 @@ import PrivateRoute from './components/PrivateRoute'
 import AdminRoute from './components/AdminRoute'
 
 import { theme } from './utils/theme'
-import store from './store'
 import PlaceOrderPage from './screens/PlaceOrderPage'
 import OrderPage from './screens/OrderPage'
 import ReceiptPage from './screens/ReceiptPage'
@@ -35,10 +33,9 @@ const App = () => {
   const isSmallScreen = useMediaQuery({ minWidth: 200, maxWidth: 800 })
 
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Router>
-          {isSmallScreen ? <MobileNavBar /> : <NavBar />}
+    <ThemeProvider theme={theme}>
+      <Router>
+        {isSmallScreen ? <MobileNavBar /> : <NavBar />}
           <Switch>
             <Route exact path='/'>
               <HomePage />
@@ -59,22 +56,23 @@ const App = () => {
             <Route path='/signup' component={RegisterPage} />
             <Route path='/profile/:userId' component={ProfilePage} />
 
-            <AdminRoute 
-              path='/allusers' component={ListUsersPage} >
-            </AdminRoute>
-
-            <Route path='/cart/:artworkId?' component={CartPage} />
-
-            <PrivateRoute 
-              path='/shipping' component={ShippingPage}>
-            </PrivateRoute>
+            <AdminRoute path='/allusers' component={ListUsersPage}></AdminRoute>
 
             <PrivateRoute
-              path='/payment' component={PaymentPage}>
-            </PrivateRoute>
+              path='/cart/:artworkId?'
+              component={CartPage}
+            ></PrivateRoute>
 
             <PrivateRoute
-              path='/placeorder' component={PlaceOrderPage}>
+              path='/shipping'
+              component={ShippingPage}
+            ></PrivateRoute>
+
+            <PrivateRoute path='/payment' component={PaymentPage}></PrivateRoute>
+
+            <PrivateRoute
+              path='/placeorder'
+              component={PlaceOrderPage}>
             </PrivateRoute>
 
             <PrivateRoute
@@ -95,7 +93,6 @@ const App = () => {
           </Switch>
         </Router>
       </ThemeProvider>
-    </Provider>
   )
 }
 

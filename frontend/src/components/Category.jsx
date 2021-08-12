@@ -98,16 +98,8 @@ const Category = () => {
                 artworks.map((item) => {
                   return (
                     <>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={4}
-                        md={3}
-                        lg={3}
-                        xl={2}
-                        key={item._id}
-                      >
-                        <Artworks artwork={item} />
+                      <Grid item xs={12} sm={4} md={3} lg={3} xl={2}>
+                        <Artworks artwork={item} key={item._id} />
                       </Grid>
                     </>
                   )

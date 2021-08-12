@@ -31,7 +31,11 @@ const NavBar = () => {
   }
 
   return (
-    <AppBar style={{ backgroundColor: black }} position='sticky'>
+    <AppBar
+      style={{ backgroundColor: black }}
+      position='sticky'
+      className={classes.appBar}
+    >
       <Toolbar>
         <Box pl='5rem' py='0.5rem'>
           <Link to='/'>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import '../style/profile.scss'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile, detailsUser } from '../actions/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
-import Alert from '../components/Alert'
-import Preloader from '../components/Preloader'
-import UploadModal from '../components/UploadModal'
-import { Button } from '@material-ui/core'
+import Alert from '../components/Alert';
+import Preloader from '../components/Preloader';
+import UploadModal from '../components/UploadModal';
+import { Button } from '@material-ui/core';
+import '../style/profile.scss';
 
 
 function EditProfilePage(props) {
@@ -61,18 +61,17 @@ function EditProfilePage(props) {
         }
     }, [dispatch, user, successUpdate, errorUpdate, props.history, userId]);
 
-
     return (
-        !userInfo && !userInfo._id ? (
+        userInfo && userInfo._id ? (
             <>
-                <div className='main' style={{height: '100vh'}}>
+                <div className='main' >
                     <Button onClick={() => setShow(true)} >Update Profile Picture</Button>
                     {show && <UploadModal onClose={() => setShow(false)}  /> }
 
-                    <form className="profile-form" onSubmit={submitHandler}>
+                    <form className="card card-body" onSubmit={submitHandler}>
                         <ul className='form-container'>
                             <div className="form-heading">
-                                <h2>Edit your details</h2>
+                                <h2 className="card-title">Edit your <span>details</span></h2>
                             </div>
 
 
