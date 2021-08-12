@@ -17,13 +17,7 @@ import { primary, secondary, grey } from '../utils/theme'
 const About = () => {
   return (
     <>
-      <Box
-        m='2rem 2rem 2rem 2rem'
-        // display='flex'
-        // flexDirection='column'
-        // justifyContent='center'
-        // alignItems='center'
-      >
+      <Box m='2rem 2rem 2rem 2rem'>
         <Typography align='center' gutterBottom variant='h3'>
           <span style={{ color: secondary }}>how</span> it works
         </Typography>
@@ -86,7 +80,6 @@ const About = () => {
           <Grid item xs={12} sm={12} md={3} lg={3} xl={3} align='center'></Grid>
         </Grid>
 
-        {/* === */}
         <Box>
           <Grid container spacing={3}>
             <Grid
@@ -94,19 +87,11 @@ const About = () => {
               xs={12}
               sm={12}
               md={1}
-              // lg={1}
+              lg={1}
               xl={2}
               align='center'
             ></Grid>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={6}
-              // lg={6}
-              xl={5}
-              align='center'
-            >
+            <Grid item xs={12} sm={12} md={7} lg={7} xl={5} align='center'>
               <Box marginTop='4rem'>
                 <Typography align='center' gutterBottom variant='h3'>
                   we believe in the{' '}
@@ -123,29 +108,25 @@ const About = () => {
                   <Typography color='textSecondary'>Got a question?</Typography>
                 </Box>
                 <Box m='0.5rem'>
-                  <Button variant='contained' color='primary'>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    href={`mailto:crumple.au@gmail.com`}
+                  >
                     Contact us
                   </Button>
                 </Box>
               </Box>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={3}
-              // lg={3}
-              xl={3}
-              align='center'
-            >
+            <Grid item xs={12} sm={12} md={3} lg={3} xl={3} align='center'>
               <img src={stick1} alt='stickman' height='auto' width='340' />
             </Grid>
             <Grid
               item
               xs={12}
               sm={12}
-              md={2}
-              // lg={2}
+              md={1}
+              lg={1}
               xl={2}
               align='center'
             ></Grid>
