@@ -24,7 +24,7 @@ export const theme = createTheme({
   },
 })
 
-const drawerWidth = 260
+const drawerWidth = 300
 
 export const useStyles = makeStyles({
   navlink: {

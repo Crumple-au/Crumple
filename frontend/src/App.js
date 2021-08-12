@@ -9,7 +9,6 @@ import Categories from './components/Categories'
 import Category from './components/Category'
 import MobileNavBar from './components/MobileNavBar'
 import About from './screens/About'
-import FAQs from './screens/FAQs'
 import Error from './screens/Error'
 import SigninPage from './screens/SigninPage'
 import ProfilePage from './screens/ProfilePage'
@@ -36,63 +35,63 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         {isSmallScreen ? <MobileNavBar /> : <NavBar />}
-          <Switch>
-            <Route exact path='/'>
-              <HomePage />
-            </Route>
-            <Route path='/categories'>
-              <Categories />
-            </Route>
-            <Route path='/category/:id' children={<Category />} />
-            <Route path='/artwork/:id' children={<ArtworkDetails />} />
-            <Route path='/about'>
-              <About />
-            </Route>
-            <Route path='/faqs'>
-              <FAQs />
-            </Route>
+        <Switch>
+          <Route exact path='/'>
+            <HomePage />
+          </Route>
+          <Route path='/categories'>
+            <Categories />
+          </Route>
+          <Route path='/category/:id' children={<Category />} />
+          <Route path='/artwork/:id' children={<ArtworkDetails />} />
+          <Route path='/about'>
+            <About />
+          </Route>
 
-            <Route path='/signin' component={SigninPage} />
-            <Route path='/signup' component={RegisterPage} />
-            <Route path='/profile/:userId' component={ProfilePage} />
+          <Route path='/signin' component={SigninPage} />
+          <Route path='/signup' component={RegisterPage} />
+          <Route path='/profile/:userId' component={ProfilePage} />
 
-            <AdminRoute path='/allusers' component={ListUsersPage}></AdminRoute>
+          <AdminRoute path='/allusers' component={ListUsersPage}></AdminRoute>
 
-            <PrivateRoute
-              path='/cart/:artworkId?'
-              component={CartPage}
-            ></PrivateRoute>
+          <PrivateRoute
+            path='/cart/:artworkId?'
+            component={CartPage}
+          ></PrivateRoute>
 
-            <PrivateRoute
-              path='/shipping'
-              component={ShippingPage}
-            ></PrivateRoute>
+          <PrivateRoute
+            path='/shipping'
+            component={ShippingPage}
+          ></PrivateRoute>
 
-            <PrivateRoute path='/payment' component={PaymentPage}></PrivateRoute>
+          <PrivateRoute path='/payment' component={PaymentPage}></PrivateRoute>
 
-            <PrivateRoute
-              path='/placeorder'
-              component={PlaceOrderPage}>
-            </PrivateRoute>
+          <PrivateRoute
+            path='/placeorder'
+            component={PlaceOrderPage}
+          ></PrivateRoute>
 
-            <PrivateRoute
-              path='/order/:orderId' component={OrderPage}>
-            </PrivateRoute>
+          <PrivateRoute
+            path='/order/:orderId'
+            component={OrderPage}
+          ></PrivateRoute>
 
-            <PrivateRoute
-              path='/orderHistory' component={OrderHistoryPage}>
-            </PrivateRoute>
+          <PrivateRoute
+            path='/orderHistory'
+            component={OrderHistoryPage}
+          ></PrivateRoute>
 
-            <PrivateRoute
-              path='/paypal/receipt/:orderId' component={ReceiptPage}>
-            </PrivateRoute>
+          <PrivateRoute
+            path='/paypal/receipt/:orderId'
+            component={ReceiptPage}
+          ></PrivateRoute>
 
-            <Route path='*'>
-              <Error />
-            </Route>
-          </Switch>
-        </Router>
-      </ThemeProvider>
+          <Route path='*'>
+            <Error />
+          </Route>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   )
 }
 
