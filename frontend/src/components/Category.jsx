@@ -113,7 +113,7 @@ const Category = () => {
                   return (
                     <>
                       <Grid item key={item._id} xs={12} sm={4} md={3} lg={3} xl={2}>
-                        <Artworks artwork={item}  />
+                        <Artworks artwork={item} height="400px" />
                       </Grid>
                     </>
                   )
