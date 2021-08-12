@@ -45,7 +45,7 @@ const HomePage = () => {
 
         <Grid item xs={12} sm={12} md={4} align='center'>
           <Box>
-            <img src={stick0} alt='stickman' height='auto' width='350'></img>
+            <img src={stick0} alt='stickman' height='auto' width='350' />
           </Box>
         </Grid>
         <Grid item xs={12} sm={12} md={2} align='center'></Grid>
