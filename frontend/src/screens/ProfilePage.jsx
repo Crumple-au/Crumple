@@ -20,7 +20,7 @@ import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined'
 import PaymentOutlinedIcon from '@material-ui/icons/PaymentOutlined'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import MenuIcon from '@material-ui/icons/Menu'
-import ArtworkEditPage from './ArtworkEditPage'
+import ArtworkCreatePage from '../components/ArtworkCreatePage'
 import {
   Box,
   Drawer,
@@ -150,9 +150,8 @@ function ProfilePage(props) {
   )
 
   return (
-    <>
-      <Router>
-        <div className={classes.drawerRoot}>
+      <>
+        <div className={classes.drawerRoot }>
           <Box>
             <Toolbar>
               <IconButton
@@ -215,7 +214,7 @@ function ProfilePage(props) {
                 ) : (
                   <Switch>
                     <Route path='/profile/:userId/createArtwork'>
-                      <ArtworkEditPage />
+                      <ArtworkCreatePage />
                     </Route>
                     <Route path='/profile/:userId/payments'>
                       <Payments />
@@ -232,8 +231,7 @@ function ProfilePage(props) {
             </Grid>
           </main>
         </div>
-      </Router>
-    </>
+      </>
   )
 }
 

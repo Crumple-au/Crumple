@@ -6,6 +6,9 @@ import {
   ARTWORK_LIST_REQUEST,
   ARTWORK_LIST_SUCCESS,
   ARTWORK_LIST_FAIL,
+  ARTWORK_LISTALL_REQUEST,
+  ARTWORK_LISTALL_SUCCESS,
+  ARTWORK_LISTALL_FAIL,
   ARTWORK_CREATE_REQUEST,
   ARTWORK_CREATE_SUCCESS,
   ARTWORK_CREATE_FAIL,
@@ -15,17 +18,20 @@ import {
   ARTWORK_DELETE_REQUEST,
   ARTWORK_DELETE_FAIL,
   ARTWORK_DELETE_SUCCESS,
+  ARTWORK_REVIEW_CREATE_REQUEST,
+  ARTWORK_REVIEW_CREATE_SUCCESS,
+  ARTWORK_REVIEW_CREATE_FAIL,
 } from '../constants/artworkConstants'
 import ENV_URL from '../config.js'
 
-const listArtworks =
-  ({ seller = '' }) =>
-  async (dispatch) => {
+const listArtworks = ({ seller = '', category = '', order = '', price = '' }) => async (dispatch) => {
     dispatch({ type: ARTWORK_LIST_REQUEST })
     try {
+      // console.log('price:', price) 
       const { data } = await Axios.get(
-        `${ENV_URL}/api/artworks?seller=${seller}`
+        `${ENV_URL}/api/artworks?seller=${seller}&category=${category}&order=${order}&price=${price}`
       )
+      console.log(data)
       dispatch({ type: ARTWORK_LIST_SUCCESS, payload: data })
     } catch (error) {
       dispatch({ type: ARTWORK_LIST_FAIL, payload: error.message })
@@ -33,12 +39,12 @@ const listArtworks =
 };
 
 const listArtworksAll = () => async (dispatch) => {
-  dispatch({ type: ARTWORK_LIST_REQUEST })
+  dispatch({ type: ARTWORK_LISTALL_REQUEST })
   try {
     const { data } = await Axios.get(`${ENV_URL}/api/artworks/`)
-    dispatch({ type: ARTWORK_LIST_SUCCESS, payload: data })
+    dispatch({ type: ARTWORK_LISTALL_SUCCESS, payload: data })
   } catch (error) {
-    dispatch({ type: ARTWORK_LIST_FAIL, payload: error.message })
+    dispatch({ type: ARTWORK_LISTALL_FAIL, payload: error.message })
   }
 };
 
@@ -81,15 +87,16 @@ const updateArtwork = (artwork) => async (dispatch, getState) => {
 };
 
 const deleteArtwork = (artworkId) => async (dispatch, getState) => {
-  dispatch({ type: ARTWORK_DELETE_REQUEST, payload: artworkId });
+  dispatch({ type: ARTWORK_DELETE_REQUEST });
   const {
     userSignin: { userInfo },
   } = getState();
   try {
-      Axios.delete(`/api/artworks/${artworkId}`, {
+      const { data } = await Axios.delete(`/api/artworks/${artworkId}`, {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
-    dispatch({ type: ARTWORK_DELETE_SUCCESS });
+      console.log(data)
+    dispatch({ type: ARTWORK_DELETE_SUCCESS, payload: data });
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -103,7 +110,6 @@ const deleteArtwork = (artworkId) => async (dispatch, getState) => {
 const detailsArtwork = (artworkId) => async (dispatch) => {
     dispatch({ type: ARTWORK_DETAILS_REQUEST, payload: artworkId });
     try {
-      console.log('artworkId:', artworkId)
         const { data } = await Axios.get(`${ENV_URL}/api/artworks/${artworkId}`);
         dispatch({ type: ARTWORK_DETAILS_SUCCESS, payload: data });
     } catch (error) {
@@ -117,4 +123,23 @@ const detailsArtwork = (artworkId) => async (dispatch) => {
     }
 };
 
-export { listArtworks, listArtworksAll, createArtwork, updateArtwork, deleteArtwork, detailsArtwork}
+const createReview = (artworkId, review) => async (dispatch, getState) => {
+  dispatch({ type: ARTWORK_REVIEW_CREATE_REQUEST });
+  const { userSignin: { userInfo } } = getState();
+  try {
+    const { data } = await Axios.post(`${ENV_URL}/api/artworks/${artworkId}/reviews`, review,
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
+    dispatch({ type: ARTWORK_REVIEW_CREATE_SUCCESS, payload: data.review });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ARTWORK_REVIEW_CREATE_FAIL, payload: message });
+  }
+};
+
+export { listArtworks, listArtworksAll, createArtwork, updateArtwork, deleteArtwork, detailsArtwork, createReview}

@@ -6,9 +6,11 @@ import {
     CART_SAVE_SHIPPING_ADDRESS,
     CART_SAVE_PAYMENT_METHOD
 } from '../constants/cartConstants';
+import ENV_URL from '../config.js'
+
 
 const addToCart = (artworkId, qty = 1) => async (dispatch, getState) => {
-    const { data } = await Axios.get(`/api/artworks/${artworkId}`);
+    const { data } = await Axios.get(`${ENV_URL}/api/artworks/${artworkId}`);
     const { cart: { cartItems } } = getState();
     if (cartItems.length > 0 && data.seller._id !== cartItems[0].seller._id) {
         dispatch({ 

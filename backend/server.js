@@ -8,6 +8,8 @@ import uploadRouter from './routes/uploadRoutes.js'
 import orderRouter from './routes/orderRoutes.js'
 import cors from 'cors'
 import mongodb_database from './config.js'
+// var paypal = require('paypal-rest-sdk');
+import paypal from 'paypal-rest-sdk'
 
 dotenv.config()
 
@@ -22,7 +24,13 @@ mongoose.connect(process.env.MONGODB_URL || mongodb_database, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
-})
+});
+
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': process.env.PAYPAL_CLIENT_ID,
+  'client_secret': process.env.PAYPAL_SECRET
+});
 
 const port = process.env.PORT || 5000
 
@@ -33,8 +41,12 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRouter)
 app.use('/api/artworks', artworkRouter)
 app.use('/api/categories', categoryRouter)
-app.use('/api/order', orderRouter)
+app.use('/api/orders', orderRouter)
 app.use('/api/images', uploadRouter)
+
+app.get('/api/config/paypal', (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
+});
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message })

@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 import {
   Box,
@@ -14,10 +14,9 @@ import {
 import { useStyles } from '../utils/theme'
 import art from '../images/crumple-logo.jpg'
 
-const Artworks = ({ user, artwork, onRemove }) => {
+const Artworks = ({ artwork, onRemove, height }) => {
   const classes = useStyles();
   const location = useLocation();
-  const history = useHistory();
   // const [newArtworks, setNewArtworks] = useState([])
 
   // const filteredArtworks = newArtworks.filter((artwork) => {
@@ -26,7 +25,7 @@ const Artworks = ({ user, artwork, onRemove }) => {
   // setNewArtworks(filteredArtworks)
   // setNewArtworks(artworks)
 
-  // console.log(artwork._id)
+  // console.log(artwork)
   // console.log('newArtworks', newArtworks)
 
   return (
@@ -38,8 +37,8 @@ const Artworks = ({ user, artwork, onRemove }) => {
               <img
                 src={artwork.image || art}
                 alt={artwork.name}
-                height='100%'
-                width='100%'
+                height={height || '100%'}
+                width={height || '100%'}
                 style={{ objectFit: 'cover' }}
               />
             </Box>
