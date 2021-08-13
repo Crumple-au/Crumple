@@ -40,6 +40,10 @@ function ProfileArtworksPage(props) {
       <Typography align='center' gutterBottom variant='h3'>
         your <span style={{ color: secondary }}>creations</span>
       </Typography>
+      <Typography align='center' gutterBottom color='textSecondary'>
+        {' '}
+        Build a list of all your creations to share to the world.
+      </Typography>
       <Box
         display='flex'
         justifyContent='center'
@@ -71,7 +75,7 @@ function ProfileArtworksPage(props) {
           artworks.map((item) => {
             return (
               <div key={item._id}>
-                <Artworks artwork={item} height="300px" />
+                <Artworks artwork={item} height='400px' />
               </div>
             )
           })}
