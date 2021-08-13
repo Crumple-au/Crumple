@@ -74,9 +74,12 @@ const Category = () => {
                       alt={element.altName}
                       height='100px'
                       width='100px'
-                      style={element.name === 'Photography' || element.name === 'Merchandise' 
-                      ? {filter: 'brightness(0) invert(1)'} 
-                      : {} }
+                      style={
+                        element.name === 'Photography' ||
+                        element.name === 'Merchandise'
+                          ? { filter: 'brightness(0) invert(1)' }
+                          : {}
+                      }
                     />
                   </Box>
                 </CardMedia>
@@ -133,7 +136,7 @@ const Category = () => {
                         lg={3}
                         xl={2}
                       >
-                        <Artworks artwork={item} height="400px"/>
+                        <Artworks artwork={item} />
                       </Grid>
                     </>
                   )
