@@ -20,3 +20,5 @@ backend/.config
 backend/.package-lock
 backend/.globalConfig.json
 backend/uploads
+backend/coverage
+frontend\coverage

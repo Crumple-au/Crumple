@@ -51,11 +51,10 @@ function UploadArtworkImage(props) {
     }, [props.show])
 
     return (
-        <div className='modal image-upload'>
+        <div className='modal image-upload' onClick={props.onClose}>
             <form
             className='modal-content'
             onSubmit={submitHandler}
-            onClick={props.onClose}
             onClick={(e) => e.stopPropagation()}
             >
             <div>

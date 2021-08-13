@@ -2,27 +2,27 @@ import request  from 'supertest';
 import app from '../server.js'
 import seed from '../util/seed.js';
 import User from '../models/userModel.js';
+import Artwork from '../models/artworkModel.js';
 import expressAsyncHandler from 'express-async-handler';
 import {generateToken} from '../util/util.js';
 import {removeAllCollections, dropAllCollections } from './helpers';
 import bcrypt from 'bcryptjs';
 
-let testUser = {
-    email: "king@example.com",
-    password: "1234"
-};
+// let testUser = {
+//     email: "king@example.com",
+//     password: "1234"
+// };
 
-beforeEach( async () => {
+beforeAll( async () => {
     try{
         const user = new User({
-                email: testUser.email,
-                password: bcrypt.hashSync(testUser.password, 8)
+            email: testUser.email,
+            password: bcrypt.hashSync(testUser.password, 8)
             });
         await user.save();
     } catch(e) {
         console.log("User was not created!");
     }
-
 });
 
 // afterAll(async () => {
@@ -30,13 +30,13 @@ beforeEach( async () => {
 //     await mongoose.connection.close();
 // });
 
-afterEach(async () => {
-    try {
-        await removeAllCollections();
-    } catch (error) {
-        console.error("error in deleting user", error);
-    }
-});
+// afterAll(async () => {
+//     try {
+//         await removeAllCollections();
+//     } catch (error) {
+//         console.error("error in deleting user", error);
+//     }
+// });
 
 app.get(
     '/seed',
@@ -57,7 +57,6 @@ app.post(
                     name: user.name,
                     email: user.email,
                     isAdmin: user.isAdmin,
-                    isSeller: user.isSeller,
                     token: generateToken(user),
                 });
             }
@@ -69,38 +68,41 @@ app.post(
 app.post(
     '/register',
     expressAsyncHandler(async (req, res) => {
-        const user = new User({
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 8),
-        });
-        const createdUser = await user.save();
-        res.send({
-            _id: createdUser._id,
-            email: createdUser.email,
-            isAdmin: createdUser.isAdmin,
-            isSeller: user.isSeller,
-            token: generateToken(createdUser),
-        });
+        try{
+            const user = new User({
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 8),
+            });
+            const createdUser = await user.save();
+            console.log(createdUser)
+            res.status(200).send({
+                _id: createdUser._id,
+                email: createdUser.email,
+                isAdmin: createdUser.isAdmin,
+                isSeller: user.isSeller,
+                token: generateToken(createdUser),
+            });
+        } catch(err) {
+            res.status(400).send({ message: 'could not save User' });
+        }
     })
 );
 
-
-
-describe('Home page route exists.', () => {
-	it("Server 'homepage' can be viewed just fine.", async () => {
-		const res = await request(app).get('/');
-		expect(res.statusCode).toEqual(200);
-	});
-});
+// describe('Home page route exists.', () => {
+// 	it("Server 'homepage' can be viewed just fine.", async () => {
+// 		const res = await request(app).get('/');
+// 		expect(res.statusCode).toEqual(200);
+// 	});
+// });
 
 describe('User Endpoints', () => {
 
-    it("Should GET '/register' and respond with a 200 status code ", (done) => {
-
+    it("Should GET '/seed' and respond with a 200 status code ", (done) => {
+        const response = await request(app)
         request(app)
             .get('/seed')
             .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
+            .expect('Content-Type', "text/html; charset=utf-8")
             .expect(200, done);
     });
 
@@ -109,9 +111,10 @@ describe('User Endpoints', () => {
         const response = await request(app)
             .post("/signin")
             .send({ 
-                email: "king@example.com", 
+                email: "admin1@example.com", 
                 password: '1234' 
             })
+        console.log('RESPONSE: ', response.message)
         expect(response.statusCode).toBe(200);
     });
 
@@ -150,6 +153,43 @@ describe('User Endpoints', () => {
         expect(response.statusCode).toEqual(500);
     });
 
+});
+
+
+app.post(
+    '/',
+    expressAsyncHandler(async (req, res) => {
+        try {
+            const artwork = new Artwork({
+                name: req.body.artwork.name,
+                price: req.body.artwork.price,
+                category: req.body.artwork.category,
+                description: req.body.artwork.description,
+                inStock: req.body.artwork.inStock
+            });
+            const createdArtwork = await artwork.save();
+            res.status(200).send({message: 'Artwork Created!', artwork: createdArtwork});
+        } catch(error) {
+            res.status(500).send({error: error})
+        }
+    })
+);
+
+describe('Artwork Endpoints.', () => {
+	it("Should POST to '/' and respond with a 200 status code.", async () => {
+        const response = await request(app)
+            .post("/")
+            .send({ 
+                artwork: {
+                    name: 'Oil Painting',
+                    price: 100,
+                    category: 'Drawing and Painting',
+                    description: 'This is my description.',
+                    inStock: 10
+                }
+            })
+        expect(response.statusCode).toBe(200);
+	});
 });
 
 
