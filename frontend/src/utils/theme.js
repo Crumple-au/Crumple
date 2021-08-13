@@ -35,7 +35,11 @@ export const useStyles = makeStyles({
     },
   },
   formControl: {
-    minWidth: 120,
+    mimWidth: 120,
+    marginTop: '1rem',
+  },
+  sortFormControl: {
+    width: 120,
     marginTop: '1rem',
   },
   card: {

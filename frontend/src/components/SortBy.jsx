@@ -15,17 +15,13 @@ function SortBy({ label, sort, set }) {
   const option2 = label === 'price' ? 'lowest' : 'oldest'
 
   return (
-    <Box
-      display='flex'
-      flexDirection='row'
-      justifyContent='center'
-      // margin='0.5rem'
-    >
+    <Box display='flex' flexDirection='row' justifyContent='center'>
       <FormGroup>
         <FormControl
           variant='outlined'
           size='small'
-          className={classes.formControl}
+          className={classes.sortFormControl}
+          fullWidth
         >
           <TextField
             variant='filled'
@@ -33,9 +29,10 @@ function SortBy({ label, sort, set }) {
             label={label}
             role='dropdown'
             id={label}
+            fullWidth
             inputProps={{ id: 'discover', 'data-testid': 'listbox' }}
             select
-            defaultValue=''
+            defaultValue={label}
             value={sort}
             onChange={(e) => set(e.target.value)}
           >
