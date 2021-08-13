@@ -18,6 +18,8 @@ Welcome to Crumple readme. To discover about the purpose of Crumple, it's functi
 - [User Stories](#user-stories)
 - [Wireframes](#wireframes)
 - [Trello Board Screenshots](#trello-board-screenshots)
+- [Testing](#testing)
+- [Deployment](#deployment)
 - [How to run Locally](#how-to-run-locally)
 - [Known Issues You May Encounter](#known-issues-you-may-encounter)
 
@@ -364,6 +366,10 @@ Through a thorough analze of the market, Crumple has determined that the best au
 # Testing
 
 Tests were done in both the frontend and the backend using a combination of formal frameworks such as Jest, Enzyme and React Testing Library, as well as [manual tests](./docs/manual-tests.xlsx).
+
+# Deployment
+
+React on the frontend was deployed in Netlify and the api using Node and Express on the backend was deployed in Heroku.
 
 # How to run Locally
 
