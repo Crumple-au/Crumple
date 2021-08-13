@@ -65,7 +65,7 @@ const reducer = combineReducers({
   orderMineList: orderMineListReducer
 })
 
-// Below code to be able to use Redux browser extention
+// the line below to be able to use Redux browser extention
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,

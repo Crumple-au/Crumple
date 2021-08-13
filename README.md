@@ -43,7 +43,7 @@ These is no Crumple warehouse or factory - Only millions of artists selling thei
 ## 2. Setup MongoDB
   
   - ### Local Mongodb
-    - Install from here
+    - Install Mongodb community edition
     - Create .env file in backend directory
     - Set MONGODB_URL=mongodb://localhost/crumple
 
@@ -71,7 +71,7 @@ These is no Crumple warehouse or factory - Only millions of artists selling thei
 ## 6. Admin Login
 
   - Run http://localhost:3000/signin
-  - Admin username: admin1@example.com
+  - Admin username: admin1@example.com or admin2@example.com
   - Admin password: 1234
 
 # Known Issues You May Encounter
@@ -160,19 +160,76 @@ Through a thorough analze of the market, Crumple has determined that the best au
 ### Dependencies
 
 - Axios
+
+  https://www.npmjs.com/package/axios
+
+  Axios is a promise based HTTP client for the browser and Node. js. Axios makes it easy to send asynchronous HTTP requests to REST endpoints and perform CRUD operations. 
+
 - Bcrypt
+
+  https://www.npmjs.com/package/bcryptjs
+  
+  The bcrypt library on NPM makes it really easy to hash and compare passwords in Node. Bcrypt is the de facto way to hash and store passwords.
+
 - Dotenv
-- Js-cookie
+
+  https://www.npmjs.com/package/dotenv
+
+  Dotenv is a zero-dependency module that loads environment variables from a . env file into process.
+
 - JsonWebTokens
+
+  https://www.npmjs.com/package/jsonwebtoken
+
+  JWT specifies a compact and self-contained method for communicating information as a JSON object between two parties. **Crumple** utilised jsonWebTokens as middlewear to our routes. check out backend/Util/util.js.
+
 - Mongoose
-- Stripe
+
+  https://www.npmjs.com/package/mongoose
+
+  Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node. js. It manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those objects in MongoDB.
+
 - Material UI
+- React Redux
+
+  https://www.npmjs.com/package/react-redux
+
+  Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native). **Crumple** used redux all over our app, as we are constantly retrieve data to utilise it.
+
+- Paypal Rest SDK
+
+  https://www.npmjs.com/package/paypal-rest-sdk
+
+  To simplify integrations, PayPal provides REST server SDKs for these languages in these GitHub repositories. For mobile integrations, contact your PayPal account manager. Each repository includes integration and configuration information and samples.
+
+- AWS SDK
+
+  https://www.npmjs.com/package/aws-sdk
+
+  To simplify integrations, PayPal provides REST server SDKs for these languages in these GitHub repositories. For mobile integrations, contact your PayPal account manager. Each repository includes integration and configuration information and samples. **Crumple** used this library to upload and retrieve images from our s3 bucket.
+
+- Redux-Thunk
+
+  https://www.npmjs.com/package/redux-thunk
+
+  Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. The inner function receives the store methods dispatch and getState as parameters. Checkout frontend/actions/userActions (artworkActions, orderActions will do as well), these functions retrieve user information from getState() to then send their token to the backend to then verify the user. 
+
+- React-Easy-Crop
+
+  https://www.npmjs.com/package/react-easy-crop
+
+  A React component to crop images/videos with easy interactions. You will find that /frontend//src/utils/cropImage and /frontend//src/componenents/uploadModal is where all this code lies. What was difficult about this library is the lack of information/documentation out there.
+
 
 ### Developer Dependencies
 
 - Nodemon
+
+  https://www.npmjs.com/package/nodemon
+
+  nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected
+
 - Enzyme
-- Redux Mock Store
 - Jest
 - React Testing Library
 

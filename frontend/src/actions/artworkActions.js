@@ -27,11 +27,9 @@ import ENV_URL from '../config.js'
 const listArtworks = ({ seller = '', category = '', order = '', price = '' }) => async (dispatch) => {
     dispatch({ type: ARTWORK_LIST_REQUEST })
     try {
-      // console.log('price:', price) 
       const { data } = await Axios.get(
         `${ENV_URL}/api/artworks?seller=${seller}&category=${category}&order=${order}&price=${price}`
       )
-      console.log(data)
       dispatch({ type: ARTWORK_LIST_SUCCESS, payload: data })
     } catch (error) {
       dispatch({ type: ARTWORK_LIST_FAIL, payload: error.message })
@@ -70,8 +68,7 @@ const createArtwork = (artwork) => async (dispatch, getState) => {
 const updateArtwork = (artwork) => async (dispatch, getState) => {
   dispatch({ type: ARTWORK_UPDATE_REQUEST, payload: artwork });
   const {
-    userSignin: { userInfo },
-  } = getState();
+    userSignin: { userInfo } } = getState();
   try {
     const { data } = await Axios.put(`${ENV_URL}/api/artworks/${artwork._id}`, artwork, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -89,13 +86,11 @@ const updateArtwork = (artwork) => async (dispatch, getState) => {
 const deleteArtwork = (artworkId) => async (dispatch, getState) => {
   dispatch({ type: ARTWORK_DELETE_REQUEST });
   const {
-    userSignin: { userInfo },
-  } = getState();
+    userSignin: { userInfo } } = getState();
   try {
       const { data } = await Axios.delete(`${ENV_URL}/api/artworks/${artworkId}`, {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
-      console.log(data)
     dispatch({ type: ARTWORK_DELETE_SUCCESS, payload: data });
   } catch (error) {
     const message =

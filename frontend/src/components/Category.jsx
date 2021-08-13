@@ -32,8 +32,6 @@ const Category = () => {
 
   const [sortOrder, setSortOrder] = useState('')
   const [sortPrice, setSortPrice] = useState('')
-  const [search, setSearch] = useState([])
-  // console.log(count)
 
   useEffect(() => {
     if (element || sortOrder) {
@@ -45,12 +43,6 @@ const Category = () => {
         })
       )
     }
-
-    // const filteredArtworks = artworks.filter((artwork) => {
-    //   return artwork.name.toLowerCase().includes('mona')
-    // })
-    // setSearch(filteredArtworks)
-    // console.log(filteredArtworks)
   }, [dispatch, element, sortOrder, sortPrice])
 
   return (

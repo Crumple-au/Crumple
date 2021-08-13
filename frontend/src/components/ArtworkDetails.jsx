@@ -30,11 +30,8 @@ import '../style/index.scss'
 
 const ArtworkDetails = (props) => {
   const { id } = useParams()
-  // const { element } = useFetch(`/api/artworks/${id}`)
   const history = useHistory()
 
-  // const cart = useSelector((state) => state.cart);
-  // const { cartItems, error } = cart;
   const [comment, setComment] = useState('')
 
   const artworkDetails = useSelector((state) => state.artworkDetails)

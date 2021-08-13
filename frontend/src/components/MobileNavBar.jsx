@@ -43,9 +43,14 @@ const MobileNavBar = () => {
             <img src={logo} alt='logo' width='60' />
           </Link>
         </Box>
-        <Box pr='1rem'>
-          <Link to='/' className={classes.navlink}>
-            <Typography variant='h5'>crumple</Typography>
+        <Box p='1.5rem'>
+          <Link to='/categories' className={classes.navlink}>
+            DISCOVER
+          </Link>
+        </Box>
+        <Box p='1.5rem'>
+          <Link to='/about' className={classes.navlink}>
+            ABOUT
           </Link>
         </Box>
 
