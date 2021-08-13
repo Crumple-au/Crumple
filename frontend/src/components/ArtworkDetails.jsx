@@ -87,7 +87,7 @@ const ArtworkDetails = (props) => {
       setComment('')
       dispatch({ type: ARTWORK_REVIEW_CREATE_RESET })
     }
-    if (!artwork) {
+    if (!artwork || id !== artwork._id) {
       dispatch(detailsArtwork(id))
     }
   }, [dispatch, artwork, id, successDelete, history, successReviewCreate])
@@ -103,11 +103,7 @@ const ArtworkDetails = (props) => {
       )}
       {loadingDelete && <Preloader></Preloader>}
       {errorDelete && <Alert variant='alert alert-danger'>{errorDelete}</Alert>}
-      {/* {artwork && ( */}
-      {/* <> */}
 
-      {/* {loadingDelete && <Preloader></Preloader>}
-      {errorDelete && <Alert variant='alert alert-danger'>{errorDelete}</Alert>} */}
       {artwork && (
         <>
           <Box m='4rem 2rem 2rem 2rem'>
@@ -179,7 +175,7 @@ const ArtworkDetails = (props) => {
                           variant='contained'
                           component={Link}
                           style={{ margin: '1rem' }}
-                          to={`/profile/${artwork._id}/editArtwork`}
+                          to={`/profile/${artwork.seller._id}/edit/${artwork._id}`}
                         >
                           Edit
                         </Button>
