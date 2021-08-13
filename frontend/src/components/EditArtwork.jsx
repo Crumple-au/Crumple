@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateArtwork, detailsArtwork } from '../actions/artworkActions';
-import { ARTWORK_UPDATE_RESET } from '../constants/artworkConstants';
+import { ARTWORK_DELETE_RESET, ARTWORK_UPDATE_RESET } from '../constants/artworkConstants';
 import Alert from '../components/Alert';
 import Preloader from '../components/Preloader';
 import UploadArtworkImage from '../components/UploadArtworkImage';
@@ -36,13 +36,13 @@ function EditArtwork() {
         success: successUpdate } = artworkUpdate;
 
     const dispatch = useDispatch();
-
+console.log(artwork)
     const submitHandler = async(e) => {
         e.preventDefault();
         console.log(artwork)
         dispatch(
             updateArtwork({
-                _id: artworkId,
+                _id: artwork._id,
                 seller: userInfo._id,
                 name,
                 price,
