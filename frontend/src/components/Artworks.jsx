@@ -12,23 +12,12 @@ import {
   Button,
 } from '@material-ui/core'
 import { useStyles } from '../utils/theme'
-// import art from '../images/crumple-logo.jpg'
 import art from '../images/crumple-artwork.jpg'
 
 
 const Artworks = ({ artwork, onRemove, height }) => {
   const classes = useStyles();
   const location = useLocation();
-  // const [newArtworks, setNewArtworks] = useState([])
-
-  // const filteredArtworks = newArtworks.filter((artwork) => {
-  //   return artwork.name.toLowerCase().includes('mona')
-  // })
-  // setNewArtworks(filteredArtworks)
-  // setNewArtworks(artworks)
-
-  // console.log(artwork)
-  // console.log('newArtworks', newArtworks)
 
   return (
     <>

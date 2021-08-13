@@ -29,7 +29,6 @@ function ArtworkCreatePage(props) {
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
-  // const [image, setImage] = useState('');
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
   const [inStock, setInStock] = useState('')
@@ -48,7 +47,6 @@ function ArtworkCreatePage(props) {
 
   const createHandler = (e) => {
     e.preventDefault()
-    // TODO: dispatch update product
     dispatch(
       createArtwork({
         seller: userId,
@@ -65,7 +63,6 @@ function ArtworkCreatePage(props) {
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: ARTWORK_CREATE_RESET })
-      // props.history.push(`/profile/${userId}`);
       history.replace(`/profile/${userId}`)
     }
     if (createdArtwork) {

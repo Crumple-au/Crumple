@@ -20,8 +20,6 @@ import Alert from '../components/Alert.jsx'
 
 // Assets
 import { signin } from '../actions/userActions.js'
-// import showPwd from '../images/view.png'
-// import hidePwd from '../images/hide.png'
 import logo from '../images/crumple-logo.jpg'
 
 function SigninPage(props) {
@@ -31,8 +29,6 @@ function SigninPage(props) {
   const dispatch = useDispatch()
 
   const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
-  // const [isRevealPwd, setIsRevealPwd] = useState(false)
 
   const [values, setValues] = useState({
     password: '',

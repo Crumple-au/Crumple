@@ -24,8 +24,6 @@ const Categories = () => {
 
   return (
     <>
-      {/* <SearchBar /> */}
-
       {loading ? (
         <>
           <Preloader />
