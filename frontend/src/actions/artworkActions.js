@@ -54,7 +54,7 @@ const createArtwork = (artwork) => async (dispatch, getState) => {
   try {
     console.log(artwork)
     const { data } = await Axios.post(
-      '${ENV_URL}/api/artworks/', {artwork},
+      `${ENV_URL}/api/artworks/`, {artwork},
       { headers: { Authorization: `Bearer ${userInfo.token}` } }
     );
     dispatch({ type: ARTWORK_CREATE_SUCCESS, payload: data.artwork });

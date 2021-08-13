@@ -11,7 +11,6 @@ import getCroppedImg from '../utils/cropImage'
 import usePostUpload from '../utils/usePostUpload'
 
 function UploadModal(props) {
-
   const { userId } = useParams()
 
   const [croppedImage, setCropppedImage] = useState({})
@@ -24,7 +23,8 @@ function UploadModal(props) {
   const {
     loading: loadingUpdate,
     error: errorUpdate,
-    success: successUpdate } = userUpdateProfile
+    success: successUpdate,
+  } = userUpdateProfile
 
   const dispatch = useDispatch()
 
@@ -36,22 +36,26 @@ function UploadModal(props) {
       } catch (e) {
         console.error(e)
       }
-  },[preview] );
+    },
+    [preview]
+  )
 
   const { imageURL } = usePostUpload(refresh, croppedImage)
 
   const submitHandler = (event) => {
     event.preventDefault()
-      setRefresh(true)
-      if (imageURL.data) {
-        dispatch(updateUserProfile({
-            userId: userId,
-            images: imageURL.data,
-        }))
-      } else {
-        console.error(errorUpdate)
-      }
-  };
+    setRefresh(true)
+    if (imageURL.data) {
+      dispatch(
+        updateUserProfile({
+          userId: userId,
+          images: imageURL.data,
+        })
+      )
+    } else {
+      console.error(errorUpdate)
+    }
+  }
 
   const fileSelected = (event) => {
     event.preventDefault()
@@ -65,11 +69,10 @@ function UploadModal(props) {
   }, [props.show])
 
   return (
-    <div className='modal image-upload'>
+    <div className='modal image-upload' onClick={props.onClose}>
       <form
         className='modal-content'
         onSubmit={submitHandler}
-        onClick={props.onClose}
         onClick={(e) => e.stopPropagation()}
       >
         <div>
