@@ -18,9 +18,6 @@ const SearchBar = () => {
   const [category, setCategory] = useState('')
 
   const handleSubmit = (e) => {
-    // e.preventDefault()
-    // console.log(category, search)
-    // setSearch('')
     history.push(category)
   }
 

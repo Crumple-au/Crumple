@@ -22,9 +22,6 @@ function OrderPage() {
   const orderDetails = useSelector((state) => state.orderDetails)
   const { order, loading, error } = orderDetails
 
-  // const userSignin = useSelector((state) => state.userSignin);
-  // const { userInfo } = userSignin;
-
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, error: errorPay, success: successPay } = orderPay
 

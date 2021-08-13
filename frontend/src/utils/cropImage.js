@@ -3,12 +3,11 @@ const createImage = url =>
         const image = new Image()
         image.addEventListener('load', () => resolve(image))
         image.addEventListener('error', error => reject(error))
-        image.setAttribute('crossOrigin', 'anonymous') // needed to avoid cross-origin issues on CodeSandbox
+        image.setAttribute('crossOrigin', 'anonymous')
         image.src = url
     })
 
 /**
- * This function was adapted from the one in the ReadMe of https://github.com/DominicTobias/react-image-crop
  * @param {File} image - Image File url
  * @param {Object} pixelCrop - pixelCrop Object provided by react-easy-crop
  */
@@ -31,14 +30,9 @@ export default async function getCroppedImg(imageSrc, pixelCrop) {
         pixelCrop.height
     )
 
-    // As Base64 string 
-    // return canvas.toDataURL('image/jpeg');
-
-    // As a blob
     return new Promise((resolve, reject) => {
         canvas.toBlob(file => {
-            console.log(file)
-            // resolve(URL.createObjectURL(file))
+            // console.log(file)
             resolve(file)
         }, 'image/jpeg')
 

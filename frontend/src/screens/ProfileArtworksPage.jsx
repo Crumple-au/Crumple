@@ -20,9 +20,6 @@ function ProfileArtworksPage(props) {
   const dispatch = useDispatch()
 
   const [sortOrder, setSortOrder] = useState('')
-  // const [sortPrice, setSortPrice] = useState('')
-
-  // console.log(artworks)
 
   useEffect(() => {
     if (!artworks || sortOrder || userId !== artworks._id) {
