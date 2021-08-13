@@ -133,7 +133,7 @@ const Category = () => {
                         lg={3}
                         xl={2}
                       >
-                        <Artworks artwork={item} />
+                        <Artworks artwork={item} height="400px"/>
                       </Grid>
                     </>
                   )

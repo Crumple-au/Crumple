@@ -51,7 +51,7 @@ function ProfilePage(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!user) {
+    if (!user || userId !== user._id) {
       dispatch(detailsUser(userId))
     }
   }, [dispatch, user, userId, pathname])
@@ -215,6 +215,9 @@ function ProfilePage(props) {
                 <Switch>
                   <Route path='/profile/:userId/createArtwork'>
                     <ArtworkCreatePage />
+                  </Route>
+                  <Route path='/profile/:userId/edit/:artworkId'>
+                    < EditArtwork/>
                   </Route>
                   <Route path='/profile/:userId/payments'>
                     <Payments />

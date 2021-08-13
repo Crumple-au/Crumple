@@ -25,7 +25,7 @@ function ProfileArtworksPage(props) {
   // console.log(artworks)
 
   useEffect(() => {
-    if (!artworks || sortOrder) {
+    if (!artworks || sortOrder || userId !== artworks._id) {
       dispatch(
         listArtworks({
           seller: userId,
@@ -71,7 +71,7 @@ function ProfileArtworksPage(props) {
           artworks.map((item) => {
             return (
               <div key={item._id}>
-                <Artworks artwork={item} height="400px" />
+                <Artworks artwork={item} height="300px" />
               </div>
             )
           })}
