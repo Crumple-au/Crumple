@@ -71,7 +71,7 @@ function ProfileArtworksPage(props) {
           artworks.map((item) => {
             return (
               <div key={item._id}>
-                <Artworks artwork={item} />
+                <Artworks artwork={item} height="400px" />
               </div>
             )
           })}

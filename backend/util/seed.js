@@ -15,7 +15,8 @@ const data = {
       name: 'Irah',
       email: 'admin2@example.com',
       password: bcrypt.hashSync('1234', 8),
-      description: "Hey This my Irah description. I'm an admin on Crumple",
+      description:
+        "Hi! 👋🏼 I'm Irah. I'm working very hard with Ryan to get this app ready by Friday. Hang on tight. We're almost there...",
       isAdmin: true,
       isSeller: true,
     },
