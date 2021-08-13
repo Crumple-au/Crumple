@@ -12,7 +12,9 @@ import {
   Button,
 } from '@material-ui/core'
 import { useStyles } from '../utils/theme'
-import art from '../images/crumple-logo.jpg'
+// import art from '../images/crumple-logo.jpg'
+import art from '../images/crumple-artwork.jpg'
+
 
 const Artworks = ({ artwork, onRemove, height }) => {
   const classes = useStyles();

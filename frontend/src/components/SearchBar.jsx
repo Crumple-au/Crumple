@@ -8,18 +8,20 @@ import {
   Box,
   Button,
 } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 import { useStyles } from '../utils/theme'
 
 const SearchBar = () => {
   const classes = useStyles()
-
+  const history = useHistory()
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(category, search)
-    setSearch('')
+    // e.preventDefault()
+    // console.log(category, search)
+    // setSearch('')
+    history.push(category)
   }
 
   return (
@@ -47,14 +49,14 @@ const SearchBar = () => {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <MenuItem value='drawing'>DRAWING</MenuItem>
-            <MenuItem value='design'>DESIGN</MenuItem>
-            <MenuItem value='merch'>MERCH</MenuItem>
-            <MenuItem value='books'>BOOKS</MenuItem>
-            <MenuItem value='photos'>PHOTOS</MenuItem>
-            <MenuItem value='film'>FILM</MenuItem>
-            <MenuItem value='music'>MUSIC</MenuItem>
-            <MenuItem value='crafts'>CRAFTS</MenuItem>
+            <MenuItem value='61147d0d8abae435f473c1a4'>DRAWING</MenuItem>
+            <MenuItem value='61147d0d8abae435f473c1a5'>DESIGN</MenuItem>
+            <MenuItem value='61147d0d8abae435f473c1a6'>MERCH</MenuItem>
+            <MenuItem value='61147d0d8abae435f473c1a7'>BOOKS</MenuItem>
+            <MenuItem value='61147d0d8abae435f473c1a8'>PHOTOS</MenuItem>
+            <MenuItem value='61147d0d8abae435f473c1a9'>FILM</MenuItem>
+            <MenuItem value='61147d0d8abae435f473c1aa'>MUSIC</MenuItem>
+            <MenuItem value='61147d0d8abae435f473c1ab'>CRAFTS</MenuItem>
           </TextField>
         </FormControl>
         <FormControl
