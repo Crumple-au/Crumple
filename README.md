@@ -10,6 +10,8 @@ Welcome to Crumple readme. To discover about the purpose of Crumple, it's functi
 ## Table of Contents
 
 - [Purpose of the Application](#purpose-of-the-application)
+- [How to run Locally](#how-to-run-locally)
+- [Known Issues You May Encounter](#known-issues-you-may-encounter)
 - [Functionality / Features](#functionality---features)
 - [Target Audience](#target-audience)
 - [Tech Stack](#tech-stack)
@@ -30,6 +32,54 @@ Crumple is a global online marketplace, where people come together to make, sell
 ### Support Indie Creators
 
 These is no Crumple warehouse or factory - Only millions of artists selling their creations. We make the entire process simple by assisting you in directly connecting with creators in order to unearth something exceptional.
+
+# How to run Locally
+
+## 1. Clone Repo
+
+    $ git clone https://github.com/Crumple-au/Crumple.git
+    $ cd Crumple
+
+## 2. Setup MongoDB
+  
+  - ### Local Mongodb
+    - Install from here
+    - Create .env file in backend directory
+    - Set MONGODB_URL=mongodb://localhost/crumple
+
+## 3. Run Backend
+
+    $ cd backend
+    $ npm install
+    $ npm start
+
+## 4. Run Frontend
+
+    $ cd frontend
+    $ npm install
+    $ npm start
+
+## 5. Seed Users and Artworks and Categoryies
+
+  - Run this in your browser http://localhost:5000/api/users/seed
+  - It inserts users into database, and returns admin email and password
+  - Run this in your browser http://localhost:5000/api/artworks/seed
+  - It creates artworks to one user.
+  - Run this in your browser http://localhost:5000/api/categories/seed
+  - It creates category information, then navigate to 'discovery' page.
+
+## 6. Admin Login
+
+  - Run http://localhost:3000/signin
+  - Admin username: admin1@example.com
+  - Admin password: 1234
+
+# Known Issues You May Encounter
+
+  - Components may not refresh, if previous page data is still rendering, refresh the page.
+  - Paypal button may not render on the deployed site, as the button is rendering in a sanbox (test) mode.
+  - When uploading images, the 'set as profile photo' and 'set as artwork photo' wont close modal, click outside the modal to return to form.
+  - When uploading images, you may have to press 'set as profile photo' and 'set as artwork photo' twice.
 
 # Functionality / Features
 

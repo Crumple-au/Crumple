@@ -25,3 +25,26 @@ export const useFetch = (url) => {
 
   return { element, loading, error }
 }
+
+export const bgColors = (type) => {
+  switch(type) {
+    case 'Drawing and Painting':
+      return '#E5E5E5';
+      case 'Design and Tech':
+      return '#6184C4';
+    case 'Merchandise':
+      return '#323232';
+    case 'Books and Writing':
+      return '#F62D01';
+    case 'Photography':
+      return '#323232';
+    case 'Film and Video':
+      return '#F62D01';
+    case 'Music and Sound Design':
+      return '#E5E5E5';
+    case 'Crafts and DIY':
+      return '#6184C4';
+    default:
+      return 'white'
+  }
+};

@@ -15,10 +15,10 @@ import Alert from './Alert'
 import Preloader from './Preloader'
 import SortBy from '../components/SortBy'
 import { useParams } from 'react-router-dom'
-import { useFetch } from '../utils/helpers'
+import { useFetch, bgColors } from '../utils/helpers'
 import { useStyles } from '../utils/theme'
 import { useDispatch, useSelector } from 'react-redux'
-import { listArtworksAll, listArtworks } from '../actions/artworkActions'
+import { listArtworks } from '../actions/artworkActions'
 import { primary } from '../utils/theme'
 
 const Category = () => {
@@ -67,12 +67,16 @@ const Category = () => {
                     justifyContent='center'
                     p='1rem'
                     border={3}
+                    bgcolor={bgColors(element.name)}
                   >
                     <img
                       src={element.image}
                       alt={element.altName}
                       height='100px'
                       width='100px'
+                      style={element.name === 'Photography' || element.name === 'Merchandise' 
+                      ? {filter: 'brightness(0) invert(1)'} 
+                      : {} }
                     />
                   </Box>
                 </CardMedia>
