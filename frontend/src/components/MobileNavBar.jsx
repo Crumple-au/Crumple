@@ -43,14 +43,9 @@ const MobileNavBar = () => {
             <img src={logo} alt='logo' width='60' />
           </Link>
         </Box>
-        <Box p='1.5rem'>
-          <Link to='/categories' className={classes.navlink}>
-            DISCOVER
-          </Link>
-        </Box>
-        <Box p='1.5rem'>
-          <Link to='/about' className={classes.navlink}>
-            ABOUT
+        <Box>
+          <Link to='/' className={classes.navlink}>
+            <Typography variant='h5'>crumple</Typography>
           </Link>
         </Box>
 
@@ -86,10 +81,10 @@ const MobileNavBar = () => {
                     All users
                   </Link>
                 </li>
-
+                <hr />
                 <li>
                   <Link className='link' to='#signout' onClick={signoutHandler}>
-                    Sign Out
+                    SIGN OUT
                   </Link>
                 </li>
               </ul>
@@ -101,6 +96,17 @@ const MobileNavBar = () => {
               </Button>
               <ul className='dropdown-content'>
                 <li>
+                  <Link to='/categories' className={classes.navlink}>
+                    DISCOVER
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/about' className={classes.navlink}>
+                    ABOUT
+                  </Link>
+                </li>
+                <hr />
+                <li>
                   <Link className='link' to={`/profile/${userInfo._id}`}>
                     Profile
                   </Link>
@@ -110,9 +116,10 @@ const MobileNavBar = () => {
                     Order history
                   </Link>
                 </li>
+                <hr />
                 <li>
                   <Link className='link' to='#signout' onClick={signoutHandler}>
-                    Sign Out
+                    SIGN OUT
                   </Link>
                 </li>
               </ul>
@@ -125,18 +132,6 @@ const MobileNavBar = () => {
                 </Box>
 
                 <ul className='dropdown-content'>
-                  <li py='1.5rem'>
-                    <Link className={classes.navlink} to='/signin'>
-                      LOG IN
-                    </Link>
-                  </li>
-
-                  <li p='1.5rem'>
-                    <Link className={classes.navlink} to='/signup'>
-                      SIGN UP
-                    </Link>
-                  </li>
-
                   <li p='1.5rem'>
                     <Link to='/categories' className={classes.navlink}>
                       DISCOVER
@@ -146,6 +141,18 @@ const MobileNavBar = () => {
                   <li p='1.5rem'>
                     <Link to='/about' className={classes.navlink}>
                       ABOUT
+                    </Link>
+                  </li>
+                  <hr />
+                  <li py='1.5rem'>
+                    <Link className={classes.navlink} to='/signin'>
+                      LOG IN
+                    </Link>
+                  </li>
+
+                  <li p='1.5rem'>
+                    <Link className={classes.navlink} to='/signup'>
+                      SIGN UP
                     </Link>
                   </li>
                 </ul>
