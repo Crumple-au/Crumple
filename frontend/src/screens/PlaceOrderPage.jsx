@@ -40,7 +40,6 @@ function PlaceOrderPage() {
   cart.itemsPrice = toPrice(
     cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
   )
-  // cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice)
   cart.totalPrice = cart.itemsPrice + cart.taxPrice
 
@@ -49,7 +48,7 @@ function PlaceOrderPage() {
   const placeOrderHandler = () => {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems }))
   }
-
+console.log(cart.cartItems)
   useEffect(() => {
     if (success) {
       history.push(`/order/${order._id}`)
@@ -111,7 +110,7 @@ function PlaceOrderPage() {
                       display='flex'
                       justifyContent='space-between'
                       alignItems='center'
-                      key={item.product}
+                      key={item._id}
                     >
                       <Box m='0.2rem'>
                         <img
@@ -125,7 +124,7 @@ function PlaceOrderPage() {
                         <Typography>
                           <Link
                             className='link'
-                            to={`/product/${item.product}`}
+                            to={`/product/${item._id}`}
                           >
                             {item.name}
                           </Link>

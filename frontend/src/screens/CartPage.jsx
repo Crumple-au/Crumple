@@ -27,7 +27,6 @@ function CartPage(props) {
   const dispatch = useDispatch()
 
   const removeFromCartHandler = (artworkId) => {
-    // delete action
     dispatch(removeFromCart(artworkId))
   }
 
@@ -39,8 +38,6 @@ function CartPage(props) {
     if (artworkId) {
       dispatch(addToCart(artworkId, qty))
     }
-
-    console.log('CartItems: ', cartItems)
   }, [dispatch, artworkId, qty, cartItems])
 
   return (

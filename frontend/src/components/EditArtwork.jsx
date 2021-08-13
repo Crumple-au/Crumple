@@ -43,7 +43,7 @@ function EditArtwork() {
   const { userInfo } = userSignin
 
   const artworkDetails = useSelector((state) => state.artworkDetails)
-  const { loading, error, artwork } = artworkDetails
+  const { artwork } = artworkDetails
 
   const artworkUpdate = useSelector((state) => state.artworkUpdate)
   const {
@@ -53,7 +53,7 @@ function EditArtwork() {
   } = artworkUpdate
 
   const dispatch = useDispatch()
-  console.log(artwork)
+
   const submitHandler = async (e) => {
     e.preventDefault()
     console.log(artwork)
