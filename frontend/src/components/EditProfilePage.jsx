@@ -75,6 +75,10 @@ function EditProfilePage(props) {
         <Typography align='center' gutterBottom variant='h3'>
           edit your <span style={{ color: secondary }}>details</span>
         </Typography>
+        <Typography align='center' gutterBottom color='textSecondary'>
+          {' '}
+          Keep your details up-to-date and interesting.
+        </Typography>
         <Grid container>
           <Grid item xs={12} sm={3} md={4} lg={4} xl={4} align='center'></Grid>
           <Grid item xs={12} sm={6} md={4} lg={4} xl={3} align='center'>

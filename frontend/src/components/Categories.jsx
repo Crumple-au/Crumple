@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core'
 
 import { useStyles } from '../utils/theme'
-import { useFetch } from '../utils/helpers'
+import { useFetch, bgColors } from '../utils/helpers'
 
 const Categories = () => {
   const { element, loading, error } = useFetch('/api/categories')
@@ -50,20 +50,24 @@ const Categories = () => {
                   align='center'
                   key={category._id}
                 >
-                  <Card className={classes.card}>
-                    <CardActionArea>
+                  <Card className={classes.card} >
+                    <CardActionArea >
                       <CardMedia>
                         <Box
                           display='flex'
                           justifyContent='center'
                           p='1rem'
                           border={3}
+                          bgcolor={bgColors(category.name)}
                         >
                           <img
                             src={category.image}
                             alt={category.altName}
                             height='100px'
                             width='100px'
+                            style={category.name === 'Photography' || category.name === 'Merchandise' 
+                            ? {filter: 'brightness(0) invert(1)'} 
+                            : {} }
                           />
                         </Box>
                       </CardMedia>

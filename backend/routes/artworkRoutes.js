@@ -9,6 +9,7 @@ import {generateToken, isAuth, isAdmin} from '../util/util.js';
 
 const artworkRouter = express.Router();
 
+// CREATE artwork data samples
 artworkRouter.get(
     '/seed',
     expressAsyncHandler(async (req, res) => {
@@ -28,6 +29,7 @@ artworkRouter.get(
     })
 );
 
+// Get all artworks corresponding to query
 artworkRouter.get(
     '/',
     expressAsyncHandler(async (req, res) => {
@@ -61,6 +63,7 @@ artworkRouter.get(
     })
 );
 
+// CREATE artwork
 artworkRouter.post(
     '/',
     isAuth,
@@ -83,6 +86,7 @@ artworkRouter.post(
     })
 );
 
+// GET artwork by id
 artworkRouter.get(
     '/:id',
     expressAsyncHandler(async (req, res) => {
@@ -98,6 +102,7 @@ artworkRouter.get(
     })
 );
 
+// Update artwork by id
 artworkRouter.put(
     '/:id',
     isAuth,
@@ -121,6 +126,7 @@ artworkRouter.put(
     })
 );
 
+// DELETE artwork by id
 artworkRouter.delete(
     '/:id',
     isAuth,
@@ -135,6 +141,7 @@ artworkRouter.delete(
     })
 );
 
+// CREATE artowrk review
 artworkRouter.post(
     '/:id/reviews',
     isAuth,

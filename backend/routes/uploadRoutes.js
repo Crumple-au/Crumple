@@ -29,6 +29,7 @@ const EXPIRY_TIME = 604800;
 
 const uploadRouter = express.Router();
 
+// GET image from S3 by id
 uploadRouter.get(
   '/:key',
   (req, res) => {
@@ -46,6 +47,7 @@ uploadRouter.get(
     }
 })
 
+// POST image to S3 bucket
 uploadRouter.post(
   '/',
   isAuth,

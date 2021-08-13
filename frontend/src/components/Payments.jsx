@@ -29,19 +29,17 @@ function Payments() {
 
   return (
     <Box>
+      <Typography align='center' gutterBottom variant='h3'>
+        get <span style={{ color: secondary }}>paid</span>
+      </Typography>
+      <Typography align='center' gutterBottom color='textSecondary'>
+        {' '}
+        Turn things on by saving your personal information and bank details.
+      </Typography>
       <Grid container>
         <Grid item xs={12} sm={3} md={4} lg={4} xl={4} align='center'></Grid>
         <Grid item xs={12} sm={6} md={4} lg={4} xl={3} align='center'>
-          <Typography gutterBottom variant='h3'>
-            get <span style={{ color: secondary }}>paid</span>
-          </Typography>
           <form onSubmit={submitHandler}>
-            <Typography gutterBottom color='textSecondary'>
-              {' '}
-              Turn things on by saving your personal information and bank
-              details.
-            </Typography>
-
             <Box
               display='flex'
               justifyContent='space-between'

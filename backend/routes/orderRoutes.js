@@ -10,6 +10,7 @@ import {
 
 const orderRouter = express.Router();
 
+// CREATE new order
 orderRouter.post(
     '/',
     isAuth,
@@ -33,6 +34,7 @@ orderRouter.post(
     })
 );
 
+// GET all my orders
 orderRouter.get(
     '/mine',
     isAuth,
@@ -46,6 +48,7 @@ orderRouter.get(
     })
 );
 
+// GET order by id
 orderRouter.get(
     '/:id',
     isAuth,
@@ -60,6 +63,7 @@ orderRouter.get(
     })
 );
 
+// UPDATE order to indicate order is paid
 orderRouter.put(
     '/:id/pay',
     isAuth,
@@ -83,6 +87,7 @@ orderRouter.put(
     })
 );
 
+// UPDATE order to indicate order is delivered
 orderRouter.put(
     '/:id/deliver',
     isAuth,

@@ -80,17 +80,16 @@ function ArtworkCreatePage(props) {
   return (
     <>
       <Box>
+        <Typography align='center' gutterBottom variant='h3'>
+          what are you <span style={{ color: secondary }}>creating</span>?
+        </Typography>
+        <Typography align='center' gutterBottom color='textSecondary'>
+          {' '}
+          Fill in the boxes and go live in minutes.
+        </Typography>
         <Grid container>
           <Grid item xs={12} sm={3} md={4} lg={4} xl={4} align='center'></Grid>
           <Grid item xs={12} sm={6} md={4} lg={4} xl={3} align='center'>
-            <Typography align='center' gutterBottom variant='h3'>
-              what are you <span style={{ color: secondary }}>creating</span>?
-            </Typography>
-            <Typography align='center' gutterBottom color='textSecondary'>
-              {' '}
-              Fill in the boxes and go live in minutes.
-            </Typography>
-
             <Box paddingTop='3rem'>
               <Button variant='contained' onClick={() => setShow(true)}>
                 Upload Artwork Image
@@ -193,7 +192,7 @@ function ArtworkCreatePage(props) {
                   <Box
                     display='flex'
                     justifyContent='space-between'
-                    paddingTop='0.5rem'
+                    paddingTop='1rem'
                   >
                     <InputLabel htmlFor='countInStock'>
                       Count In Stock
