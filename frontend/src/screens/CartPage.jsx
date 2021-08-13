@@ -70,7 +70,6 @@ function CartPage(props) {
                   <Grid key={item._id} item xs={12} sm={4} md={4} lg={4} xl={3}>
                     <Artworks
                       key={item._id}
-                      height="400px"
                       artwork={item}
                       onRemove={() => removeFromCartHandler(item._id)}
                     />
